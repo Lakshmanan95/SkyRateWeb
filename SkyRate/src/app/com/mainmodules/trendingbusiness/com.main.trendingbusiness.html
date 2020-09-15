@@ -1,0 +1,202 @@
+<div class="popular-searches">
+        <!-- <h4 class="anton-font">Trending Business</h4>
+        <span class="headline">Most searched and Reviewed MROs </span> -->
+        <div class="row image-content">
+           <div  class="col-md-1"></div>
+           <div class="col-md-10">
+            <div>
+                <h4 class="sub-header"> Highly Rated</h4>
+            </div>
+        <div class="row">
+            <div *ngFor="let x of mostRated;let i = index" class="col-md-4 col-spacing">
+
+                    <div class="mainbusiness-container" (click)="getBusiness(x.id,x.name)" >
+                           
+                        <div class="trending-container">
+                            <div class="image-container">
+                                <img src="{{x.imageUrl}}" alt="trending" class="trending-image" />
+                            </div>
+                            <div class="tranding-name">
+                                    <span class="highlight" style="height: 119px;" >{{x.name}}</span><br/>
+                            </div>
+                            
+                            <div class="row rating-field">
+                                <div class="col-md-8">
+                                    <fieldset class="rating rating-default">
+                                            <input type="radio" id="starfive" name="rating_default" value="5.0"[disabled]="true" /><label class = "full" for="starfive" [ngStyle]="{'color':x.overallRating == 5 ? '#D9B310' : '#cecaca' }" ></label>
+                                            <input type="radio" id="star4.5" name="rating_default" value="4.5" [disabled]="true"  /><label class="half" for="star4.5" [ngStyle]="{'color':x.overallRating > 4 ? '#D9B310' : '#cecaca' }"></label>
+                                            <input type="radio" id="starfour" name="rating_default" value="4.0"[disabled]="true" /><label class = "full" for="starfour" [ngStyle]="{'color':x.overallRating >= 4 ? '#D9B310' : '#cecaca' }"></label>
+                                            <input type="radio" id="star3.5" name="rating_default" value="3.5" [disabled]="true" /><label class="half" for="star3.5" [ngStyle]="{'color':x.overallRating > 3 ? '#D9B310' : '#cecaca' }" ></label>
+                                            <input type="radio" id="starthree" name="rating_default" value="3.0"  [disabled]="true"  /><label class = "full" for="starthree" [ngStyle]="{'color':x.overallRating >= 3 ? '#D9B310' : '#cecaca' }"></label>
+                                            <input type="radio" id="star2.5" name="rating_default" value="2.5" [disabled]="true"  /><label class="half" for="star2.5" [ngStyle]="{'color':x.overallRating > 2 ? '#D9B310' : '#cecaca' }" ></label>
+                                            <input type="radio" id="startwo" name="rating_default" value="2.0" [disabled]="true" /><label class = "full" for="startwo"  [ngStyle]="{'color':x.overallRating >= 2 ? '#D9B310' : '#cecaca' }" ></label>
+                                            <input type="radio" id="star1.5" name="rating_default" value="1.5" [disabled]="true" /><label class="half" for="star1.5" [ngStyle]="{'color':x.overallRating > 1 ? '#D9B310' : '#cecaca' }" ></label>
+                                            <input type="radio" id="starone" name="rating_default" value="1.0" [disabled]="true"/><label class = "full" for="starone" [ngStyle]="{'color':x.overallRating >= 1 ? '#D9B310' : '#cecaca' }" ></label>
+                                            <input type="radio" id="star0.5" name="rating_default" value="0.5" [disabled]="true"/><label class="half" for="star0.5" [ngStyle]="{'color':x.overallRating > 0 ? '#D9B310' : '#cecaca' }" ></label>
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-md-4 recommend" style="text-align:right;">
+                                            <span class="check-circle"><i class="fa fa-thumbs-up"></i><span style="font-size:14px">{{x.isRecommend}}</span></span>
+                                            <!-- <span  class="times-circle"><i class="fa fa-thumbs-down"></i><span  style="font-size:14px">2</span></span>                                                         -->
+                                    </div>
+                            </div>
+                            <div class="row">
+                                    
+                                    <div class="col-md-6" style=" font-weight: bold;">
+                                            <span class="reviewcount">{{x.reviewCount}} <span *ngIf="x.reviewCount == 1; else reviews">review</span></span>
+                                            <ng-template #reviews>reviews</ng-template>
+                                    </div>
+                            </div>  
+                         
+                        </div>
+                                                            
+                        </div>
+            </div>
+
+    </div>
+                <div>
+                        <h4 class="sub-header"> Most Reviewed</h4>
+                    </div>
+                <div class="row">
+                    <div *ngFor="let x of mostReviewed;let i = index" class="col-md-4 col-spacing">
+    
+                            <div class="mainbusiness-container" (click)="getBusiness(x.id,x.name)" >
+                                   
+                                <div class="trending-container">
+                                    <div class="image-container">
+                                        <img src="{{x.imageUrl}}" alt="trending" class="trending-image" />
+                                    </div>
+                                    <div class="tranding-name">
+                                            <span class="highlight" style="height: 119px;" >{{x.name}}</span><br/>
+                                    </div>
+                                    
+                                    <div class="row rating-field">
+                                        <div class="col-md-8">
+                                            <fieldset class="rating rating-default">
+                                                    <input type="radio" id="starfive" name="rating_default" value="5.0"[disabled]="true" /><label class = "full" for="starfive" [ngStyle]="{'color':x.overallRating == 5 ? '#D9B310' : '#cecaca' }" ></label>
+                                                    <input type="radio" id="star4.5" name="rating_default" value="4.5" [disabled]="true"  /><label class="half" for="star4.5" [ngStyle]="{'color':x.overallRating > 4 ? '#D9B310' : '#cecaca' }"></label>
+                                                    <input type="radio" id="starfour" name="rating_default" value="4.0"[disabled]="true" /><label class = "full" for="starfour" [ngStyle]="{'color':x.overallRating >= 4 ? '#D9B310' : '#cecaca' }"></label>
+                                                    <input type="radio" id="star3.5" name="rating_default" value="3.5" [disabled]="true" /><label class="half" for="star3.5" [ngStyle]="{'color':x.overallRating > 3 ? '#D9B310' : '#cecaca' }" ></label>
+                                                    <input type="radio" id="starthree" name="rating_default" value="3.0"  [disabled]="true"  /><label class = "full" for="starthree" [ngStyle]="{'color':x.overallRating >= 3 ? '#D9B310' : '#cecaca' }"></label>
+                                                    <input type="radio" id="star2.5" name="rating_default" value="2.5" [disabled]="true"  /><label class="half" for="star2.5" [ngStyle]="{'color':x.overallRating > 2 ? '#D9B310' : '#cecaca' }" ></label>
+                                                    <input type="radio" id="startwo" name="rating_default" value="2.0" [disabled]="true" /><label class = "full" for="startwo"  [ngStyle]="{'color':x.overallRating >= 2 ? '#D9B310' : '#cecaca' }" ></label>
+                                                    <input type="radio" id="star1.5" name="rating_default" value="1.5" [disabled]="true" /><label class="half" for="star1.5" [ngStyle]="{'color':x.overallRating > 1 ? '#D9B310' : '#cecaca' }" ></label>
+                                                    <input type="radio" id="starone" name="rating_default" value="1.0" [disabled]="true"/><label class = "full" for="starone" [ngStyle]="{'color':x.overallRating >= 1 ? '#D9B310' : '#cecaca' }" ></label>
+                                                    <input type="radio" id="star0.5" name="rating_default" value="0.5" [disabled]="true"/><label class="half" for="star0.5" [ngStyle]="{'color':x.overallRating > 0 ? '#D9B310' : '#cecaca' }" ></label>
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-md-4 recommend" style="text-align:right;">
+                                                    <span class="check-circle"><i class="fa fa-thumbs-up"></i><span style="font-size:14px">{{x.isRecommend}}</span></span>
+                                                    <!-- <span  class="times-circle"><i class="fa fa-thumbs-down"></i><span  style="font-size:14px">2</span></span>                                                         -->
+                                            </div>
+                                    </div>
+                                    <div class="row">
+                                            
+                                            <div class="col-md-6" style=" font-weight: bold;">
+                                                    <span class="reviewcount">{{x.reviewCount}} <span *ngIf="x.reviewCount == 1; else reviews">review</span></span>
+                                                    <ng-template #reviews>reviews</ng-template>
+                                            </div>
+                                    </div>  
+                                 
+                                </div>
+                                                                    
+                                </div>
+                    </div>
+
+            </div>
+            <div>
+                <h4 class="sub-header">Most Viewed</h4>
+            </div>
+             <div class="row">
+                     <div *ngFor="let x of mostViewed;let i = index" class="col-md-4 col-spacing">
+     
+                             <div class="mainbusiness-container" (click)="getBusiness(x.id,x.name)" >
+                                    
+                                 <div class="trending-container">
+                                     <div class="image-container">
+                                         <img src="{{x.imageUrl}}" alt="trending" class="trending-image" />
+                                     </div>
+                                     <div class="tranding-name">
+                                             <span class="highlight" style="height: 119px;" >{{x.name}}</span><br/>
+                                     </div>
+                                     
+                                     <div class="row rating-field">
+                                         <div class="col-md-8">
+                                             <fieldset class="rating rating-default">
+                                                     <input type="radio" id="starfive" name="rating_default" value="5.0"[disabled]="true" /><label class = "full" for="starfive" [ngStyle]="{'color':x.overallRating == 5 ? '#D9B310' : '#cecaca' }" ></label>
+                                                     <input type="radio" id="star4.5" name="rating_default" value="4.5" [disabled]="true"  /><label class="half" for="star4.5" [ngStyle]="{'color':x.overallRating > 4 ? '#D9B310' : '#cecaca' }"></label>
+                                                     <input type="radio" id="starfour" name="rating_default" value="4.0"[disabled]="true" /><label class = "full" for="starfour" [ngStyle]="{'color':x.overallRating >= 4 ? '#D9B310' : '#cecaca' }"></label>
+                                                     <input type="radio" id="star3.5" name="rating_default" value="3.5" [disabled]="true" /><label class="half" for="star3.5" [ngStyle]="{'color':x.overallRating > 3 ? '#D9B310' : '#cecaca' }" ></label>
+                                                     <input type="radio" id="starthree" name="rating_default" value="3.0"  [disabled]="true"  /><label class = "full" for="starthree" [ngStyle]="{'color':x.overallRating >= 3 ? '#D9B310' : '#cecaca' }"></label>
+                                                     <input type="radio" id="star2.5" name="rating_default" value="2.5" [disabled]="true"  /><label class="half" for="star2.5" [ngStyle]="{'color':x.overallRating > 2 ? '#D9B310' : '#cecaca' }" ></label>
+                                                     <input type="radio" id="startwo" name="rating_default" value="2.0" [disabled]="true" /><label class = "full" for="startwo"  [ngStyle]="{'color':x.overallRating >= 2 ? '#D9B310' : '#cecaca' }" ></label>
+                                                     <input type="radio" id="star1.5" name="rating_default" value="1.5" [disabled]="true" /><label class="half" for="star1.5" [ngStyle]="{'color':x.overallRating > 1 ? '#D9B310' : '#cecaca' }" ></label>
+                                                     <input type="radio" id="starone" name="rating_default" value="1.0" [disabled]="true"/><label class = "full" for="starone" [ngStyle]="{'color':x.overallRating >= 1 ? '#D9B310' : '#cecaca' }" ></label>
+                                                     <input type="radio" id="star0.5" name="rating_default" value="0.5" [disabled]="true"/><label class="half" for="star0.5" [ngStyle]="{'color':x.overallRating > 0 ? '#D9B310' : '#cecaca' }" ></label>
+                                                 </fieldset>
+                                             </div>
+                                             <div class="col-md-4 recommend" style="text-align:right;">
+                                                     <span class="check-circle"><i class="fa fa-thumbs-up"></i><span style="font-size:14px">{{x.isRecommend}}</span></span>
+                                                     <!-- <span  class="times-circle"><i class="fa fa-thumbs-down"></i><span  style="font-size:14px">2</span></span>                                                         -->
+                                             </div>
+                                     </div>
+                                     <div class="row">
+                                             
+                                             <div class="col-md-6" style=" font-weight: bold;">
+                                                     <span class="reviewcount">{{x.reviewCount}} <span *ngIf="x.reviewCount == 1; else reviews">review</span></span>
+                                                     <ng-template #reviews>reviews</ng-template>
+                                             </div>
+                                     </div>  
+                                  
+                                 </div>
+                                                                     
+                                 </div>
+                     </div>
+
+             </div>
+           
+
+
+
+            </div>
+            <div  class="col-md-1"></div>
+        </div>
+
+        
+    </div>
+
+
+    
+                    <!-- <div *ngFor="let x of trendingBusiness;" class="col-md-4 col-spacing">
+                        <div class="mainbusiness-container">
+                            <div class="trending-container" >
+                                <div class="col-md-12 business-name" (click)="getBusiness(x.id,x.name)">
+                                    <span class="highlight" >{{x.name}}</span><br/>
+                                    <div class="row col-md-12">
+                                        <fieldset class="rating rating-default">
+                                                <input type="radio" id="starfive" name="rating_default" value="5.0"[disabled]="true" /><label class = "full" for="starfive" [ngStyle]="{'color':x.overallRating == 5 ? 'green' : '#cecaca' }" ></label>
+                                                <input type="radio" id="star4.5" name="rating_default" value="4.5" [disabled]="true"  /><label class="half" for="star4.5" [ngStyle]="{'color':x.overallRating > 4 ? 'green' : '#cecaca' }"></label>
+                                                <input type="radio" id="starfour" name="rating_default" value="4.0"[disabled]="true" /><label class = "full" for="starfour" [ngStyle]="{'color':x.overallRating >= 4 ? 'green' : '#cecaca' }"></label>
+                                                <input type="radio" id="star3.5" name="rating_default" value="3.5" [disabled]="true" /><label class="half" for="star3.5" [ngStyle]="{'color':x.overallRating > 3 ? 'green' : '#cecaca' }" ></label>
+                                                <input type="radio" id="starthree" name="rating_default" value="3.0"  [disabled]="true"  /><label class = "full" for="starthree" [ngStyle]="{'color':x.overallRating >= 3 ? 'green' : '#cecaca' }"></label>
+                                                <input type="radio" id="star2.5" name="rating_default" value="2.5" [disabled]="true"  /><label class="half" for="star2.5" [ngStyle]="{'color':x.overallRating > 2 ? 'green' : '#cecaca' }" ></label>
+                                                <input type="radio" id="startwo" name="rating_default" value="2.0" [disabled]="true" /><label class = "full" for="startwo"  [ngStyle]="{'color':x.overallRating >= 2 ? 'green' : '#cecaca' }" ></label>
+                                                <input type="radio" id="star1.5" name="rating_default" value="1.5" [disabled]="true" /><label class="half" for="star1.5" [ngStyle]="{'color':x.overallRating > 1 ? 'green' : '#cecaca' }" ></label>
+                                                <input type="radio" id="starone" name="rating_default" value="1.0" [disabled]="true"/><label class = "full" for="starone" [ngStyle]="{'color':x.overallRating >= 1 ? 'green' : '#cecaca' }" ></label>
+                                                <input type="radio" id="star0.5" name="rating_default" value="0.5" [disabled]="true"/><label class="half" for="star0.5" [ngStyle]="{'color':x.overallRating > 0 ? 'green' : '#cecaca' }" ></label>
+                                            </fieldset>
+                                            
+                                        </div>
+                                        <div class="row col-md-12"><span class="reviewcount">{{x.reviewCount}} <span *ngIf="x.reviewCount == 1; else reviews">review</span></span></div>
+                                        <ng-template #reviews>reviews</ng-template>
+                                    </div>
+                                
+                                
+                                <div class="row col-md-12"> </div>
+                                <div class="business-address">
+                                        <span>{{x.address}},{{x.state}}<br>
+                                        {{x.city}}-{{x.zip}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->

@@ -1,0 +1,59 @@
+<header></header>
+<div id="confirm-signup">
+
+    <div class="panel panel-primary ">
+        <div class="panel-heading">
+            <h3 class="panel-title">Confirm Sign up</h3>
+        </div>
+        <div class="panel-body">
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-8 col-md-6 ">
+
+                    <div class="form-group">
+                        <label for="username">User Name</label> {{user.userName}}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="firstname">First Name</label> {{user.firstName}}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastname">Last Name</label> {{user.lastName}}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address </label> {{user.email}}
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="phoneno">Phone Number</label> {{user.phoneNumber}}
+                    </div>
+
+
+                    <hr class="colorgraph">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-6"><input type="button" (click)="registerUser()" value="Register" class="btn btn-primary btn-block btn-lg"
+                                tabindex="7"></div>
+                    </div>
+
+                </div>
+            </div>
+
+            <modal #Processing id="register"
+            [show-modal]="isModalOpen"
+            [title]="''"
+            >
+            <div class="popup-content">
+             <span style="font-size:32px;">Register...</span><i class="fa fa-spinner fa-spin" style="font-size:24px"></i>
+            </div>
+            <div class="popup-footer">
+          
+            </div>
+            </modal>
+
+        </div>
+    </div>
+    
+</div>

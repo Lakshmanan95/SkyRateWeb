@@ -1,0 +1,22 @@
+<div class="emailverify">
+    <div *ngIf="emailVerificationStatus!=null">
+        <div *ngIf="emailVerificationStatus" class="stmt">
+
+            <div>
+                <h5 style="color: white;"><b>Email Verified Successfully!</b></h5>
+                <b>
+                    <span style="color:white">Please </span><a (click)="loginPage()" style="color: #d9b310 !important;">login here</a><span style="color:#d9b310">. </span></b>
+
+            </div>
+        </div>
+        <div *ngIf="!emailVerificationStatus" class="stmt">
+
+            <div>
+                <h5><b>Email Verified Failed. Try registering the user again.</b></h5>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>

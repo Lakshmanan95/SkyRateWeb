@@ -1,0 +1,21 @@
+<div style="background-color: #0B3C5D">
+  <div class="col-md-12 home-header">
+    <div class="row">
+      <div class="col-md-2">
+        <logo></logo>
+      </div>
+      <div class="col-md-6"></div>
+      <div class="col-md-4">
+        <side-menu *ngIf="!hideSubMenu"></side-menu>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-md-12">
+    <alert></alert>
+  </div>
+  <div style="min-height:500px;">
+    <router-outlet></router-outlet>
+  </div>
+  <footer></footer>
+</div>

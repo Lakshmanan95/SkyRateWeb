@@ -1,0 +1,70 @@
+<header></header>
+ <home-menu> </home-menu>
+<div id="forgot-username">
+
+
+    <div class="panel panel-primary ">
+        <div class="panel-heading">
+            <h3 class="panel-title">Forgot User name ?</h3>
+        </div>
+        <div class="panel-body">
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-8 col-md-6 ">
+                    <form #f="ngForm" [formGroup]="basicForm" (ngSubmit)="onSubmit(f)" method="post" action="#">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                Please provide email id associated with your account.
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+
+                                <div class="form-group">
+                                    <label for="email">Email*</label>
+                                    <input type="text" name="email" [(ngModel)]="email" id="email" formControlName="_email" class="form-control" placeholder="Email Id" tabindex="1" 
+                                    required
+                                    pattern="^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$"
+                                    >
+
+                                </div>
+                        <div *ngIf="basicForm.controls._email.touched && basicForm.controls._email.errors">
+                            <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="basicForm.controls._email.errors.required"> Please enter the valid emai address </div>
+                            <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="basicForm.controls._email.errors.pattern"> Please enter the valid Email Address for eg. raj@yahoo.com</div>
+                        </div>
+                            </div>
+                        </div>
+                        <div  class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                
+                            </div>
+                        </div>
+
+                        <div *ngIf="isSuccess" class="row">
+                            <div class="col-xs-1 col-md-1">
+                                <i class="fa fa-thumbs-up fa-4x" style="color:green" aria-hidden="true"></i>
+                            </div>
+                            <div class="col-xs-11 col-md-11">
+                                User name has been sent to you email account <B> {{emailId}}</B> .<BR>
+                                Login to your account  <a class="btn btn-primary " target="_self" href="#home">  Sign in </a> <BR>
+                                If you dont get email in your inbox , please try again.
+
+
+                            </div>
+                        </div>
+                        <hr class="colorgraph">
+                        <div class="row">
+                            <div class="col-xs-6 col-md-4"><input type="button" type="submit" [disabled]="!f.valid" value="Submit" class="btn btn-primary btn-block"
+                                    tabindex="7"></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+</div>
+<footer> </footer>

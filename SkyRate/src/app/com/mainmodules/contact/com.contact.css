@@ -1,0 +1,26 @@
+#contact{
+    margin-bottom: 10px;
+}
+.contact-container{
+    background-color: white;
+    padding: 15px;
+    margin-top: 50px;
+}
+.contactform-container{
+    padding: 15px;
+}
+
+.contact-info{
+    padding: 15px;
+}
+.form-row{
+    margin-top: 15px;
+}
+.form-button{
+    margin-top: 10px;
+    text-align: right;
+}
+.contact-header{
+    color: #D9B310;
+    font-weight: bold;
+}

@@ -1,0 +1,92 @@
+<div class="container" *ngIf="messageResponse && inboxResponse">
+  <h3 class=" text-center"></h3>
+  <div class="messaging">
+    <div class="messaging-header">
+      <div class="messaging-header-left">
+        <span *ngIf="(!messages || messages.length === 0) && (!inboxes || inboxes.length === 0)">No Messages</span>
+        <span *ngIf="(inboxes && inboxes.length > 0)">Messages</span>
+      </div>
+      <div class="messaging-header-right">
+        <span *ngIf="(inboxes && inboxes.length > 0)" class="user-name">{{toName}}</span>
+        <span class="delete-chat" *ngIf="toName && (inboxes && inboxes.length > 0)" style="padding-left: 76px;">
+          <div  (click)="clearAll()" style="cursor: pointer;">Clear</div>
+        </span>
+      </div>
+    </div>
+    <div class="messaging-container">
+      <div *ngIf="inboxes && inboxes.length > 0" class="messaging-left-pane">
+        <div *ngFor="let x of inboxes; let i = index" style=" cursor: pointer;"
+        (click)="getByConversation(x.conversationId, x.toId, x.fromId, x.fromName ,x.toName); x.readCount = 0;">
+          <div class="chat_list"
+               [attr.data-index]="i"
+               [attr.data-new]="x.readCount && x.readCount > 0 ? true : false"
+               [attr.data-selected]="x.conversationId === selectedConversationId"
+          >
+            <div class="chat_people"
+                 >
+              <div class="chat_img">
+                <div *ngIf="userId != x.fromId"><img src="{{x.fromImage}}" class="img-responsive" alt="image"></div>
+                <div *ngIf="userId == x.fromId"><img src="{{x.toImage}}" class="img-responsive" alt="to-image"></div>
+              </div>
+              <div class="chat_ib">
+                <span class="inbox-user" *ngIf="userId != x.fromId; else toName">{{x.fromName}} <span class="chat_date">{{x.dateTime | date: 'MMM dd, yyyy'}}    |    {{x.dateTime | date: 'shortTime'}}</span>
+                </span>
+                <ng-template #toName><span class="inbox-user">{{x.toName}} <span class="chat_date">{{x.dateTime | date: 'MMM dd, yyyy'}}    |    {{x.dateTime | date: 'shortTime'}}</span>
+                </span></ng-template>
+              </div>
+              <span class="badge" *ngIf="x.readCount != 0 && userId != x.fromId">{{x.readCount}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="messageResponse && ( messages && messages.length >= 0)" class="messaging-right-pane">
+        <div *ngIf="(inboxes && inboxes.length > 0) && ( messages && messages.length >= 0)" class="mesgs">
+          <div class="msg_history" #scrollMe>
+            <div *ngFor="let x of messages;">
+              <div class="incoming_msg">
+                <!-- <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div> -->
+                <div *ngIf="x.defaultMessage == 0; else defaultMessage" class="received_msg">
+                  <div class="received_withd_msg" [ngStyle]="getStyles(x.fromId)">
+
+                  <span *ngIf="time < x.dateTime && x.deleteFlag == 0 " [ngStyle]="getCloseStyle(x.fromId)"><i
+                    class="fa fa-times-circle-o" (click)="deleteSingleMessage(x.uniqueMessageId)"></i></span>
+                    <p [ngStyle]="getTextStyles(x.fromId)" [innerHTML]="x.message">
+
+
+                    </p>
+                    <span
+                      class="time_date"> {{x.dateTime | date: 'MMM dd, yyyy'}}    |    {{x.dateTime | date:'shortTime'}}</span>
+                  </div>
+
+                </div>
+                <ng-template #defaultMessage>
+                  <div class="default_msg">
+                    {{x.message}}
+                  </div>
+                </ng-template>
+              </div>
+            </div>
+
+          </div>
+          <div class="type_msg">
+            <div class="input_msg_write">
+            <textarea id="input" type="text" class="write_msg" rows="2" cols="50" placeholder="Type a message"
+                      [(ngModel)]="message"></textarea>
+              <button class="msg_send_btn" type="button" (click)="sendMessage()"><i class="fa fa-paper-plane-o"
+                                                                                    aria-hidden="true"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="(!messages || messages.length === 0) && (!inboxes || inboxes.length < 1)" class="outer">
+        <div class="default-text">
+          <div class="inner">
+            <img src="assets/img/chat.png" class="default-img" alt="chat"/>
+            <h4>No messages available</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

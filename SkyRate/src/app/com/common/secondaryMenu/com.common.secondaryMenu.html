@@ -1,0 +1,40 @@
+<div class="col-md-12">
+  <div class="row col-md-12">
+      
+      <div class="col-md-6 add_business">
+        
+        <div class="find-business">
+          <span class="add-content">Cannot find a business?</span>
+          <a class="add_link" (click)="addBusiness()">Add Business</a>
+        </div>
+        
+      </div>
+      <div class="col-md-6">
+        <div class="row" style="padding-inline-start: 0px;">
+          <div class="col-md-12 second-menu">
+              <div *ngIf="roleId == 2 || roleId == 1" class="dropdown" style="display:inline-block;margin-left:0px;">
+                  <a  class="dropdown-toggle" data-toggle="dropdown">
+                      <span style="line-height:2;">Admin</span>
+                  </a>
+                  <div class="dropdown-menu menu-arrow admin-menu" style="    margin-right: -6px;">
+                      <div class="form-group" style="margin-bottom:0rem">
+                            <div  class="signup profile-log"  (click)="admin()"><span    class="profile-li"> Dashboard</span></div>
+                            <hr  class="ruler">
+     
+                        
+                            <div class="signup profile-log"  (click)="claimBusiness()"><span    class="profile-li"> Approval</span></div>
+                            <!-- <hr class="ruler"> -->
+
+                            <!-- <div class="signup profile-log" (click)="advertisement()" ><span class="profile-li">Advertisement</span></div> -->
+                        </div>
+                  </div>
+                </div>
+            <!-- <span *ngIf="roleId == 2 || roleId == 1" class="menu-space">Admin</span> -->
+            <span class="menu-space" (click)="aboutus()" style="padding-left:23px;">About Us</span>
+            <span class="menu-space" (click)="contact()">Contact Us</span>
+            <span class="menu-space" (click)="feedback()">Feedback</span>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

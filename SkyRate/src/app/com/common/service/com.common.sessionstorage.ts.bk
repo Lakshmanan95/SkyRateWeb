@@ -1,0 +1,33 @@
+import { Injectable } from '@angular/core';
+
+@Injectable()
+export class SessionStorageService {
+  
+    constructor(){
+        console.log("Session Storage loaded");
+    }
+    private setItem (key, valueObj){
+        sessionStorage.setItem(key,valueObj);
+    }
+    private getItem(key){
+        return sessionStorage.getItem(key);
+    }
+    setObject (key, valueObj){
+        sessionStorage.setItem(key,JSON.stringify(valueObj));
+    }
+    getObject(key){
+        return JSON.parse(sessionStorage.getItem(key));
+    }
+    clear(){
+      //  var data = sessionStorage.getItem("configData");
+        sessionStorage.clear();
+      //  sessionStorage.setItem("configData",JSON.stringify(data));
+
+    }
+    setObjectInLocalStorage(key, valueObj){
+        localStorage.setItem(key,JSON.stringify(valueObj));
+    }
+    getObjectFromLocalStorage(key){
+        return JSON.parse(localStorage.getItem(key));
+    }
+}

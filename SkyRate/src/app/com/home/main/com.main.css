@@ -1,0 +1,7 @@
+.header{
+    
+        background:  linear-gradient(0deg, rgba(8,20,220,0.50), 
+        rgba(8,20,220,0.50)), url(https://images.unsplash.com/photo-1484299100652-225f64efab39?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=c18828811f3b62e553b5d073b5e1ebce&auto=format&fit=crop&w=500&q=60) no-repeat center center fixed;
+        height:450px;
+        background-size: cover;
+      }

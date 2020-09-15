@@ -1,0 +1,352 @@
+<div class="col-md-12">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8 business-form">
+                <div class="col-md-10 form-header">
+                    <h5 class="header-content"><span *ngIf="id == 0">Add</span><span *ngIf="id != 0">Edit</span> Business</h5>
+              </div><br>
+              <span *ngIf="id != 0" style="padding-left: 21px;color: #0B3C5D;"><b>Please validate & update contact and address information</b></span>
+                <hr style="margin-top: 5px;">
+                <div class="business-fields">
+                    <form #f1="ngForm" [formGroup]="businessForm">
+                        <div *ngIf="business.id == 0" class="row row-spacing">
+                                <div class="header-dropdown">
+                                        <select class="form-control" [(ngModel)]="business.createdBy" formControlName="_createdBy"  >
+                                            <option value="Customer">Customer</option>
+                                            <option value="Owner">Owner</option>
+                                        </select>
+                                    </div>
+                        </div>
+                    <div class="row row-spacing">
+                        <div *ngIf="id == 0" class="col-md-5">
+                            <label>Business Name <span class="redStar">*</span></label>
+                            <mat-form-field class="example-full-width">
+                                    <input type="text" #trigger [(ngModel)]="business.name" maxlength="50"  [readonly]="id != 0" class="inputSize"  formControlName="_name" onfocus="this.select()" (keyup.enter)="moreOptions()" aria-label="Number" (keyup)=onChange($event.target.value) matInput  [matAutocomplete]="auto">
+                                    <mat-autocomplete  autoActiveFirstOption  #auto="matAutocomplete"  >
+                                      <mat-option *ngFor="let option of options; let i = index;" (keyup)="matSelect($event.target.value)" (onSelectionChange)="callSomeFunction(option.name)" >
+                                       <span >{{ option.name }}</span>
+                                      </mat-option> 
+                                    </mat-autocomplete>
+                                  </mat-form-field>
+                            <!-- <input type="text" class="form-control"  [(ngModel)]="business.name" 
+                            name="_name" formControlName="_name" [readonly]="id != 0"/> -->
+    
+                            <div *ngIf="businessForm.controls._name.touched && businessForm.controls._name?.errors">
+                                <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="businessForm.controls._name.errors.required"> Please enter business name </div>
+                                <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="businessForm.controls._name.errors.businessExists"> Business already taken </div>            
+                            </div>
+                        </div>
+                        <div *ngIf="id != 0" class="col-md-5">
+                                <label>Business Name <span class="redStar">*</span></label>
+                                <input type="text" class="form-control"  [(ngModel)]="business.name" 
+                                name="_name" formControlName="_name" [readonly]="id != 0"/>
+        
+                                <div *ngIf="businessForm.controls._name.touched && businessForm.controls._name?.errors">
+                                    <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="businessForm.controls._name.errors.required"> Please enter business name </div>
+                                    <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="businessForm.controls._name.errors.businessExists"> Business already taken </div>            
+                                </div>
+                            </div>
+                       
+                        <div class="col-md-1"></div>
+                        <div class="col-md-5">
+                                <label>Business Type <span class="redStar">*</span> </label>
+                                <select class="form-control" [(ngModel)]="business.businessType" formControlName="_businessType">
+                                    <!-- <option value="0">Both</option> -->
+                                    <option value="1">MRO Services</option>
+                                    <option value="2">Parts Vendors</option>
+                                </select>
+                                <div *ngIf="businessForm.controls._businessType.touched && businessForm.controls._businessType?.errors">
+                                        <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="businessForm.controls._businessType.errors.required"> Please select business type </div>           
+                                    </div>
+                                <!-- <angular2-multiselect [data]="category" [(ngModel)]="selectedItems"   formControlName="_category"
+                                [settings]="dropdownSettings" 
+                                (onSelect)="onItemSelect($event)" 
+                                (onDeSelect)="OnItemDeSelect($event)"
+                                (onSelectAll)="onSelectAll($event)"
+                                (onDeSelectAll)="onDeSelectAll($event)">
+                                
+                            </angular2-multiselect> -->
+                                <!-- <select class="form-control"  [(ngModel)]="business.category" style="height:33px;" 
+                                formControlName="_category">
+                                <option *ngFor="let x of category;" value="{{x.category}}">{{x.category}}</option>
+                    
+                                </select> -->
+     
+                                               
+    
+                                <div *ngIf="businessForm.controls._category.touched && businessForm.controls._category?.errors">
+                                    <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="businessForm.controls._category.errors.required"> Please select the category </div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="row row-spacing">
+                            <div class="col-md-11">
+                                <label>Address<span class="redStar"></span> </label>
+                                <!-- <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text"  [(ngModel)]="business.address" class="form-control" #search  formControlName="_address"> -->
+                        
+                                <input type="text" class="form-control"  [(ngModel)]="business.address" 
+                                name="_address" formControlName="_address" />
+    
+                                <!--div *ngIf="businessForm.controls._address.touched && businessForm.controls._address?.errors">
+                                    <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="businessForm.controls._address.errors.required"> Please enter the address</div>
+                                </div-->
+                            </div>
+                        </div>
+                    <div class="row row-spacing">
+                        <div class="col-md-5">
+                            
+                                <label>City<span class="redStar">*</span></label>
+                                <input type="text" class="form-control"  [(ngModel)]="business.city" 
+                                        name="_city" formControlName="_city" />
+                                <div *ngIf="businessForm.controls._city.touched && businessForm.controls._city?.errors">
+                                    <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="businessForm.controls._city.errors.required"> Please enter the city</div>
+                                </div>
+                            
+                        </div>
+                        <div class="col-md-1"></div>
+                            <div class="col-md-3">
+                                    <label>State<span class="redStar">*</span></label> 
+                                    <div *ngIf="!isStateManual">                       
+                                    <select placeholder=".col-xs-2" class="form-control" [(ngModel)]="business.state"
+                                    formControlName="_state">
+                                        <option *ngFor="let a of states" [value]="a.abbreviation" [selected]="business.state == a.abbreviation">{{a.abbreviation}}</option>
+                                    </select>
+                                </div>  
+                                    <div  *ngIf="isStateManual">
+                                        <input type="text" class="form-control"  [(ngModel)]="business.state" 
+                                        name="_state" formControlName="_state" />
+                                      </div>
+                            </div>
+                            <div class="col-md-2">
+                            <label>Zip </label>
+                            <input pattern="^[a-zA-Z0-9]*$" type="text" class="form-control"  [(ngModel)]="business.zip" 
+                                    name="_zip" formControlName="_zip" maxlength="10" />
+    
+                            <div *ngIf="businessForm.controls._zip?.errors">
+                                <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="businessForm.controls._zip.errors.pattern"> Please enter the zip </div>
+                            </div>
+                        </div>
+                      
+                        
+                    </div>
+                    <div class="row row-spacing">
+                        <div class="col-md-5">
+                            <label>Website</label>
+                            <input type="text" class="form-control" placeholder="https://AviationRating.com"  [(ngModel)]="business.website" 
+                                    name="_website" formControlName="_website" />
+    
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="col-md-5">
+                            <label>Phone Number</label> 
+                            <input type="text" class="form-control" (keypress)="keyPress($event)" maxlength="15" minlength="10" [(ngModel)]="business.phoneNumber" pattern="^[^\s]+(\s+[^\s]+)*$"
+                            name="_phoneNumber" placeholder="123 456 7890" formControlName="_phoneNumber" />                           
+                    </div>                   
+                </div>
+                <div *ngIf="(business.userId != 0 && business.id != 0) || roleId < 3 || claimBusinessClicked ||business.createdBy=='Owner'"  >
+                    <div  class="row row-spacing">
+                            <div class="col-md-5">
+                                <label>Certificate Number </label>
+                                <input type="text" class="form-control"  [(ngModel)]="business.certificateNumber" 
+                                        name="_certificateNumber" formControlName="_certificateNumber" />
+    
+                                <div *ngIf="businessForm.controls._certificateNumber.touched && businessForm.controls._certificateNumber?.errors">
+                                    <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="businessForm.controls._certificateNumber.errors.required"> Please enter the Certificate Number </div>
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+                                <div class="col-md-5">
+                                    <label>Certificate Holding Office </label>
+                                    <input type="text" class="form-control"  [(ngModel)]="business.certificateHoldingOffice" 
+                                            name="_certificateHoldingOffice" formControlName="_certificateHoldingOffice" />
+    
+                                    <div *ngIf="businessForm.controls._certificateHoldingOffice.touched && businessForm.controls._certificateHoldingOffice?.errors">
+                                        <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="businessForm.controls._certificateHoldingOffice.errors.required"> Please enter the Certificate Holding Office </div>
+                                    </div>
+                                </div>
+                            
+                    </div>
+                    <div  class="row row-spacing">
+                        <div  class="col-md-5">
+                            <label>Designator Code </label>
+                            <input type="text" class="form-control"  [(ngModel)]="business.designatorCode" 
+                                    name="_designatorCode" formControlName="_designatorCode" />
+    
+                            <div *ngIf="businessForm.controls._designatorCode.touched && businessForm.controls._designatorCode?.errors">
+                                <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="businessForm.controls._designatorCode.errors.required"> Please enter the Designator Code </div>
+                            </div>
+                    </div>
+                    </div>
+                    <div  class="row row-spacing">
+                        <div class="col-md-11">
+                            <label>Overview</label>
+                            <textarea class="form-control textbox-height" rows="3" [(ngModel)]="business.overview" 
+                                    name="_overview" formControlName="_overview"></textarea>
+    
+                        </div>
+                        
+                    </div>
+                    <div class="row row-spacing">
+                            
+                        <div class="col-md-6" *ngIf="business.businessType == 1">
+                                <fieldset class="col-md-9 feildset-width">    	
+                                        <legend>Capabilities</legend>
+                                        <file-image-uploader 
+                                        [isExistingFileAvailable]="isExistingFileAvailable" 
+                                        [imageURL]="capability"
+                                        [businessId]="business.name" 
+                                        [uploaderURL]="FILE_UPLOADER_URL" 
+                                        [showDeleteButton]="false"
+                                        (change)="fileUploadComplete($event)" >  
+                                    </file-image-uploader>
+                                  
+                                            <div *ngFor="let x of capabilityList" class="file-list">
+                                                    {{x.fileName}}
+                                                </div>
+                                    
+                                </fieldset>
+                                   <!-- <textarea class="form-control textbox-height" rows="3" [(ngModel)]="business.capabilities" 
+                                    name="_capabilities" formControlName="_capabilities"></textarea> -->
+    
+                        </div>
+                        
+                        <div class="col-md-6 instruction" *ngIf="business.businessType == 1">
+                            <span><b>Please upload your capability listing as soon as possible. 
+                                By providing this information, it will help your repair station attracts potential customers & help you come up in more search results. 
+                                With your assistance, we will be able to improve and increase the site functionality for you and your potential customers.</b></span>
+                        </div>
+                    </div>
+    
+                    <div  class="row row-spacing">
+                        
+                    <div class="col-md-11">
+                            <fieldset class="col-md-6 feildset-width">    	
+                                    <legend>Parts</legend>
+                                    <file-image-uploader 
+                                    [isExistingFileAvailable]="isExistingFileAvailable" 
+                                    [imageURL]="parts"
+                                    [businessId]="business.name" 
+                                    [uploaderURL]="FILE_UPLOADER_URL" 
+                                    [showDeleteButton]="false"
+                                    (change)="partsFileUpload($event)" >  
+                                </file-image-uploader>
+                                <div *ngFor="let x of partsList" class="file-list">
+                                        {{x.fileName}}
+                                    </div>
+                            </fieldset>
+                    </div>
+                    
+                    
+                </div>
+    
+                    <div class="row row-spacing">
+                        <div class="col-md-11"> 
+                            <fieldset class="col-md-6 feildset-width">    	
+                                    <legend>Business Image</legend>
+                                    <ebiz-image-uploader 
+                                    [isExistingImageAvailable]="isExistingImageAvailable" 
+                                    [imageURL]="business.imageUrl" 
+                                    [uploaderURL]="BUSINESS_IMAGE_UPLOADER_URL" 
+                                    [showDeleteButton]="false"
+                                    (change)="uploadComplete($event)" >  
+                                </ebiz-image-uploader>
+                                <!-- <div class="row col-md-12 button-edit" ><BR> -->
+                                    <button  (click)="editPicture()" class="btn btn-primary btn-edit pic-edit" data-toggle="collapse">{{EditPictureButtonLabel}}</button>
+                                <!-- </div> -->
+                            </fieldset>
+                        </div>
+                    </div>
+    
+                    <div  class="row row-spacing">
+                        <div class="col-md-11">
+                            <fieldset class="col-md-6 feildset-width">    	
+                                    <legend>Advertisement Image</legend>
+                                    <ebiz-image-uploader 
+                                    [isExistingImageAvailable]="isExistingAdImageAvailable" 
+                                    [imageURL]="business.adImageUrl" 
+                                    [uploaderURL]="AD_IMAGE_UPLOADER_URL" 
+                                    [showDeleteButton]="false"
+                                    (change)="adUpload($event)" >  
+                                </ebiz-image-uploader>
+                                <button *ngIf="showButton" (click)="adEditPicture()" class="btn btn-primary btn-edit pic-edit" data-toggle="collapse">{{adButton}}</button>
+                                </fieldset>	
+                        </div>
+                        
+                    </div>
+                    <div  class="row row-spacing">
+                        <div class="col-md-6">
+                                <label>Advertisement Website </label>  
+                                <input type="text" class="form-control" placeholder="https://AviationRating.com"  [(ngModel)]="business.adImageWebsite" 
+                                name="_adImageWebsite" formControlName="_adImageWebsite" />
+                        </div>
+                    </div>
+                    
+                </div>
+                    <!--div  class="row row-spacing">
+                    <div class="form-group">
+                        <input type="checkbox" id="box-4" [checked]="isActive"  >
+                        <label for="box-4">Claim this as my business</label>
+                    </div>
+                    </div-->
+                    <div class="row row-spacing">
+                        <!-- <div class="col-md-12 warning" *ngIf="enableWarning">
+                           <font style="color:red;">* Both Capabilities and Parts are required to claim Business  </font>  
+                        </div>  -->
+                        <div class="col-md-3">
+                            <div class="col-md-6 review-submit"> <button class="btn btn-primary btn-submit" [disabled]="!f1.valid" (click)="addBusiness()" type="submit"><span *ngIf="id == 0; else save">Submit</span></button></div>
+                            <ng-template #save>Save</ng-template>
+                                   
+                        </div>
+                        <div class="col-md-6">
+                            <div class="col-md-10 review-submit"> <button class="btn btn-primary btn-submit" (click)="cancel()" type="submit">Cancel</button></div>                               
+                        </div>
+                    </div>
+    
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+        <div class="modal fade" id="successModal" #openModal data-backdrop="static" data-keyboard="false" role="dialog">
+            <div class="modal-dialog">
+            
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                        <h4 class="modal-title text-center" >Processed Successfully!</h4>
+                        <a href="#" data-dismiss="modal"  class="close close-modal" aria-hidden="true">×</a>
+                </div>
+                <div class="modal-body">
+                   <button class="btn btn-primary" (click)="modalUpdate()">Ok</button>
+                </div>
+                
+              </div>
+              
+            </div>
+          </div>
+    
+          <div class="modal fade" id="saveModal" #savModal data-backdrop="static" data-keyboard="false" role="dialog">
+            <div class="modal-dialog">
+            
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                        <h4 class="modal-title text-center" style="line-height: 1.3;">Success!</h4>
+                        <a href="#" data-dismiss="modal"  class="close close-modal" aria-hidden="true">×</a>
+                </div>
+                <div class="modal-body">
+                    <span>Thank you for registering new business ! It will be approved shortly and we will send the email notification once it is approved. {{successReviewMessage}}</span><br>
+    
+                    <!-- <span><a data-dismiss="modal" (click)="mailToClient()">Click Here</a> to invite your client for review and rate business.</span><br> -->
+                   <div class="button-center">
+                        <button class="btn btn-primary" data-dismiss="modal" (click)="modalSave()">Ok</button>
+                   </div>
+                   
+                </div>
+                
+              </div>
+              
+            </div>
+          </div>
+        
+    </div>

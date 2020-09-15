@@ -1,0 +1,19 @@
+use skyrate;
+
+CREATE TABLE `conversation_mapping`(
+	`ID` int(11) not null auto_increment,
+    `MESSENGER1` int(11) not null,
+    `MESSENGER2` int(11) not null,
+    PRIMARY KEY(`ID`)
+);
+CREATE TABLE `messenger`(
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `FROM` INT(11) not NULL ,
+  `TO` INT(11) NOT NULL,
+  `CONVERSATION_ID` varchar(100) NOT NULL,
+  `REVIEW_ID` INT(11),
+  `MESSAGE` longtext NOT NULL,
+  `DATE_TIME` datetime,
+  `READ` INT(1) default 0, 
+  PRIMARY KEY (`ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=244 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;

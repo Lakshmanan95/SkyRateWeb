@@ -1,0 +1,119 @@
+
+<div class="search-list">
+
+   
+
+    <div class="row col-md-12 search-list-row">
+        <div class="col-md-12">
+                <div *ngIf="categoryValue != 'Favorite'" class="row header-list">
+                        <span class="header-content">Popular Searches for <span *ngIf="categoryValue == 'Repair'">MRO Component </span>{{categoryValue}}</span>
+                    </div>
+                    <div *ngIf="categoryValue == 'Favorite'" class="favorite-container">
+                        <span class="favorite-content">My Favorites</span>
+                        <div  class="favorite">
+                        
+                            <div class="col-md-2">
+                                <button class="btn btn-primary compare-btn"  (click)="compare()">Compare upto 4</button>
+                            </div>
+                            
+                        </div>
+                    </div>
+                 
+            <div *ngIf="categoryValue != 'Favorite'" >
+            <div *ngFor="let x of searchList; let i = index">
+                <div *ngIf="i < 10" class="list-row">
+                   
+        
+                    <div class="row">
+                        <div class="col-md-2">
+                                <a *ngIf="x.imageUrl == null; else image"><img class="list-img"  src="assets/img/building.jpg" /></a>  
+                                <ng-template #image> <a><img class="list-img"  src="{{x.imageUrl}}" /></a></ng-template>
+                  
+                        </div>
+                        <div class="col-md-6" (click)="reviewBusiness(x.id,x.name)">
+                           <a  (click)="reviewBusiness(x.id,x.name)"> <h5 class="business-name"><b>{{x.name}}</b></h5></a>
+                           <h6 class="business-content">{{x.address}},<br>
+                            {{x.city}},{{x.state}} {{x.zip}}</h6>
+                           <fieldset class="rating">
+                                    <input type="radio" id="star5" name="rating" value="5" [(ngModel)]="x.ratingAverage" [readonly]="true"/><label class = "full" for="star5" [ngStyle]="{'color':x.overallRating >= 5 ? 'green' : '#cecaca' }" title="Excellent"></label>
+                                    <input type="radio" id="star4half" name="rating" value="4.5" [(ngModel)]="x.ratingAverage"  [readonly]="true"/><label class="half" for="star4half" [ngStyle]="{'color':x.overallRating > 4 ? 'green' : '#cecaca' }" title="Excellent"></label>
+                                    <input type="radio" id="star4" name="rating" value="4" [(ngModel)]="x.ratingAverage" [readonly]="true"/><label class = "full" for="star4" [ngStyle]="{'color':x.overallRating >= 4 ? 'green' : '#cecaca' }"title="Good"></label>
+                                    <input type="radio" id="star3half" name="rating" value="3.5" [(ngModel)]="x.ratingAverage" [readonly]="true"/><label class="half" for="star3half" [ngStyle]="{'color':x.overallRating > 3 ? 'green' : '#cecaca' }"title="Good"></label>
+                                    <input type="radio" id="star3" name="rating" value="3" [(ngModel)]="x.ratingAverage" [readonly]="true"/><label class = "full" for="star3" [ngStyle]="{'color':x.overallRating >= 3 ? 'green' : '#cecaca' }"title="Average"></label>
+                                    <input type="radio" id="star2half" name="rating" value="2.5" [(ngModel)]="x.ratingAverage" [readonly]="true"/><label class="half" for="star2half" [ngStyle]="{'color':x.overallRating > 2 ? 'green' : '#cecaca' }"title="Average"></label>
+                                    <input type="radio" id="star2" name="rating" value="2" [(ngModel)]="x.ratingAverage" [readonly]="true"/><label class = "full" for="star2" [ngStyle]="{'color':x.overallRating >= 2 ? 'green' : '#cecaca' }"title="Fair"></label>
+                                    <input type="radio" id="star1half" name="rating" value="1.5" [(ngModel)]="x.ratingAverage" [readonly]="true"/><label class="half" for="star1half" [ngStyle]="{'color':x.overallRating > 1 ? 'green' : '#cecaca' }"title="Fair"></label>
+                                    <input type="radio" id="star1" name="rating" value="1" [(ngModel)]="x.ratingAverage" [readonly]="true"/><label class = "full" for="star1" [ngStyle]="{'color':x.overallRating >= 1 ? 'green' : '#cecaca' }"title="Poor"></label>
+                                    <input type="radio" id="starhalf" name="rating" value="0.5"[(ngModel)]="x.ratingAverage" [readonly]="true"/><label class="half" for="starhalf" [ngStyle]="{'color':x.overallRating > 0 ? 'green' : '#cecaca' }"title="Poor"></label>
+                                </fieldset>
+                        </div>
+                        <div class="col-md-4 pull-right">
+                            <span class="business-content"><b>Certificate Number :</b></span> <span class="business-content">{{x.certificateNumber}}</span><br>
+                            <span class="business-content"><b>Certificate Holding Office :</b> {{x.certificateHoldingOffice }}</span><br>
+                            <span class="business-content">
+                                <b>Designator Code :</b> {{x.designatorCode}}
+                            </span>
+                        </div>
+                    </div>
+                   
+
+                </div>
+            </div>
+            <div *ngIf="searchList?.length == 0"s>
+                <span>No records found.</span>
+            </div>
+        </div>
+
+            <div *ngIf="categoryValue == 'Favorite'" >
+            <div  *ngFor="let x of favoriteList; let i = index">
+                    <div *ngIf="i < 10" class="list-row">
+                       
+                        <div  *ngIf="categoryValue == 'Favorite'" class="row check">
+                            <input type="checkbox" value="x.businessId" class="cursor-pointer"  (change)="isChecked = !isChecked"  (change)="addToArray(x.businessId,isChecked,index)"/>
+                        </div>
+                        <div class="row list-details cursor-pointer">
+                            <div class="col-md-2" (click)="reviewBusiness(x.businessId,x.name)">
+                              <a><img class="list-img"  src="assets/img/building.png" /></a>  
+                            </div>
+                            <div class="col-md-6 cursor-pointer" (click)="reviewBusiness(x.businessId,x.name)">
+                               <a > <h5 class="business-name"><b>{{x.name}}</b></h5></a>
+                               <h6 class="business-content">{{x.address}},<br>
+                                {{x.city}},{{x.state}} {{x.zip}}</h6>
+                               <fieldset class="rating">
+                                        <input type="radio" id="star5" name="rating" value="5" [(ngModel)]="x.ratingAverage" [readonly]="true"/><label class = "full" for="star5" [ngStyle]="{'color':x.overallRating >= 5 ? 'green' : '#cecaca' }" title="Excellent"></label>
+                                        <input type="radio" id="star4half" name="rating" value="4.5" [(ngModel)]="x.ratingAverage"  [readonly]="true"/><label class="half" for="star4half" [ngStyle]="{'color':x.overallRating > 4 ? 'green' : '#cecaca' }" title="Excellent"></label>
+                                        <input type="radio" id="star4" name="rating" value="4" [(ngModel)]="x.ratingAverage" [readonly]="true"/><label class = "full" for="star4" [ngStyle]="{'color':x.overallRating >= 4 ? 'green' : '#cecaca' }"title="Good"></label>
+                                        <input type="radio" id="star3half" name="rating" value="3.5" [(ngModel)]="x.ratingAverage" [readonly]="true"/><label class="half" for="star3half" [ngStyle]="{'color':x.overallRating > 3 ? 'green' : '#cecaca' }"title="Good"></label>
+                                        <input type="radio" id="star3" name="rating" value="3" [(ngModel)]="x.ratingAverage" [readonly]="true"/><label class = "full" for="star3" [ngStyle]="{'color':x.overallRating >= 3 ? 'green' : '#cecaca' }"title="Average"></label>
+                                        <input type="radio" id="star2half" name="rating" value="2.5" [(ngModel)]="x.ratingAverage" [readonly]="true"/><label class="half" for="star2half" [ngStyle]="{'color':x.overallRating > 2 ? 'green' : '#cecaca' }"title="Average"></label>
+                                        <input type="radio" id="star2" name="rating" value="2" [(ngModel)]="x.ratingAverage" [readonly]="true"/><label class = "full" for="star2" [ngStyle]="{'color':x.overallRating >= 2 ? 'green' : '#cecaca' }"title="Fair"></label>
+                                        <input type="radio" id="star1half" name="rating" value="1.5" [(ngModel)]="x.ratingAverage" [readonly]="true"/><label class="half" for="star1half" [ngStyle]="{'color':x.overallRating > 1 ? 'green' : '#cecaca' }"title="Fair"></label>
+                                        <input type="radio" id="star1" name="rating" value="1" [(ngModel)]="x.ratingAverage" [readonly]="true"/><label class = "full" for="star1" [ngStyle]="{'color':x.overallRating >= 1 ? 'green' : '#cecaca' }"title="Poor"></label>
+                                        <input type="radio" id="starhalf" name="rating" value="0.5"[(ngModel)]="x.ratingAverage" [readonly]="true"/><label class="half" for="starhalf" [ngStyle]="{'color':x.overallRating > 0 ? 'green' : '#cecaca' }"title="Poor"></label>
+                                    </fieldset>
+                            </div>
+                            <div class="col-md-4 pull-right">
+                                <span class="business-content"><b>Certificate Number :</b></span> <span class="business-content">{{x.certificateNumber}}</span><br>
+                                <span class="business-content"><b>Certificate Holding Office :</b> {{x.certificateHoldingOffice }}</span><br>
+                                <span class="business-content">
+                                    <b>Designator Code :</b> {{x.designatorCode}}
+                                </span>
+                            </div>
+                        </div>
+                       
+    
+                    </div>
+                </div>
+                <div *ngIf="favoriteList?.length == 0">
+                    <span>No records found.</span>
+                </div>
+            </div>
+
+        </div>    
+        <!-- <div class="col-md-4"></div>             -->
+    </div>
+
+    
+
+    
+</div>

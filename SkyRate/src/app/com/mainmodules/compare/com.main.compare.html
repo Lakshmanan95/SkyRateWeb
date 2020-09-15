@@ -1,0 +1,324 @@
+<div class="col-md-12">
+
+
+  <!--span *ngIf="compareList < 1">
+          <div style="margin: 20px 0 0 20px;"><b class="compare-pad">Please search any 2 or more business one by one to compare with</b></div>
+      </span-->
+  <div class="row overall-row">
+
+    <div class="col-md-2 col-margin">
+      <div class="row compare-search ">
+        <div *ngIf="compareList?.length != 0" class="search-box-align">
+
+          <button class="btn btn-primary btn-compare-business" type="submit" (click)="deleteBusiness(0,1)">Clear All
+          </button>
+
+        </div>
+        <div *ngIf="compareList?.length === 0" class="search-box-align">
+
+          <button class="btn btn-primary btn-compare-business" disabled type="submit" (click)="deleteBusiness(0,1)">
+            Clear All
+          </button>
+
+        </div>
+      </div>
+
+      <div class="table-responsive ">
+        <div class="verticalLine"></div>
+        <table class="table table-header">
+
+          <tbody>
+          <tr class="name-row" [ngStyle]="headerStyle()">
+            <th style="padding-block-start: 34px">Name<br>And<br>Address</th>
+          </tr>
+          <tr>
+            <th class="data-padding">Overall</th>
+          </tr>
+          <tr>
+            <th class="data-padding">Quality</th>
+          </tr>
+          <tr>
+            <th class="data-padding">Pricing</th>
+          </tr>
+          <tr>
+            <th class="data-padding">
+              <div>Turnaround Time</div>
+            </th>
+          </tr>
+          <tr>
+            <th class="data-padding">Recommends</th>
+          </tr>
+
+          <!-- <tr><th class="data-padding">No.of.reviews</th></tr> -->
+          <!-- <tr><th class="data-padding">Address</th></tr>
+
+          <tr><th class="data-padding">State</th></tr>
+          <tr><th class="data-padding">Designator Code</th></tr>
+          <tr><th class="data-padding">Certificate Number</th></tr>
+          <tr><th class="data-padding">Certificate Holding Office</th></tr> -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-md-10 table-overflow">
+      <div class="row search-box">
+
+        <!-- <div class="col-md-1"></div> -->
+        <div class="search-box-align">
+          <mat-form-field class="example-full-width">
+            <input id="searchbox1" type="text" #trigger1 class="inputSize" placeholder="Search MRO Services"
+                   [(ngModel)]="search1" aria-label="Number" (keyup)="onChange($event.target.value,1)" matInput
+                   [matAutocomplete]="auto">
+            <mat-autocomplete style="width: 400px;" autoActiveFirstOption #auto="matAutocomplete">
+              <mat-option *ngFor="let option of options1; let i = index;" title="{{ option.name.trim() }}"
+                          (keyup)="matSelect($event.target.value)"
+                          (onSelectionChange)="callSomeFunction($event,option.id,0)">
+                <span>{{ option.name.trim() }}</span>
+                <!-- <small>{{option.address}},{{option.city}},{{option.state}}-{{option.zip}}</small><br> -->
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+
+        </div>
+        <div class="search-box-align">
+          <mat-form-field class="example-full-width">
+            <input id="searchbox2" type="text" #trigger2 class="inputSize" placeholder="Search MRO Services"
+                   [(ngModel)]="search2" aria-label="Number" (keyup)=onChange($event.target.value,2) matInput
+                   [matAutocomplete]="auto1">
+            <mat-autocomplete autoActiveFirstOption #auto1="matAutocomplete">
+              <mat-option *ngFor="let option of options2; let i = index;" title="{{ option.name.trim() }}"
+                          (keyup)="matSelect($event.target.value)"
+                          (onSelectionChange)="callSomeFunction($event,option.id,1)">
+                <span>{{ option.name }}</span>
+                <!-- <small>{{option.address}},{{option.city}},{{option.state}}-{{option.zip}}</small><br> -->
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
+        <div class="search-box-align">
+          <mat-form-field class="example-full-width">
+            <input id="searchbox3" type="text" #trigger3 class="inputSize" placeholder="Search MRO Services"
+                   [(ngModel)]="search3" aria-label="Number" (keyup)=onChange($event.target.value,3) matInput
+                   [matAutocomplete]="auto2">
+            <mat-autocomplete autoActiveFirstOption #auto2="matAutocomplete">
+              <mat-option *ngFor="let option of options3; let i = index;" title="{{ option.name.trim() }}"
+                          (keyup)="matSelect($event.target.value)"
+                          (onSelectionChange)="callSomeFunction($event,option.id,2)">
+                <span>{{ option.name }}</span>
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
+        <div class="search-box-align">
+          <mat-form-field class="example-full-width">
+            <input id="searchbox4" type="text" #trigger4 class="inputSize" placeholder="Search MRO Services"
+                   [(ngModel)]="search4" aria-label="Number" (keyup)=onChange($event.target.value,4) matInput
+                   [matAutocomplete]="auto3">
+            <mat-autocomplete autoActiveFirstOption #auto3="matAutocomplete">
+              <mat-option *ngFor="let option of options4; let i = index;" title="{{ option.name.trim() }}"
+                          (keyup)="matSelect($event.target.value)"
+                          (onSelectionChange)="callSomeFunction($event,option.id,3)">
+                <span>{{ option.name }}</span>
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
+
+      </div>
+      <div class="row table-row">
+        <div class="verticalLine"></div>
+        <div *ngFor="let x of compareList; let i = index;" class="">
+          <table *ngIf="i < 4" class="table">
+
+            <tbody>
+            <tr class="header-row " [ngStyle]="headerStyle()">
+              <th>
+                <span class="delete-business" (click)="deleteBusiness(x.businessId,0,i)"> <i
+                  class="fa fa-close"></i></span>
+                <div (click)="moveToBusiness(x.businessId,x.name)"><span class="loop-header"> {{x.name}}</span><br>
+                  <span class="address-name loop-header">  {{x.address}},<br>{{x.city}},{{x.state}}<span *ngIf="x.zip">-</span>{{x.zip}}</span><br>
+                  <span class="review-count loop-header"><b>(Based on {{x.reviewCount}} Reviews)</b></span></div>
+              </th>
+            </tr>
+            <tr>
+              <td class="data-padding data-font">
+                <fieldset class="pricing">
+                  <input type="radio" id="compareOverall5" name="compareOverall" value="5" [disabled]="true"/><label
+                  class="full" for="compareOverallfive"
+                  [ngStyle]="{'color':x.overallRating == 5 ? '#D9B310' : '#cecaca' }"></label>
+                  <input type="radio" id="compareOverall4.5" name="compareOverall" value="4.5" [disabled]="true"/><label
+                  class="half" for="compareOverall4.5"
+                  [ngStyle]="{'color':x.overallRating > 4 ? '#D9B310' : '#cecaca' }"></label>
+                  <input type="radio" id="compareOverallfour" name="compareOverall" value="4" [disabled]="true"/><label
+                  class="full" for="compareOverallfour"
+                  [ngStyle]="{'color':x.overallRating >= 4 ? '#D9B310' : '#cecaca' }"></label>
+                  <input type="radio" id="compareOverall3.5" name="compareOverall" value="3.5" [disabled]="true"/><label
+                  class="half" for="compareOverall3.5"
+                  [ngStyle]="{'color':x.overallRating > 3 ? '#D9B310' : '#cecaca' }"></label>
+                  <input type="radio" id="compareOverallthree" name="compareOverall" value="3.0"
+                         [disabled]="true"/><label class="full" for="compareOverallthree"
+                                                   [ngStyle]="{'color':x.overallRating >= 3 ? '#D9B310' : '#cecaca' }"></label>
+                  <input type="radio" id="compareOverall2.5" name="compareOverall" value="2.5" [disabled]="true"/><label
+                  class="half" for="compareOverall2.5"
+                  [ngStyle]="{'color':x.overallRating > 2 ? '#D9B310' : '#cecaca' }"></label>
+                  <input type="radio" id="compareOveralltwo" name="compareOverall" value="2" [disabled]="true"/><label
+                  class="full" for="compareOveralltwo"
+                  [ngStyle]="{'color':x.overallRating >= 2 ? '#D9B310' : '#cecaca' }"></label>
+                  <input type="radio" id="compareOverall1.5" name="compareOverall" value="1.5" [disabled]="true"/><label
+                  class="half" for="compareOverall1.5"
+                  [ngStyle]="{'color':x.overallRating > 1 ? '#D9B310' : '#cecaca' }"></label>
+                  <input type="radio" id="compareOverallone" name="compareOverall" value="1" [disabled]="true"/><label
+                  class="full" for="compareOverallone"
+                  [ngStyle]="{'color':x.overallRating >= 1 ? '#D9B310' : '#cecaca' }"></label>
+                  <input type="radio" id="compareOverall0.5" name="compareOverall" value="0.5" [disabled]="true"/><label
+                  class="half" for="compareOverall0.5"
+                  [ngStyle]="{'color':x.overallRating > 0 ? '#D9B310' : '#cecaca' }"></label>
+                </fieldset>
+              </td>
+            </tr>
+            <tr>
+              <td class="data-padding data-font">
+                <fieldset class="quality quality_compare">
+                  <input type="radio" id="qualitycompare5" name="quality_rating" value="5" [disabled]="true"/><label
+                  class="full" for="qualitycompare5"
+                  [ngStyle]="{'color':x.ratingAverage == 5 ? '#D9B310' : '#cecaca' }"></label>
+                  <input type="radio" id="qualitycompare4.5" name="quality_rating" value="4.5" [disabled]="true"/><label
+                  class="half" for="qualitycompare4.5"
+                  [ngStyle]="{'color':x.ratingAverage > 4 ? '#D9B310' : '#cecaca' }"></label>
+                  <input type="radio" id="qualitycompare4" name="quality_rating" value="4" [disabled]="true"/><label
+                  class="full" for="qualitycompare4"
+                  [ngStyle]="{'color':x.ratingAverage >= 4 ? '#D9B310' : '#cecaca' }"></label>
+                  <input type="radio" id="qualitycompare3.5" name="quality_rating" value="3.5" [disabled]="true"/><label
+                  class="half" for="qualitycompare3.5"
+                  [ngStyle]="{'color':x.ratingAverage > 3 ? '#D9B310' : '#cecaca' }"></label>
+                  <input type="radio" id="qualitycompare3" name="quality_rating" value="3" [disabled]="true"/><label
+                  class="full" for="qualitycompare3"
+                  [ngStyle]="{'color':x.ratingAverage >= 3 ? '#D9B310' : '#cecaca' }"></label>
+                  <input type="radio" id="qualitycompare2.5" name="quality_rating" value="2.5" [disabled]="true"/><label
+                  class="half" for="qualitycompare2.5"
+                  [ngStyle]="{'color':x.ratingAverage > 2 ? '#D9B310' : '#cecaca' }"></label>
+                  <input type="radio" id="qualitycompare2" name="quality_rating" value="2" [disabled]="true"/><label
+                  class="full" for="qualitycompare2"
+                  [ngStyle]="{'color':x.ratingAverage >= 2 ? '#D9B310' : '#cecaca' }"></label>
+                  <input type="radio" id="qualitycompare1.5" name="quality_rating" value="1.5" [disabled]="true"/><label
+                  class="half" for="qualitycompare1.5"
+                  [ngStyle]="{'color':x.ratingAverage > 1 ? '#D9B310' : '#cecaca' }"></label>
+                  <input type="radio" id="qualitycompare1" name="quality_rating" value="1" [disabled]="true"/><label
+                  class="full" for="qualitycompare1"
+                  [ngStyle]="{'color':x.ratingAverage >= 1 ? '#D9B310' : '#cecaca' }"></label>
+                  <input type="radio" id="qualitycompare0.5" name="quality_rating" value="0.5" [disabled]="true"/><label
+                  class="half" for="qualitycompare0.5"
+                  [ngStyle]="{'color':x.ratingAverage > 0 ? '#D9B310' : '#cecaca' }"></label>
+                </fieldset>
+              </td>
+            </tr>
+            <tr>
+              <td class="data-padding data-font">
+                <div>
+                  <fieldset class="pricing pricing_compare">
+                    <input type="radio" id="comparestar5" name="price_rating" value="5" [disabled]="true"/><label
+                    class="full" for="comparestar5"
+                    [ngStyle]="{'color':x.pricingAverage == 5 ? '#D9B310' : '#cecaca' }"></label>
+                    <input type="radio" id="comparestar4.5" name="price_rating" value="4.5" [disabled]="true"/><label
+                    class="half" for="comparestar4.5"
+                    [ngStyle]="{'color':x.pricingAverage > 4 ? '#D9B310' : '#cecaca' }"></label>
+                    <input type="radio" id="comparestar4" name="price_rating" value="4" [disabled]="true"/><label
+                    class="full" for="comparestar4"
+                    [ngStyle]="{'color':x.pricingAverage >= 4 ? '#D9B310' : '#cecaca' }"></label>
+                    <input type="radio" id="comparestar3.5" name="price_rating" value="3.5" [disabled]="true"/><label
+                    class="half" for="comparestar3.5"
+                    [ngStyle]="{'color':x.pricingAverage > 3 ? '#D9B310' : '#cecaca' }"></label>
+                    <input type="radio" id="comparestar3" name="price_rating" value="3" [disabled]="true"/><label
+                    class="full" for="comparestar3"
+                    [ngStyle]="{'color':x.pricingAverage >= 3 ? '#D9B310' : '#cecaca' }"></label>
+                    <input type="radio" id="comparestar2.5" name="price_rating" value="2.5" [disabled]="true"/><label
+                    class="half" for="comparestar2.5"
+                    [ngStyle]="{'color':x.pricingAverage > 2 ? '#D9B310' : '#cecaca' }"></label>
+                    <input type="radio" id="comparestar2" name="price_rating" value="2" [disabled]="true"/><label
+                    class="full" for="comparestar2"
+                    [ngStyle]="{'color':x.pricingAverage >= 2 ? '#D9B310' : '#cecaca' }"></label>
+                    <input type="radio" id="comparestar1.5" name="price_rating" value="1.5" [disabled]="true"/><label
+                    class="half" for="comparestar1.5"
+                    [ngStyle]="{'color':x.pricingAverage > 1 ? '#D9B310' : '#cecaca' }"></label>
+                    <input type="radio" id="comparestar1" name="price_rating" value="1" [disabled]="true"/><label
+                    class="full" for="comparestar1"
+                    [ngStyle]="{'color':x.pricingAverage >= 1 ? '#D9B310' : '#cecaca' }"></label>
+                    <input type="radio" id="comparestar0.5" name="price_rating" value="0.5" [disabled]="true"/><label
+                    class="half" for="comparestar0.5"
+                    [ngStyle]="{'color':x.pricingAverage > 0 ? '#D9B310' : '#cecaca' }"></label>
+                  </fieldset>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="data-padding data-font">
+                <fieldset class="speed speed_compare">
+                  <input type="radio" id="comparespeedstar5" name="compare_speedrating" value="5"/><label class="full"
+                                                                                                          for="comparespeedstar5"
+                                                                                                          [ngStyle]="{'color':x.deliverySpeedAvg == 5 ? '#D9B310' : '#cecaca' }"></label>
+                  <input type="radio" id="comparespeedstar4.5" name="compare_speedrating" value="4.5"/><label
+                  class="half" for="comparespeedstar4.5"
+                  [ngStyle]="{'color':x.deliverySpeedAvg > 4 ? '#D9B310' : '#cecaca' }"></label>
+                  <input type="radio" id="comparespeedstar4" name="compare_speedrating" value="4"/><label class="full"
+                                                                                                          for="comparespeedstar4"
+                                                                                                          [ngStyle]="{'color':x.deliverySpeedAvg >= 4 ? '#D9B310' : '#cecaca' }"></label>
+                  <input type="radio" id="comparespeedstar3.5" name="compare_speedrating" value="3.5"/><label
+                  class="half" for="comparespeedstar3.5"
+                  [ngStyle]="{'color':x.deliverySpeedAvg > 3 ? '#D9B310' : '#cecaca' }"></label>
+                  <input type="radio" id="comparespeedstar3" name="compare_speedrating" value="3"/><label class="full"
+                                                                                                          for="comparespeedstar3"
+                                                                                                          [ngStyle]="{'color':x.deliverySpeedAvg >= 3 ? '#D9B310' : '#cecaca' }"></label>
+                  <input type="radio" id="comparespeedstar2.5" name="compare_speedrating" value="2.5"/><label
+                  class="half" for="comparespeedstar2.5"
+                  [ngStyle]="{'color':x.deliverySpeedAvg > 2 ? '#D9B310' : '#cecaca' }"></label>
+                  <input type="radio" id="comparespeedstar2" name="compare_speedrating" value="2"/><label class="full"
+                                                                                                          for="comparespeedstar2"
+                                                                                                          [ngStyle]="{'color':x.deliverySpeedAvg >= 2 ? '#D9B310' : '#cecaca' }"></label>
+                  <input type="radio" id="comparespeedstar1.5" name="compare_speedrating" value="1.5"/><label
+                  class="half" for="comparespeedstar1.5"
+                  [ngStyle]="{'color':x.deliverySpeedAvg > 1 ? '#D9B310' : '#cecaca' }"></label>
+                  <input type="radio" id="comparespeedstar1" name="compare_speedrating" value="1"/><label class="full"
+                                                                                                          for="comparespeedstar1"
+                                                                                                          [ngStyle]="{'color':x.deliverySpeedAvg >= 1 ? '#D9B310' : '#cecaca' }"></label>
+                  <input type="radio" id="comparespeedstar0.5" name="compare_speedrating" value="0.5"/><label
+                  class="half" for="comparespeedstar0.5"
+                  [ngStyle]="{'color':x.deliverySpeedAvg > 0 ? '#D9B310' : '#cecaca' }"></label>
+                </fieldset>
+              </td>
+            </tr>
+            <tr>
+              <td class="data-padding data-font">
+                <div class="business-recommend">
+                  <span class="check-circle"><i class="fa fa-thumbs-up"></i><span style="font-size:14px">{{x.isRecommend}}</span></span>
+                  <span class="times-circle"><i class="fa fa-thumbs-down"></i><span style="font-size:14px">{{x.notRecommend}}</span></span>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div *ngFor="let n of fakeArray">
+          <table class="table">
+            <tbody>
+            <tr>
+              <td class="data-padding data-font">
+                <div class="empty-box"> &nbsp;
+                </div>
+              </td>
+            </tr>
+
+            </tbody>
+
+          </table>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+
+</div>
+
+
+

@@ -1,0 +1,10 @@
+AvellaWAPI:
+add..
+1.Context.xml,
+
+<ResourceLink global="avella" name="avella" type="javax.sql.DataSource"/>
+
+
+2.Server.xml,
+
+<Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" maxIdle="30" maxTotal="100" maxWaitMillis="10000" name="avella" password="avella" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/avella" username="avella"/>  

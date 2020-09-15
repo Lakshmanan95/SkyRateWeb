@@ -1,0 +1,720 @@
+{
+    "cities": [
+        {
+            "id": 1,
+            "city": "Ambur",
+            "stateId": 31
+        },
+        {
+            "id": 2,
+            "city": "Anna Road H.O",
+            "stateId": 31
+        },
+        {
+            "id": 3,
+            "city": "Alangudi",
+            "stateId": 31
+        },
+        {
+            "id": 4,
+            "city": "Ambasamudram",
+            "stateId": 31
+        },
+        {
+            "id": 5,
+            "city": "Ambattur",
+            "stateId": 31
+        },
+        {
+            "id": 6,
+            "city": "Annanagar",
+            "stateId": 31
+        },
+        {
+            "id": 7,
+            "city": "Aob",
+            "stateId": 31
+        },
+        {
+            "id": 8,
+            "city": "Arakkonam",
+            "stateId": 31
+        },
+        {
+            "id": 9,
+            "city": "Aranthangai",
+            "stateId": 31
+        },
+        {
+            "id": 10,
+            "city": "Aravakurichi",
+            "stateId": 31
+        },
+        {
+            "id": 11,
+            "city": "Ariyalur",
+            "stateId": 31
+        },
+        {
+            "id": 12,
+            "city": "Arni",
+            "stateId": 31
+        },
+        {
+            "id": 13,
+            "city": "Aruppukottai",
+            "stateId": 31
+        },
+        {
+            "id": 14,
+            "city": "Avadi Camp",
+            "stateId": 31
+        },
+        {
+            "id": 15,
+            "city": "Batlagundu",
+            "stateId": 31
+        },
+        {
+            "id": 16,
+            "city": "Bhavani",
+            "stateId": 31
+        },
+        {
+            "id": 17,
+            "city": "Bodinayakanur",
+            "stateId": 31
+        },
+        {
+            "id": 18,
+            "city": "Chengalpattu",
+            "stateId": 31
+        },
+        {
+            "id": 19,
+            "city": "Chengam",
+            "stateId": 31
+        },
+        {
+            "id": 20,
+            "city": "Chennai",
+            "stateId": 31
+        },
+        {
+            "id": 21,
+            "city": "Chennia City Central",
+            "stateId": 31
+        },
+        {
+            "id": 22,
+            "city": "Chennai City North",
+            "stateId": 31
+        },
+        {
+            "id": 23,
+            "city": "Chennai City South",
+            "stateId": 31
+        },
+        {
+            "id": 24,
+            "city": "Chennai Gpo",
+            "stateId": 31
+        },
+        {
+            "id": 25,
+            "city": "Chennai Region",
+            "stateId": 31
+        },
+        {
+            "id": 26,
+            "city": "Chidambaram",
+            "stateId": 31
+        },
+        {
+            "id": 27,
+            "city": "Coimbatore",
+            "stateId": 31
+        },
+        {
+            "id": 28,
+            "city": "Coonoor",
+            "stateId": 31
+        },
+        {
+            "id": 29,
+            "city": "Cuddalore",
+            "stateId": 31
+        },
+        {
+            "id": 30,
+            "city": "Devakottai",
+            "stateId": 31
+        },
+        {
+            "id": 31,
+            "city": "Dharapuram",
+            "stateId": 31
+        },
+        {
+            "id": 32,
+            "city": "Dharmapuri",
+            "stateId": 31
+        },
+        {
+            "id": 33,
+            "city": "Dindigul",
+            "stateId": 31
+        },
+        {
+            "id": 34,
+            "city": "Erode",
+            "stateId": 31
+        },
+        {
+            "id": 35,
+            "city": "Gingee",
+            "stateId": 31
+        },
+        {
+            "id": 36,
+            "city": "Gudalur",
+            "stateId": 31
+        },
+        {
+            "id": 37,
+            "city": "Gudiyattam",
+            "stateId": 31
+        },
+        {
+            "id": 38,
+            "city": "Harur",
+            "stateId": 31
+        },
+        {
+            "id": 39,
+            "city": "Hosur",
+            "stateId": 31
+        },
+        {
+            "id": 40,
+            "city": "Jc Puram",
+            "stateId": 31
+        },
+        {
+            "id": 41,
+            "city": "Jolarpettai",
+            "stateId": 31
+        },
+        {
+            "id": 42,
+            "city": "Kallakurichi",
+            "stateId": 31
+        },
+        {
+            "id": 43,
+            "city": "Kallakuruchi",
+            "stateId": 31
+        },
+        {
+            "id": 44,
+            "city": "Kanchipuram",
+            "stateId": 31
+        },
+        {
+            "id": 45,
+            "city": "Kanniyakumari",
+            "stateId": 31
+        },
+        {
+            "id": 46,
+            "city": "Karaikudi",
+            "stateId": 31
+        },
+        {
+            "id": 47,
+            "city": "Karur",
+            "stateId": 31
+        },
+        {
+            "id": 48,
+            "city": "Kodairoad R.S",
+            "stateId": 31
+        },
+        {
+            "id": 49,
+            "city": "Kovilpatti",
+            "stateId": 31
+        },
+        {
+            "id": 50,
+            "city": "Krishnagiri",
+            "stateId": 31
+        },
+        {
+            "id": 51,
+            "city": "Kulithalai",
+            "stateId": 31
+        },
+        {
+            "id": 52,
+            "city": "Kulittalai",
+            "stateId": 31
+        },
+        {
+            "id": 53,
+            "city": "Kumbakonam",
+            "stateId": 31
+        },
+        {
+            "id": 54,
+            "city": "Kuttalam",
+            "stateId": 31
+        },
+        {
+            "id": 55,
+            "city": "Kuzhithurai",
+            "stateId": 31
+        },
+        {
+            "id": 56,
+            "city": "Lalgudi",
+            "stateId": 31
+        },
+        {
+            "id": 57,
+            "city": "Madurai",
+            "stateId": 31
+        },
+        {
+            "id": 58,
+            "city": "Madurai -2",
+            "stateId": 31
+        },
+        {
+            "id": 59,
+            "city": "Madurantakam",
+            "stateId": 31
+        },
+        {
+            "id": 60,
+            "city": "ManaMadurai",
+            "stateId": 31
+        },
+        {
+            "id": 61,
+            "city": "Manapparai",
+            "stateId": 31
+        },
+        {
+            "id": 62,
+            "city": "Mannargudi",
+            "stateId": 31
+        },
+        {
+            "id": 63,
+            "city": "Mayiladuthurai",
+            "stateId": 31
+        },
+        {
+            "id": 64,
+            "city": "Melur",
+            "stateId": 31
+        },
+        {
+            "id": 65,
+            "city": "Mettupalayam",
+            "stateId": 31
+        },
+        {
+            "id": 66,
+            "city": "Mudaliarpet",
+            "stateId": 31
+        },
+        {
+            "id": 67,
+            "city": "Mudukulathur",
+            "stateId": 31
+        },
+        {
+            "id": 68,
+            "city": "Musiri",
+            "stateId": 31
+        },
+        {
+            "id": 69,
+            "city": "Nagapatthinam",
+            "stateId": 31
+        },
+        {
+            "id": 70,
+            "city": "Nagarcoil",
+            "stateId": 31
+        },
+        {
+            "id": 71,
+            "city": "Namakkal",
+            "stateId": 31
+        },
+        {
+            "id": 72,
+            "city": "Natham",
+            "stateId": 31
+        },
+        {
+            "id": 73,
+            "city": "New colony",
+            "stateId": 31
+        },
+        {
+            "id": 74,
+            "city": "Neyveli",
+            "stateId": 31
+        },
+        {
+            "id": 75,
+            "city": "Niligris",
+            "stateId": 31
+        },
+        {
+            "id": 76,
+            "city": "Orattanad",
+            "stateId": 31
+        },
+        {
+            "id": 77,
+            "city": "Palani",
+            "stateId": 31
+        },
+        {
+            "id": 78,
+            "city": "Palayamkottai",
+            "stateId": 31
+        },
+        {
+            "id": 79,
+            "city": "Papanasam",
+            "stateId": 31
+        },
+        {
+            "id": 80,
+            "city": "Paramakudi",
+            "stateId": 31
+        },
+        {
+            "id": 81,
+            "city": "Pattukottai",
+            "stateId": 31
+        },
+        {
+            "id": 82,
+            "city": "Perambalur",
+            "stateId": 31
+        },
+        {
+            "id": 83,
+            "city": "Periyakulam",
+            "stateId": 31
+        },
+        {
+            "id": 84,
+            "city": "Perundurai",
+            "stateId": 31
+        },
+        {
+            "id": 85,
+            "city": "Pollachi",
+            "stateId": 31
+        },
+        {
+            "id": 86,
+            "city": "Polur",
+            "stateId": 31
+        },
+        {
+            "id": 87,
+            "city": "Pudukkottai",
+            "stateId": 31
+        },
+        {
+            "id": 88,
+            "city": "Pudukottai",
+            "stateId": 31
+        },
+        {
+            "id": 89,
+            "city": "Rajapalayam",
+            "stateId": 31
+        },
+        {
+            "id": 90,
+            "city": "Ramanathapuram",
+            "stateId": 31
+        },
+        {
+            "id": 91,
+            "city": "Ranipet",
+            "stateId": 31
+        },
+        {
+            "id": 92,
+            "city": "Rathinasabapathy puram",
+            "stateId": 31
+        },
+        {
+            "id": 93,
+            "city": "Salem ",
+            "stateId": 31
+        },
+        {
+            "id": 94,
+            "city": "Salem East",
+            "stateId": 31
+        },
+        {
+            "id": 95,
+            "city": "Salem Jn",
+            "stateId": 31
+        },
+        {
+            "id": 96,
+            "city": "Salem West",
+            "stateId": 31
+        },
+        {
+            "id": 97,
+            "city": "Sankarankovil",
+            "stateId": 31
+        },
+        {
+            "id": 98,
+            "city": "Satankulam",
+            "stateId": 31
+        },
+        {
+            "id": 99,
+            "city": "Sirkali",
+            "stateId": 31
+        },
+        {
+            "id": 100,
+            "city": "Sivagangai",
+            "stateId": 31
+        },
+        {
+            "id": 101,
+            "city": "Sivakasi",
+            "stateId": 31
+        },
+        {
+            "id": 102,
+            "city": "Sriperumbudur",
+            "stateId": 31
+        },
+        {
+            "id": 103,
+            "city": "Srirangam",
+            "stateId": 31
+        },
+        {
+            "id": 104,
+            "city": "Srivaikundam",
+            "stateId": 31
+        },
+        {
+            "id": 105,
+            "city": "Tambaram",
+            "stateId": 31
+        },
+        {
+            "id": 106,
+            "city": "Tenkasi",
+            "stateId": 31
+        },
+        {
+            "id": 107,
+            "city": "Thanjavur",
+            "stateId": 31
+        },
+        {
+            "id": 108,
+            "city": "Niligris",
+            "stateId": 31
+        },
+        {
+            "id": 109,
+            "city": "Theni",
+            "stateId": 31
+        },
+        {
+            "id": 110,
+            "city": "Thuckalay",
+            "stateId": 31
+        },
+        {
+            "id": 111,
+            "city": "Tindivanam",
+            "stateId": 31
+        },
+        {
+            "id": 112,
+            "city": "Tirichirapalli",
+            "stateId": 31
+        },
+        {
+            "id": 113,
+            "city": "Tiruchendur",
+            "stateId": 31
+        },
+        {
+            "id": 114,
+            "city": "Tiruchirappalli",
+            "stateId": 31
+        },
+        {
+            "id": 115,
+            "city": "Tirukoyilur",
+            "stateId": 31
+        },
+        {
+            "id": 116,
+            "city": "Tirumangalm",
+            "stateId": 31
+        },
+        {
+            "id": 117,
+            "city": "Tirunelveli",
+            "stateId": 31
+        },
+        {
+            "id": 118,
+            "city": "Tirupapuliyur",
+            "stateId": 31
+        },
+        {
+            "id": 119,
+            "city": "Tirupattur",
+            "stateId": 31
+        },
+        {
+            "id": 120,
+            "city": "Tiruthuraipundi",
+            "stateId": 31
+        },
+        {
+            "id": 121,
+            "city": "Tiruttani",
+            "stateId": 31
+        },
+        {
+            "id": 122,
+            "city": "Tiruvadanai",
+            "stateId": 31
+        },
+        {
+            "id": 123,
+            "city": "Tiruvallur",
+            "stateId": 31
+        },
+        {
+            "id": 124,
+            "city": "Tiruvarur",
+            "stateId": 31
+        },
+        {
+            "id": 125,
+            "city": "Thuraiyur",
+            "stateId": 31
+        },
+        {
+            "id": 126,
+            "city": "Tuticorin",
+            "stateId": 31
+        },
+        {
+            "id": 127,
+            "city": "Udagamandalam",
+            "stateId": 31
+        },
+        {
+            "id": 128,
+            "city": "Udumalpet",
+            "stateId": 31
+        },
+        {
+            "id": 129,
+            "city": "Undurpet",
+            "stateId": 31
+        },
+        {
+            "id": 130,
+            "city": "Usilampatti",
+            "stateId": 31
+        },
+        {
+            "id": 131,
+            "city": "Vacant",
+            "stateId": 31
+        },
+        {
+            "id": 132,
+            "city": "Vadipatti",
+            "stateId": 31
+        },
+        {
+            "id": 133,
+            "city": "Vallioor",
+            "stateId": 31
+        },
+        {
+            "id": 134,
+            "city": "Vandavasi",
+            "stateId": 31
+        },
+        {
+            "id": 135,
+            "city": "Vaniyambadi",
+            "stateId": 31
+        },
+        {
+            "id": 136,
+            "city": "Vedasandur",
+            "stateId": 31
+        },
+        {
+            "id": 137,
+            "city": "Velipattinam",
+            "stateId": 31
+        },
+        {
+            "id": 138,
+            "city": "Vellore",
+            "stateId": 31
+        },
+        {
+            "id": 139,
+            "city": "Vetturnimadam",
+            "stateId": 31
+        },
+        {
+            "id": 140,
+            "city": "Villupuram",
+            "stateId": 31
+        },
+        {
+            "id": 141,
+            "city": "Virudhachalam",
+            "stateId": 31
+        },
+        {
+            "id": 142,
+            "city": "Virudhunagar",
+            "stateId": 31
+        },
+        {
+            "id": 143,
+            "city": "Walajapet",
+            "stateId": 31
+        }
+    ],
+ 
+}

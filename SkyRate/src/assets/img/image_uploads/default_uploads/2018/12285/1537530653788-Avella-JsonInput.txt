@@ -1,0 +1,819 @@
+
+---------> Json for Menu & MenuItem <------
+
+REST
+
+getMenuData/
+
+{
+  "menu": [
+    {
+      "id": 1,
+      "categoryName": "Regulations",
+      "displayOrder": 1
+    },
+    {
+      "id": 2,
+      "categoryName": "Calculator",
+      "displayOrder": 2
+    },
+    {
+      "id": 3,
+      "categoryName": "Guidelines & References",
+      "displayOrder": 3
+    },
+    {
+      "id": 4,
+      "categoryName": "Conferences",
+      "displayOrder": 4
+    },
+    {
+      "id": 5,
+      "categoryName": "Contactus",
+      "displayOrder": 5
+    },
+    {
+      "id": 6,
+      "categoryName": "Industrial News",
+      "displayOrder": 6
+    }
+  ],
+  "menuItem": [
+    {
+      "id": 1,
+      "menuName": "Opioid New Dose Calculator",
+      "link": "https://opioidcalculator.practicalpainmanagement.com",
+      "menuId": 2
+    },
+    {
+      "id": 2,
+      "menuName": "Opioid Converter",
+      "link": "http://globalrph.com/narcoticonv.htm",
+      "menuId": 2
+    },
+    {
+      "id": 3,
+      "menuName": "Upcoming Conferences",
+      "link": "https://www.mdlinx.com/pain-management/conference.cfm",
+      "menuId": 4
+    },
+    {
+      "id": 4,
+      "menuName": "PM CME",
+      "link": "http://www.aafp.org/cme/browse/topics.tag-pain.html",
+      "menuId": 3
+    }
+  ],
+
+  “SocialLinks”{
+	YouTubeURL:””,
+	FaceBookURL:””,
+	TwitterURL:””,
+	GooglePulsURL:””,
+	LinkedInURL:””
+  }
+}
+
+
+/getDrugData/
+
+--------->Json for Drugs<---------
+
+{
+  
+  "drugs": [
+    {
+      "id": 1,
+      "drugName": "AVINZA",
+      "dosage": "Dosage Forms :Capsule, release;Strength:30mg/1",
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 1,
+      "siteUrl": "https://api.drugbankplus.com/v1/us/drug_names/simple?q= AVINZA"
+    },
+    {
+      "id": 2,
+      "drugName": "BUTRANS",
+      "dosage": "",
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 1,
+      "siteUrl": "https://butrans.com/"
+    },
+    {
+      "id": 3,
+      "drugName": "DOLOPHINE",
+      "dosage": "Dosage Forms : Tablet ; Strength:5mg/1",
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 1,
+      "siteUrl": "https://api.drugbankplus.com/v1/us/drug_names/simple?q= AVINZA"
+    },
+    {
+      "id": 4,
+      "drugName": "EMBEDA",
+      "dosage": "Dosage Forms :Capsule, release;Strength:30mg/1",
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 1,
+      "siteUrl": "http://www.embeda.com/"
+    },
+    {
+      "id": 5,
+      "drugName": "EXALGO",
+      "dosage": "Dosage Forms :Tablet, release;Strength:32mg/1",
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 1,
+      "siteUrl": "https://api.drugbankplus.com/v1/us/drug_names/simple?q= AVINZA"
+    },
+    {
+      "id": 6,
+      "drugName": "HYSINGLA",
+      "dosage": "Dosage Forms :Tablet, release;Strength:80mg/1",
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 1,
+      "siteUrl": "https://api.drugbankplus.com/v1/us/drug_names/simple?q= AVINZA"
+    },
+    {
+      "id": 7,
+      "drugName": "KADIAN",
+      "dosage": "Dosage Forms :Capsule, release;Strength:80mg/1",
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 1,
+      "siteUrl": "https://api.drugbankplus.com/v1/us/drug_names/simple?q= AVINZA"
+    },
+    {
+      "id": 8,
+      "drugName": "LEVORPHANOL",
+      "dosage": "Dosage Forms:Tablet; Strength:2mg/1",
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 1,
+      "siteUrl": "https://api.drugbankplus.com/v1/us/drug_names/simple?q= AVINZA"
+    },
+    {
+      "id": 9,
+      "drugName": "LIDODERM",
+      "dosage": "Dosage Forms:Liguid,Patch; Strength:700mg/1",
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 1,
+      "siteUrl": "https://api.drugbankplus.com/v1/us/drug_names/simple?q= AVINZA"
+    },
+    {
+      "id": 10,
+      "drugName": "MS CONTIN",
+      "dosage": "Dosage Forms:Tablet, film coated, extended release; Strength:60mg/1",
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 1,
+      "siteUrl": "https://api.drugbankplus.com/v1/us/drug_names/simple?q= AVINZA"
+    },
+    {
+      "id": 11,
+      "drugName": "NUCYNTA ER",
+      "dosage": "Dosage Forms:Tablet, film coated, extended release; Strength:100mg/1",
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 1,
+      "siteUrl": "https://api.drugbankplus.com/v1/us/drug_names/simple?q= AVINZA"
+    },
+    {
+      "id": 12,
+      "drugName": "OPANA",
+      "dosage": "Dosage Froms:Tablet; Strength:5mg/1",
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 1,
+      "siteUrl": "https://api.drugbankplus.com/v1/us/drug_names/simple?q= AVINZA"
+    },
+    {
+      "id": 13,
+      "drugName": "ORAMORPH SR",
+      "dosage": "Dosage Forms:Tablet, film coated, extended release; Strength:240mg/1",
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 1,
+      "siteUrl": "https://api.drugbankplus.com/v1/us/drug_names/simple?q= AVINZA"
+    },
+    {
+      "id": 14,
+      "drugName": "OXYCONTIN",
+      "dosage": "Dosage Forms:Tablet, film coated, extended release; Strength:10mg/1",
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 1,
+      "siteUrl": "https://api.drugbankplus.com/v1/us/drug_names/simple?q= AVINZA"
+    },
+    {
+      "id": 15,
+      "drugName": "TARGIN",
+      "dosage": "",
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 1,
+      "siteUrl": "https://api.drugbankplus.com/v1/us/drug_names/simple?q= AVINZA"
+    },
+    {
+      "id": 16,
+      "drugName": "ULTRAM XR",
+      "dosage": "Dosage Forms:Tablet, coated; Strength:50mg/1",
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 1,
+      "siteUrl": "https://api.drugbankplus.com/v1/us/drug_names/simple?q= AVINZA"
+    },
+    {
+      "id": 17,
+      "drugName": "XTAMPZA ER",
+      "dosage": "Dosage Forms:Capsule, extended release; Strength:13.5mg/1",
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 1,
+      "siteUrl": "https://api.drugbankplus.com/v1/us/drug_names/simple?q= AVINZA"
+    },
+    {
+      "id": 18,
+      "drugName": "ZOHYDRO",
+      "dosage": "Dosage Forms:Capsule, extended release; Strength:20mg/1",
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 1,
+      "siteUrl": "http://www.zohydroer.com/"
+    },
+    {
+      "id": 19,
+      "drugName": "NUVIGIL",
+      "dosage": "Dosage Forms:Tablet; Strength:150mg/1",
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 2,
+      "siteUrl": "http://www.nuvigil.com/"
+    },
+    {
+      "id": 20,
+      "drugName": "PROCENTRA",
+      "dosage": "",
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 2,
+      "siteUrl": "https://api.drugbankplus.com/v1/us/drug_names/simple?q= AVINZA"
+    },
+    {
+      "id": 21,
+      "drugName": "QUIVILANT XR",
+      "dosage": "Dosage Forms:Tablet, extended release; Strength:1500mg/1",
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 2,
+      "siteUrl": "https://www.quillivantxr-quillichewer.com/?utm_source=quillivantXR.com&utm_medium=Vanity_URL&utm_campaign=Quillivant&id=quillivantXR.com"
+    },
+    {
+      "id": 22,
+      "drugName": "ZENZEDI",
+      "dosage": "Dosage Forms:Tablet; Strenght:15mg/1",
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 2,
+      "siteUrl": "http://zenzedi.com/"
+    },
+    {
+      "id": 23,
+      "drugName": "CYMBALTA",
+      "dosage": "Dosage Forms:Capsule, delayed release; Strength:60mg/1,20mg/1,30mg/1",
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 3,
+      "siteUrl": "http://zenzedi.com/"
+    },
+    {
+      "id": 24,
+      "drugName": "FORFIVO XL",
+      "dosage": "Dosage Forms:Tablet, film coated, extended release; Strenght:60mg/1,80mg/1,6mg/1,",
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 3,
+      "siteUrl": "http://www.forfivoxl.com/"
+    },
+    {
+      "id": 25,
+      "drugName": "KHEDEZLA ER",
+      "dosage": "Dosage Forms:Capsule, extended release; Strength:50mg/1",
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 3,
+      "siteUrl": "http://www.forfivoxl.com/"
+    },
+    {
+      "id": 26,
+      "drugName": "ACTIQ",
+      "dosage": "Dosage Forms:Lozenge; Strength:400ug/1",
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 4,
+      "siteUrl": "http://www.actiq.com/"
+    },
+    {
+      "id": 27,
+      "drugName": "ABSTRAL",
+      "dosage": "Dosage Forms:Tablet; Strenght:100ug/1",
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 4,
+      "siteUrl": "http://www.sentynl.com/abstral"
+    },
+    {
+      "id": 28,
+      "drugName": "FENTORA",
+      "dosage": "Dosage Forms:Tablet; Strenght:100ug/1",
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 4,
+      "siteUrl": "http://www.sentynl.com/abstral"
+    },
+    {
+      "id": 29,
+      "drugName": "LAZANDA ",
+      "dosage": "",
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 4,
+      "siteUrl": "http://www.lazanda.com/"
+    },
+    {
+      "id": 30,
+      "drugName": "ONSOLIS",
+      "dosage": "",
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 4,
+      "siteUrl": "http://www.bdsi.com/Onsolis.aspx"
+    },
+    {
+      "id": 31,
+      "drugName": "SUBSYS",
+      "dosage": "",
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 4,
+      "siteUrl": "https://www.avella.com/specialties/oncology-medications/subsys"
+    },
+    {
+      "id": 32,
+      "drugName": "BUNAVAIL",
+      "dosage": "Dosage Forms:Film; Strength:4.2mg/1",
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 5,
+      "siteUrl": "https://bunavail.com/"
+    },
+    {
+      "id": 33,
+      "drugName": "PROBUPHINE",
+      "dosage": "Dosage Forms:Implant; Strength:80mg/1",
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 5,
+      "siteUrl": "https://www.avella.com/specialties/addiction-management/addiction-management-medications/probuphine"
+    },
+    {
+      "id": 34,
+      "drugName": "SUBOXONE",
+      "dosage": "Dosage Forms:Film, soluble; Strength:4mg/1",
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 5,
+      "siteUrl": "https://www.suboxone.com/"
+    },
+    {
+      "id": 35,
+      "drugName": "VIVITROL",
+      "dosage": "Dosage Forms:Kit;",
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 5,
+      "siteUrl": "https://www.vivitrol.com/"
+    },
+    {
+      "id": 36,
+      "drugName": "ZUBSOLV",
+      "dosage": "Dosage Forms:Tablet, orally disintegrating;",
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 5,
+      "siteUrl": "https://www.zubsolv.com/"
+    },
+    {
+      "id": 37,
+      "drugName": "CAMBIA",
+      "dosage": null,
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 6,
+      "siteUrl": "http://www.cambiarx.com/"
+    },
+    {
+      "id": 38,
+      "drugName": "EVZIO",
+      "dosage": "Dosage Forms:Injection, solution; Strength:0.4mg/1",
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 6,
+      "siteUrl": null
+    },
+    {
+      "id": 39,
+      "drugName": "GRALISE",
+      "dosage": "Dosage Forms:Kit;",
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 6,
+      "siteUrl": "http://www.gralise.com/"
+    },
+    {
+      "id": 40,
+      "drugName": "ONZETRA",
+      "dosage": "Dosage Forms:Kit;",
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 6,
+      "siteUrl": null
+    },
+    {
+      "id": 41,
+      "drugName": "SOLARAZE",
+      "dosage": "Dosage Forms:Gel; Strength:30mg/g",
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 6,
+      "siteUrl": null
+    },
+    {
+      "id": 42,
+      "drugName": "TESTIM/ANDROGEL/VOGELXO",
+      "dosage": "Dosage Forms:Gel; Strength:50mg/5g",
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 6,
+      "siteUrl": null
+    },
+    {
+      "id": 43,
+      "drugName": "ZEMBRACE SYMTOUCH",
+      "dosage": "Dosage Forms:Injection, solutio; Strength:3mg/1",
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 6,
+      "siteUrl": null
+    },
+    {
+      "id": 44,
+      "drugName": "ZIPSOR",
+      "dosage": null,
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 6,
+      "siteUrl": "http://www.zipsor.com/"
+    },
+    {
+      "id": 45,
+      "drugName": "DEMEROL",
+      "dosage": null,
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 7,
+      "siteUrl": null
+    },
+    {
+      "id": 46,
+      "drugName": "DILAUDID",
+      "dosage": null,
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 7,
+      "siteUrl": null
+    },
+    {
+      "id": 47,
+      "drugName": "NUCYNTA",
+      "dosage": null,
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 7,
+      "siteUrl": null
+    },
+    {
+      "id": 48,
+      "drugName": "OXAYDO",
+      "dosage": null,
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 7,
+      "siteUrl": null
+    },
+    {
+      "id": 49,
+      "drugName": "OXY-IR",
+      "dosage": null,
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 7,
+      "siteUrl": null
+    },
+    {
+      "id": 50,
+      "drugName": "PRIMLEV",
+      "dosage": null,
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 7,
+      "siteUrl": null
+    },
+    {
+      "id": 51,
+      "drugName": "TREZIX",
+      "dosage": null,
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 7,
+      "siteUrl": null
+    },
+    {
+      "id": 52,
+      "drugName": "XTAMPZA IR",
+      "dosage": null,
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 7,
+      "siteUrl": null
+    },
+    {
+      "id": 53,
+      "drugName": "MS-IR",
+      "dosage": null,
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 7,
+      "siteUrl": null
+    },
+    {
+      "id": 54,
+      "drugName": "DURAGESIC",
+      "dosage": null,
+      "indication": null,
+      "averseEffects": null,
+      "warnings": null,
+      "pregnancy": null,
+      "prescriptionInfo": null,
+      "availableAtAvella": 1,
+      "drugCategoryId": 1,
+      "siteUrl": "https://www.duragesic.com/"
+    }
+  ],
+  "drugCategory": [
+    {
+      "id": 1,
+      "categoryName": "LONG ACTING"
+    },
+    {
+      "id": 2,
+      "categoryName": "STIMULANTS"
+    },
+    {
+      "id": 3,
+      "categoryName": "ANTI-DEPRESSANTS"
+    },
+    {
+      "id": 4,
+      "categoryName": "TRANSMUCOSAL IMMEDIATE RELEASE FENTANYL (TIRF)"
+    },
+    {
+      "id": 5,
+      "categoryName": "OPIOID/ALCOHOL DEPENDENCE"
+    },
+    {
+      "id": 6,
+      "categoryName": "MISCELLANEOUS"
+    },
+    {
+      "id": 7,
+      "categoryName": "FAST ACTING/BREAKTHROUGH"
+    }
+  ]
+  
+}

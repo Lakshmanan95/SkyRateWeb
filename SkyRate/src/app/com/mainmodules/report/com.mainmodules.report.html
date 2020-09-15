@@ -1,0 +1,268 @@
+<div id="report">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <div class="report-container">
+                    <!-- <div class="row home-button">
+                        <button class="btn btn-home"><i class="fa fa-home" aria-hidden="true"></i> Go Home</button>
+                    </div> -->
+                    <div class="web-hits">
+                        <div class="row">
+                            <div class="col-md-11">
+                               
+                                    <div class="update-details update-detail-btn">
+                                        <select id="custom" class="form-control" aria-placeholder="Today" [(ngModel)]="totalHitsDate"  (change)="onSelectHits($event.target.value)">
+                                            <option value="Today">Today</option>
+                                            <option value="Last 30 days">Last 30 days</option>
+                                            <option value="Custom">Custom</option>
+                                        </select>
+                                        <div id="date" class="col-md-2"> <my-date-picker name="mydate" [options]="myDatePickerOptions"
+                                            (dateChanged)="onDateChanged($event)" required></my-date-picker></div>
+                                       
+                                        <button class="btn btn-go" (click)="refresh()"><i id="spin" class="fa fa-refresh"></i></button>
+                                        
+                                    </div>   
+                
+                            </div>
+                            <div class="col-md-1">
+                                <div class="refresh-section">
+                                        <!-- <button class="btn btn-go" >
+                                    
+                                            <i id="spin" class="fa fa-refresh"></i>
+                                        </button> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="hit-box">
+                                    <div class="monitor-img">
+                                        <img src="assets/img/analytics.png" class="img-monitor" />
+                                    </div>
+                                    <div class="count-details">
+                                        <span>{{totalHits}}</span>
+                                    </div>
+                                    <div class="report-content">
+                                        <span>Total hits for {{totalHitsDate}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                    <div class="hit-box">
+                                        <div class="monitor-img">
+                                            <img src="assets/img/team.png" class="img-monitor" />
+                                        </div>
+                                        <div class="count-details">
+                                            <span>{{userCount}}</span>
+                                        </div>
+                                        <div class="report-content">
+                                            <span>Registered Users</span>
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="col-md-4">
+                                    <div class="hit-box">
+                                        <div class="monitor-img">
+                                            <img src="assets/img/television.png" class="img-monitor" />
+                                        </div>
+                                        <div class="count-details">
+                                            <span>781</span>
+                                        </div>
+                                        <div class="report-content">
+                                            <span>Live Users</span>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="update-details">
+                                    <!-- <span class="lastupdate"><b>Last Updated:</b></span><span class="lastupdate"> 7 may 2018 11:43:08 am</span> -->
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row col-md-12">&nbsp;</div>
+
+                    <div class="search-vendor">
+                        <div class="row  top_search_div">
+                            <div class="top_header col-md-6" style="bottom:-15px;">
+                                <h4 class="table-header">Top 10 Searches-by Vendor</h4>
+                            </div>
+                            <div class="top_header col-md-3 sort-header">
+                                <!-- <div class="dropdown ">
+                                    <button class="btn btn-default btn-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                       <b>Sort by</b><span class="caret"></span>
+                                    
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                       <li><a (click)="sorting('Vendor')"><div class="dropdown-align">Vendor</div></a></li>
+                                       <li  role="separator" class="divider"><div class="dropdown-divider"></div></li>
+                                      <li ><a (click)="sorting('Feedback')"><div class="dropdown-align">Feedback</div></a></li>
+                
+                                    </ul>
+                                  </div>   -->
+                            </div>
+                            <div class="col-md-3" style="text-align:right;">
+                                    <div class="update-details update-detail-btn">
+                                            <select id="vendorCustom" class="form-control" aria-placeholder="Today" [(ngModel)]="vendorDate" (change)="onVendorHits($event.target.value)" >
+                                                <option value="Today">Today</option>
+                                                <option value="Last 30 days">Last 30 days</option>
+                                                <option value="Custom">Custom</option>
+                                            </select>
+                                            <div id="vendorDate" class="col-md-10"> <my-date-picker name="mydate" [options]="myDatePickerOptions"
+                                                (dateChanged)="onVendorDateChanged($event)" required></my-date-picker></div>
+                                            <button class="btn btn-go" (click)="refreshVendor()"><i id="spin" class="fa fa-refresh"></i></button>
+                                        </div> 
+                            </div>
+
+                        </div>
+                        <!-- <div class="row">
+                                <div class="col-md-12">
+                                    <div class="vendor-header">
+                                        <div class="update-details update-detail-btn">
+                                            <select class="form-control" aria-placeholder="Today">
+                                                <option>Today</option>
+                                                <option>Last 30 days</option>
+                                            </select>
+                                            <button class="btn btn-go"><b>Go</b></button>
+                                        </div>   
+                                    </div>
+                                </div>
+                                
+                        </div> -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="header row">
+                                    <div class="col-md-4 header-align"> <h6>Vendor Name</h6></div>
+                                    <div class="col-md-2 header-align"> <h6>Rating</h6></div>
+                                    <!-- <div class="col-md-2 header-align"> <h6>Rating Count</h6></div> -->
+                                    <div class="col-md-2 header-align"> <h6>Review Count</h6></div>
+                                    <div class="col-md-2 header-align"> <h6>Total hits</h6></div>
+                                </div>
+                                <div class="content-section">
+                                <div *ngFor="let x of vendorSearch; let i = index;">
+                                    <div *ngIf="i < nextVendors">
+                                        <div  class="content row">
+                                           
+                                            <div class="col-md-4"><span class="col-lineheight" (click)="moveToReview(x.businessId,x.name)">{{x.name}}</span></div>
+                                            <div class="col-md-2 content-align">
+                                                    <fieldset class="rating">
+                                                            <input type="radio" id="star5" name="rating" value="5"  [readonly]="true"/><label class = "full" for="star5" [ngStyle]="{'color':x.overallRating >= 5 ? '#D9B310' : '#cecaca' }" title="Awesome - 5 stars"></label>
+                                                            <input type="radio" id="star4half" name="rating" value="4.5"  [readonly]="true"/><label class="half" for="star4half" [ngStyle]="{'color':x.overallRating >= 4.5 ? '#D9B310' : '#cecaca' }" title="Pretty good - 4.5 stars"></label>
+                                                            <input type="radio" id="star4" name="rating" value="4"  [readonly]="true"/><label class = "full" for="star4" [ngStyle]="{'color':x.overallRating >= 4 ? '#D9B310' : '#cecaca' }"title="Pretty good - 4 stars"></label>
+                                                            <input type="radio" id="star3half" name="rating" value="3.5"  [readonly]="true"/><label class="half" for="star3half" [ngStyle]="{'color':x.overallRating >= 3.5 ? '#D9B310' : '#cecaca' }"title="Meh - 3.5 stars"></label>
+                                                            <input type="radio" id="star3" name="rating" value="3"  [readonly]="true"/><label class = "full" for="star3" [ngStyle]="{'color':x.overallRating >= 3 ? '#D9B310' : '#cecaca' }"title="Meh - 3 stars"></label>
+                                                            <input type="radio" id="star2half" name="rating" value="2.5"  [readonly]="true"/><label class="half" for="star2half" [ngStyle]="{'color':x.overallRating >= 2.5 ? '#D9B310' : '#cecaca' }"title="Kinda bad - 2.5 stars"></label>
+                                                            <input type="radio" id="star2" name="rating" value="2"  [readonly]="true"/><label class = "full" for="star2" [ngStyle]="{'color':x.overallRating >= 2 ? '#D9B310' : '#cecaca' }"title="Kinda bad - 2 stars"></label>
+                                                            <input type="radio" id="star1half" name="rating" value="1.5"  [readonly]="true"/><label class="half" for="star1half" [ngStyle]="{'color':x.overallRating >= 1.5 ? '#D9B310' : '#cecaca' }"title="Meh - 1.5 stars"></label>
+                                                            <input type="radio" id="star1" name="rating" value="1"  [readonly]="true"/><label class = "full" for="star1" [ngStyle]="{'color':x.overallRating >= 1 ? '#D9B310' : '#cecaca' }"title="Sucks big time - 1 star"></label>
+                                                            <input type="radio" id="starhalf" name="rating" value="0.5"  [readonly]="true"/><label class="half" for="starhalf" [ngStyle]="{'color':x.overallRating >= 0.5 ? '#D9B310' : '#cecaca' }"title="Sucks big time - 0.5 stars"></label>
+                                                        </fieldset>
+                                            </div>
+                                            <!-- <div class="col-md-2 content-align">{{x.ratingAverage}}</div> -->
+                                            <div class="col-md-2 content-align"><span class="num-lineheight">{{x.reviewCount}}</span></div>
+                                            <div class="col-md-2 content-align"><span class="num-lineheight">{{x.totalHits}}</span></div>
+                                        </div>
+                                        <hr>
+                                    </div>
+                                </div>
+                                <div *ngIf="vendorSearch?.length == 0" class="no-results"><span>No results were found <img src="assets/img/sad.png" class="smiley" /></span></div>
+                                <!-- <div  *ngIf="vendorSearch?.length > 5" id="vendor"class="expand conent">
+                                    <span class="pageNext" (click)="getNextVendors()">Next 5 vendors</span>
+                                </div> -->
+                                </div>
+                                <div class="footer">
+                                    <!-- <div class="row">
+                                        <div class="lower-content col-md-8">
+                                                
+                                        </div>
+                                        <div class="col-md-4" style="text-align:right;"><button class="btn btn-primary">Download as CSV </button></div>
+                                    </div> -->
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row col-md-12">&nbsp;</div>
+                    
+                                        <div class="search-vendor">
+                                                <div class="row  top_search_div">
+                                                        <div class="top_header col-md-9" style="bottom:-15px;">
+                                                            <h4 class="table-header">Top 10 Feedback-by User</h4>
+                                                        </div>
+                                                        <div class="col-md-3" style="text-align:right;">
+                                                                <div class="update-details update-detail-btn">
+                                                                        <select id="feedbackCustom" class="form-control" [(ngModel)]="feedbackDate" (change)="onFeedbackHits($event.target.value)" aria-placeholder="Today">
+                                                                            <option value="Today">Today</option>
+                                                                            <option value="Last 30 days">Last 30 days</option>
+                                                                            <option value="Custom">Custom</option>
+                                                                        </select>
+                                                                        <div id="feedbackDate" class="col-md-10"> <my-date-picker name="mydate" [options]="myDatePickerOptions"
+                                                                            (dateChanged)="onFeedbackChanged($event)" required></my-date-picker></div>
+                                                                        <button class="btn btn-go"  (click)="refreshUser()"><i id="spin" class="fa fa-refresh"></i></button>
+                                                                    </div> 
+                                                        </div>
+                            
+                                                </div>
+                                            <!-- <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="vendor-header">
+                                                            <div class="update-details update-detail-btn">
+                                                                <select class="form-control" aria-placeholder="Today">
+                                                                    <option>Today</option>
+                                                                    <option>Last 30 days</option>
+                                                                </select>
+                                                                <button class="btn btn-go"><b>Go</b></button>
+                                                            </div>   
+                                                        </div>
+                                                    </div>
+                                                    
+                                            </div> -->
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="header row">
+                                                        <div class="col-md-6 header-align"> <h6>Users</h6></div>
+                                            
+                                                        <div class="col-md-6 header-align"> <h6>Total Rating</h6></div>
+                                                    </div>
+                                                    <div class="content-section">
+                                                    <div *ngFor="let y of vendorFeedback; let i=index;">
+                                                        <div *ngIf="i < nextFeedback">
+                                                            <div class="content row">
+                                    
+                                                                <div class="col-md-6" style="text-align:center"><a class="user-report" (click)="moveToUserReport(y.userId,y.firstName)">{{y.firstName}}</a></div>
+                                                                <!-- <div class="col-md-4 content-align">{{y.firstName}}</div> -->
+                                                                <div class="col-md-6 content-align">{{y.overall}}</div>
+                                                            </div>
+                                                            <hr>
+                                                        </div>
+                                                    </div>
+                                                    <div *ngIf="vendorFeedback?.length == 0" class="no-results"><span>No results were found <img src="assets/img/sad.png" class="smiley" /></span></div>
+                                                    <!-- <div  *ngIf="vendorFeedback?.length > 5" id="feedback"class="expand conent">
+                                                        <span class="pageNext" (click)="getNextFeed()">Next 5 vendors</span>
+                                                    </div> -->
+                                                    </div>
+                                                    <div class="footer">
+                                                            <!-- <div class="row">
+                                                                <div class="lower-content col-md-8"> </div>
+                                                                <div class="col-md-4" style="text-align:right;">
+                                                                    <button class="btn btn-primary">Download as CSV </button></div>
+                                                            </div> -->
+                                                        </div>
+                    
+                                                </div>
+                                            </div>
+                                        </div>
+
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+
+</div>

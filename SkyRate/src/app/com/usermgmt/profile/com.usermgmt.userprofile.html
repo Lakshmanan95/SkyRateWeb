@@ -1,0 +1,192 @@
+<div id="userprofile">
+
+
+    <div class="panel panel-primary ">
+        <div class="panel-heading">
+            <h3 class="panel-title">User Profile </h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="panel panel-default ">
+                        <div class="panel-heading">
+                            User Profile Update
+                        </div>
+                        <div class="panel-body">
+                            <div>
+
+                                <form #f1="ngForm" [formGroup]="profileForm"  method="post" action="#">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-6 col-md-6">
+                                            <div class="form-group">
+                                                <label for="userName">User Name:</label> {{user.userName}}
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                     <div class="row">
+                                           <!--div class="col-xs-2 col-sm-3 col-md-2">
+                                               <img class="img-responsive img-circle"  src="app/img/profile-avatar.png" > <BR>
+                                               <a href="" > Edit  Picture </a>
+                                           </div-->
+                                           <ebiz-image-uploader 
+                                                [isExistingImageAvailable]="isExistingImageAvailable" 
+                                                [imageURL]="userExt.profileImageUrl" 
+                                                [uploaderURL]="USER_PROFILE_UPLOADER_URL" 
+                                                [showDeleteButton]="false"
+                                                (change)="uploadComplete($event)" >  
+                                            </ebiz-image-uploader>
+                                       
+                                     </div> 
+                                         <div><BR>
+                                            <a #EditPictureButton (click)="editPicture()" class="btn btn-warning" data-toggle="collapse">{{EditPictureButtonLabel}}</a>
+                                        </div>
+
+                                       <div class="row">&nbsp;
+                                       </div>
+                                    <div class="row">
+                                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                                <div class="form-group">
+                                                    <label for="firstName">First Name*</label>
+                                                    <input type="text" name="firstName" [(ngModel)]="user.firstName" formControlName="_firstName" id="firstName" class="form-control"
+                                                        placeholder="First Name" tabindex="1">
+                                                </div>
+                                                <div *ngIf="profileForm.controls._firstName.touched && profileForm.controls._firstName.errors">
+                                                    <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="profileForm.controls._firstName.errors.required"> Please enter the valid First Name </div>
+                                                </div>
+                                            </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-6">
+                                            <div>
+                                                <div class="form-group">
+                                                    <label for="lastName">Last Name*</label>
+                                                    <input type="text" name="lastName" [(ngModel)]="user.lastName" formControlName="_lastName" id="lastName" class="form-control"
+                                                        placeholder="Last Name" tabindex="2">
+                                                </div>
+
+
+                                                <div *ngIf="profileForm.controls._lastName.touched && profileForm.controls._lastName.errors">
+                                                    <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="profileForm.controls._lastName.errors.required"> Please enter the valid Last Name </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-6 col-md-6">
+                                            <div class="form-group">
+                                                <label for="email">Email Address* </label>
+                                                <input type="email" name="email" [(ngModel)]="user.email" formControlName="_email" id="email" class="form-control" placeholder="Email Address"
+                                                    tabindex="4" pattern="^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$">
+                                            </div>
+
+                                            <div *ngIf="profileForm.controls._email.touched && profileForm.controls._email.errors">
+                                                <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="profileForm.controls._email.errors.required"> Please enter the valid emai address </div>
+                                                <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="profileForm.controls._email.errors.pattern"> Please enter the valid Email Address for eg. raj@yahoo.com</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-6">
+                                            <div class="form-group">
+                                                <label for="phoneNumber">Phone Number* </label>
+                                                <input type="text" name="phoneNumber" [(ngModel)]="user.phoneNumber" formControlName="_phoneNumber" id="phoneNumber" class="form-control" pattern="^[^\s]+(\s+[^\s]+)*$"
+                                                minlength="10" placeholder="Phone Number" tabindex="4">
+                                            </div>
+                                            <div *ngIf="profileForm.controls._phoneNumber.touched && profileForm.controls._phoneNumber.errors">
+                                                <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="profileForm.controls._phoneNumber.errors.required"> Please enter the valid Phone number </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     
+                                         
+                                   
+
+                                    <hr class="colorgraph">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-md-4 pull-right"><input type="button" (click)="saveProfile()" [disabled]="!ValidForm()" value="Save"
+                                                class="btn btn-primary btn-block " tabindex="7"></div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="col-md-6">
+                    <user-address></user-address>
+                  
+                </div> -->
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="panel panel-default ">
+                        <div class="panel-heading">
+                            Change Password
+                        </div>
+                        <div class="panel-body">
+                             <form #f="ngForm" [formGroup]="changePasswordForm"  method="post" action="#">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="oldPassword">Old Password*</label>
+                                        <input type="password" name="oldPassword" [(ngModel)]="changePasswordRequest.oldPassword" formControlName="_oldPassword" id="oldPassword" class="form-control"
+                                            placeholder="Old Password" tabindex="5" >
+                                    </div>
+                                    <div *ngIf="changePasswordForm.controls._oldPassword.touched && changePasswordForm.controls._oldPassword.errors">
+                                        <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="changePasswordForm.controls._oldPassword.errors.required"> Please enter the valid password </div>
+                                        <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="changePasswordForm.controls._oldPassword.errors.minlength"> Please enter min {{_oldPassword.controls._oldPassword.errors.minlength.requiredLength}}
+                                            characters for password</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="password">Password*</label>
+                                        <input type="password" name="password" [(ngModel)]="changePasswordRequest.newPassword" formControlName="_password" id="password" class="form-control"
+                                            placeholder="Password" tabindex="5" validateEqual="_confirmPassword" reverse="true">
+                                    </div>
+                                    <div *ngIf="changePasswordForm.controls._password.touched && changePasswordForm.controls._password.errors">
+                                        <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="changePasswordForm.controls._password.errors.required"> Please enter the valid password </div>
+                                        <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="changePasswordForm.controls._password.errors.minlength"> Please enter min {{changePasswordForm.controls._password.errors.minlength.requiredLength}}
+                                            characters for password</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="confirmPassword">Confirm Password*</label>
+                                        <input type="password" name="confirmPassword" [(ngModel)]="changePasswordRequest.confirmPassword" formControlName="_confirmPassword" id="confirmPassword"
+                                            class="form-control" placeholder="Confirm Password" tabindex="6" validateEqual="_password"
+                                            reverse="false">
+                                    </div>
+                                    <div *ngIf="changePasswordForm.controls._confirmPassword.touched && changePasswordForm.controls._confirmPassword.errors">
+                                        <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="!changePasswordForm.controls._confirmPassword.errors.validateEqual">
+                                            Confirm password not matching with password</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="colorgraph">
+                            <div class="row">
+                                <div class="col-xs-12 col-md-4 pull-right"><input type="button" (click)="changePassword()" [disabled]="!f.valid" value="Change Password"
+                                        class="btn btn-primary btn-block " tabindex="7"></div>
+                            </div>
+                             </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+    <modal #Processing id="enterCardDetails"
+    [show-modal]="isModalOpen"
+    [title]="''"
+    >
+    <div class="popup-content">
+     <span style="font-size:32px;">Updating...</span><i class="fa fa-spinner fa-spin" style="font-size:24px"></i>
+    </div>
+    <div class="popup-footer">
+  
+    </div>
+    </modal>
+
+</div>

@@ -1,0 +1,119 @@
+
+  
+   .loginsection{
+    /* background-image: url('app/img/spice-corner.png');
+    background-repeat: no-repeat;
+    background-size: cover; */
+    height:400px;
+   }
+   .loginbox{
+         padding: 20px 10px 10px 10px;
+   }
+   .loginrow .login-container {
+            padding: 10px 10px 10px 10px;
+            margin: 0;
+            width: 100%;
+            height: 91%;
+        }
+        
+        .login-container {
+           
+            display: block;
+            float: left;
+            
+        }
+        
+        label {
+            display: inline-block;
+            max-width: 100%;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+        
+        .btn-half {
+            width: 47.6%;
+            margin: 0;
+        }
+        
+        /* .btn-secondary {
+            color: #07679B;
+            background-color: transparent;
+            border-color: #07679B;
+        }
+         */
+        .login-container .form-group {
+            margin-bottom: 10px;
+            position: relative;
+            width: 100%;
+            float: left;
+        }
+        
+        .login-container .nomargin {
+            margin: 0!important;
+        }
+        
+        .loginrow .login-container .form-group.buttons {
+            margin-top: 10px;
+        }
+        .img-responsive{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 40%;
+        }
+        .col-xs-12{
+            padding-right: 5px;
+            padding-left: 5px;
+        }
+        .forgot-link{
+            vertical-align: -webkit-baseline-middle;
+        }
+        .btn-signIn{
+
+        }
+        .mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+            background-color: #1b7ce2 !important;
+        }
+        /*Checkboxes styles*/
+input[type="checkbox"] { display: none; }
+
+input[type="checkbox"] + label {
+  display: block;
+  position: relative;
+  padding-left: 25px;
+  margin-bottom: 20px;
+  font: 14px/20px 'Montserrat', Arial, sans-serif;
+  color: black;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+input[type="checkbox"] + label:last-child { margin-bottom: 0; }
+
+input[type="checkbox"] + label:before {
+  content: '';
+  display: block;
+  width: 15px;
+  height: 15px;
+  border: 2px solid #1b7ce2;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: .6;
+  -webkit-transition: all .12s, border-color .08s;
+  transition: all .12s, border-color .08s;
+}
+
+input[type="checkbox"]:checked + label:before {
+  width: 10px;
+  top: -5px;
+  left: 5px;
+  border-radius: 0;
+  opacity: 1;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}

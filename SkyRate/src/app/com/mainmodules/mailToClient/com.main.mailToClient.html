@@ -1,0 +1,70 @@
+<div class="col-md-12">
+    <div class="row mail-template">
+    <div class="col-md-2"></div>
+    <div class="col-md-8 mail-body">
+        <div class="row mail-row-spacing">
+            <div class="col-md-12">
+                <h5>Mail To Client</h5>
+            </div>
+        </div>
+        <hr>
+        <form #f1="ngForm" [formGroup]="mailForm">
+            <div class="row mail-row-spacing">
+                <div class="col-md-12">
+                    <label>To</label>
+                </div>
+                <div class="col-md-12">
+                        <tag-input [(ngModel)]="items"  name="_to" formControlName="_to"
+                        [editable]="true" [validators]='emailValidators'
+                        [secondaryPlaceholder]="'Add'" aria-label="Enter mailId"
+                        (onTagEdited)="onTagEdited($event)">
+             </tag-input>
+                </div>
+            </div>
+            <div class="row mail-row-spacing">
+                <div class="col-md-12">
+                    <label>Subject</label>
+                </div>
+                <div class="col-md-12">
+                    <input type="text" [(ngModel)]="subject"  name="_subject" formControlName="_subject" class="form-control" />
+                </div>
+            </div>
+            <div class="row mail-row-spacing">
+                <div class="col-md-12">
+                    <label>Body</label>
+                </div>
+                <div class="col-md-12">
+                    <textarea type="text" rows="10" cols="100"  name="_body"
+                    [(ngModel)]="body" formControlName="_body" class="form-control" ></textarea>
+                </div>
+            </div>
+            <div class="row mail-row-spacing">
+                <div *ngIf="!isSpin" class="col-md-12">
+                    <button class="btn btn-primary" (click)="mailSubmit()">Submit</button>
+                </div>
+                
+                <div class="col-xs-6 col-md-2"> <span *ngIf="isSpin"><i class="fa fa-spinner fa-spin"></i></span></div>
+                
+            </div>
+        </form>
+    </div>
+    <div class="col-md-2"></div>
+    </div>
+</div>
+<div class="modal fade" id="emailSuccess" #openModal data-backdrop="static" data-keyboard="false" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+                <h4 class="modal-title text-center" >Success</h4>
+                <a href="#" data-dismiss="modal"  class="close close-modal" aria-hidden="true">×</a>
+        </div>
+        <div class="modal-body">
+           <h6>Email send.</h6>
+        </div>
+        
+      </div>
+      
+    </div>
+  </div>

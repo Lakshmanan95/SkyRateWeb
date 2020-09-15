@@ -1,0 +1,10 @@
+.well{
+    min-height: 20px;
+    padding: 19px;
+    margin-bottom: 0px;
+    background-color: #fff;
+    border: none;
+    /* border-radius: 4px; */
+    -webkit-box-shadow: none;
+    
+}

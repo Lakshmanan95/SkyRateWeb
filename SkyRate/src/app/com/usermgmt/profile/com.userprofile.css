@@ -1,0 +1,33 @@
+#userprofile{
+    padding: 15px;
+}
+.user-container{
+    margin: 0 auto;
+    padding: 15px;
+}
+.solid{
+    border: 0px solid #e8e6e6;
+    background-color: white;
+}
+.tab-header{
+    font-size: 20px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+}
+.new-tab{
+    color:D9B310;
+    border-bottom: 3px solid D9B310;
+}
+.list-space{
+    padding-right:30px;
+}
+.profileTab, .passwordTab{
+    padding: 15px;
+}
+.alert{
+    padding: 17px 12px;
+}
+.lab{
+    display: inline-flex;
+    margin-bottom: 0.5rem;
+}

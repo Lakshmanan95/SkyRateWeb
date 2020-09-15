@@ -1,0 +1,128 @@
+<div id="businessClaimed">
+
+    <div class="row col-md-12">
+        <div class="col-md-1"></div>
+        <div class="col-md-11 report-align">
+                <div class="row  top_search_div">
+                        <div class="top_header col-md-6" style="bottom:-15px;">
+                            <h4 class="table-header">Approval</h4>
+                        </div>
+                        <div class="top_header col-md-3 sort-header">
+                        </div>
+                        <div class="col-md-3" style="text-align:right;">
+                                <div class="update-details update-detail-btn">
+                                        <select id="businessCustom" class="form-control" aria-placeholder="Today" [(ngModel)]="claimedDate" (change)="onVendorHits($event.target.value)" >
+                                            <option value="Today">Today</option>
+                                            <option value="Last 30 days">Last 30 days</option>
+                                            <option value="Custom">Custom</option>
+                                        </select>
+                                        <div id="businessDate" class="col-md-10"> <my-date-picker name="mydate" [options]="myDatePickerOptions"
+                                            (dateChanged)="onVendorDateChanged($event)" required></my-date-picker></div>
+                                        <button class="btn btn-go" (click)="refreshVendor()"><i id="spin" class="fa fa-refresh"></i></button>
+                                    </div> 
+                        </div>
+
+                    </div>
+                <div class="row">
+                        <div class="col-md-12">
+                            <div class="header row">
+                                <div class="col-md-3 header-align"> <h6>Business</h6></div>
+                                <div class="col-md-2 header-align"> <h6>User</h6></div>
+                                <div class="col-md-2 header-align"> <h6>ApprovalType</h6></div>
+                                <div class="col-md-1 header-align"> <h6>Approval</h6></div>
+                                <div class="col-md-2 header-align"> <h6>Approved Date</h6></div>
+                            </div>
+                            <div class="content-section">
+                            <div *ngFor="let x of businessClaimed; let i = index;">
+                                
+                                    <div  class="content row">
+                                       
+                                        <div class="col-md-3">
+                                           <ng-template #isActive>
+                                            <span class="col-lineheight" (click)="moveToBusiness(x.businessId,x.name)">{{x.name}}</span>
+                                        </ng-template>
+                                            <span *ngIf="x.active == 1 && x.lastUpdatedDate == null; else isActive" style="color:red;cursor:pointer;" (click)="moveToBusiness(x.businessId,x.name)">{{x.name}} * New</span></div>
+                                        <div class="col-md-2 contentalign" >
+                                                <div class="tooltip">
+                                                    <span class="num-lineheight"  >{{x.firstName}}</span>
+                                                    <div class="tooltiptext">
+                                                        <span style="padding:5px;">{{x.email}}<br>
+                                                        {{x.phoneNumber}}</span>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                        <div class="col-md-2 contentalign">
+                                             <span *ngIf="x.claimed==1" class="num-lineheight">
+                                                ClaimBusiness
+                                            </span>
+                                            <span *ngIf="x.claimed==0" class="num-lineheight">
+                                                    NewBusiness
+                                            </span>
+                                       </div> 
+                                       <div class="col-md-1 contentalign">
+                                           
+                                            <div *ngIf="x.approval == 0" class="row check-times-icon" id="selection">
+                                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                                        <button class="button-circle btn-check" (click)="approve(x.businessId,x.claimed,x.userId,1)"><i class="fa fa-check"></i></button>
+                                                    </div>
+                                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                                            <button class="button-circle btn-times" (click)="approve(x.businessId,x.claimed,x.userId,0)"><i class="fa fa-times"></i></button>
+                                                        </div>
+                                                </div>
+                                                <div id="approve" *ngIf="x.approval == 1">
+                                                    <span class="num-lineheight">
+                                                    <label class="switch">
+                                                            <input type="checkbox" [checked]="x.approval == 1" (change)="updateApproval(x.businessId,x.approval)">
+                                                            <span class="slider round"></span>
+                                                        </label></span>
+                                                </div>
+                                        </div>
+                                        <div class="col-md-2 contentalign"><span class="num-lineheight">
+                                           {{x.lastUpdatedDate | date: 'MM/dd/yyyy'}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                   
+                                    <hr>
+                            </div>
+                            <div *ngIf="businessClaimed?.length == 0" class="no-results"><span>No results found </span></div>
+                            </div>
+                            
+
+                        </div>
+                    </div>
+                    <div class="pagination row">
+                        <div class="col-md-12 col-sm-12 col-xs-12 " style="text-align: center;" >
+                              <span (click)="start()">    <i class="fa fa-backward pagination-arrow" aria-hidden="true"></i></span>
+                             <span (click)="previous()">   <i class="fa fa-caret-left pagination-arrow" aria-hidden="true"></i></span>
+                              <!-- <span class="count"> <input type="text" class="form-control"  [(ngModel)]="currentPage" (keyup.enter)=pagesearch($event.value)/> of {{lastPage}}</span> -->
+                              <span class="count"> <input type="text" class="form-control pagination-input"  [(ngModel)]="currentPage" (keyup.enter)=pagesearch($event.target.value)/><span style="color: white"> of {{lastPage}}</span></span>
+                              <span (click)="next()"> <i class="fa fa-caret-right pagination-arrow" aria-hidden="true"></i></span>
+                              <span (click)="end()"><i class="fa fa-forward pagination-arrow" aria-hidden="true"></i></span>
+                           </div>
+                    </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+    
+    <div class="modal fade" id="processModal"  data-backdrop="static" data-keyboard="false" role="dialog">
+            <div class="modal-dialog">
+            
+              <!-- Modal content-->
+              <div class="modal-content">
+                <!-- <div class="modal-header">
+                      
+                
+                </div> -->
+                <div class="modal-body">
+                   <div>
+                        <h4 class="modal-title text-center" >Processing  <i class="fa fa-spinner fa-spin" style="color:#6a6a79;"></i></h4>
+                    </div>  
+                </div>
+              </div>
+              
+            </div>
+          </div>
+    
+   
+</div>

@@ -1,0 +1,2 @@
+use grocery;
+INSERT INTO `grocery`.`order_status` (`ID`, `DESCRIPTION`) VALUES ('8', 'Delivered');

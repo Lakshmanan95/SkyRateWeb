@@ -1,0 +1,85 @@
+.add-business {
+    background-color: #f3f3f3;
+    padding: 10px;
+    margin-top: 10px;
+}
+.contact-us{
+    background-color: #f3f3f3;
+    padding: 10px;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 50px;
+}
+.hr-align{
+    margin-top: 16px;
+    margin-bottom: -9px;
+    border: 0;
+    -webkit-margin-end: 117px;
+    margin-inline-end: 0px;
+    border-top: 2px solid rgba(0, 0, 0, 0.31);
+}
+.btn-compare-business{
+    margin: 0 -25px 0 auto;
+    font-size: 14px;
+}
+.rightside-content{
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
+}
+.btn-add-business{
+    font-size: 14px;
+    float: right;
+    margin: 10px 0 0 0;
+}
+.btn-contact{
+    font-size: 14px;
+    margin: 5px 0 0 0;
+    float: right;
+}
+.myfavorites{
+    margin-top: 10px;
+    background-color: #f3f3f3;
+    padding: 10px;
+    font-family: 'Montserrat', sans-serif;
+}
+.favorite-header{
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+}
+.fav-name{
+    font-size: 14px;
+    cursor: pointer;
+}
+.fav-list, .fav-name{
+    padding: 10px 0 10px 0;
+}
+.fav-li{
+    padding: 0 0 10px 0;
+}
+.fa-star{
+    color: #0B3C5D;
+    padding: 4px;
+}
+.ad{
+    padding-top: 50px;
+}
+.fa-close{
+    line-height: 2;
+    font-size: 16px;
+    cursor: pointer;
+    color: #898686;
+}
+.bottom-border:hover .fa-close {
+    color: #898686;
+}
+.compare-horizontal{
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+.content-contact{
+    font-size: 15px;
+    font-weight: bold;
+}
+.link-contact{
+    font-size: 15px;
+}

@@ -1,0 +1,706 @@
+#review{
+    font-family: 'Montserrat', sans-serif;
+}
+.business_detail{
+    background-color: white;
+    margin-top: 30px;
+    margin-left: 15px;
+}
+
+.business-img{
+    width: 150px;
+}
+.bookmark{
+    padding: 10px;
+}
+.header-line{
+    border-top: 2px solid rgba(0, 0, 0, 0.31);
+    margin-top: 0px;
+}
+
+.votes{
+    font-size: 12px;
+    color: #797676;
+}
+.business-title{
+    margin-top: 15px;
+}
+.check-circle, .fa-check-circle-o{
+    color:green;
+   padding: 4px;
+    font-size: 21px;
+}
+.times-circle, .fa-times-circle-o{
+    color:#e01010;
+    font-size: 21px;
+    padding: 4px;
+}
+.btn-mark{
+    font-size: 13px;
+}
+
+.edit_row{
+  text-align: right;
+}
+.edit-dialog{
+    max-width: 726px;
+}
+
+
+
+/*  */
+.tab-col{
+    padding: 0px;
+    margin-left: 15px;
+}
+.tab-wrap {
+    transition: 0.3s box-shadow ease;
+    border-radius: 6px;
+    max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    list-style: none;
+    background-color: #fff;
+    margin: 8px 0;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  }
+  /* .tab-wrap:hover {
+    box-shadow: 0 12px 23px rgba(0, 0, 0, 0.23), 0 10px 10px rgba(0, 0, 0, 0.19);
+  } */
+  
+  .tab {
+    display: none;
+  }
+  .tab:checked:nth-of-type(1) ~ .tab__content:nth-of-type(1) {
+    opacity: 1;
+    transition: 0.5s opacity ease-in, 0.8s -webkit-transform ease;
+    transition: 0.5s opacity ease-in, 0.8s transform ease;
+    transition: 0.5s opacity ease-in, 0.8s transform ease, 0.8s -webkit-transform ease;
+    position: relative;
+    top: 0;
+    z-index: 100;
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+    text-shadow: 0 0 0;
+  }
+  .tab:checked:nth-of-type(2) ~ .tab__content:nth-of-type(2) {
+    opacity: 1;
+    transition: 0.5s opacity ease-in, 0.8s -webkit-transform ease;
+    transition: 0.5s opacity ease-in, 0.8s transform ease;
+    transition: 0.5s opacity ease-in, 0.8s transform ease, 0.8s -webkit-transform ease;
+    position: relative;
+    top: 0;
+    z-index: 100;
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+    text-shadow: 0 0 0;
+  }
+  .tab:checked:nth-of-type(3) ~ .tab__content:nth-of-type(3) {
+    opacity: 1;
+    transition: 0.5s opacity ease-in, 0.8s -webkit-transform ease;
+    transition: 0.5s opacity ease-in, 0.8s transform ease;
+    transition: 0.5s opacity ease-in, 0.8s transform ease, 0.8s -webkit-transform ease;
+    position: relative;
+    top: 0;
+    z-index: 100;
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+    text-shadow: 0 0 0;
+  }
+  .tab:checked:nth-of-type(4) ~ .tab__content:nth-of-type(4) {
+    opacity: 1;
+    transition: 0.5s opacity ease-in, 0.8s -webkit-transform ease;
+    transition: 0.5s opacity ease-in, 0.8s transform ease;
+    transition: 0.5s opacity ease-in, 0.8s transform ease, 0.8s -webkit-transform ease;
+    position: relative;
+    top: 0;
+    z-index: 100;
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+    text-shadow: 0 0 0;
+  }
+  .tab:checked:nth-of-type(5) ~ .tab__content:nth-of-type(5) {
+    opacity: 1;
+    transition: 0.5s opacity ease-in, 0.8s -webkit-transform ease;
+    transition: 0.5s opacity ease-in, 0.8s transform ease;
+    transition: 0.5s opacity ease-in, 0.8s transform ease, 0.8s -webkit-transform ease;
+    position: relative;
+    top: 0;
+    z-index: 100;
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+    text-shadow: 0 0 0;
+  }
+  .tab:first-of-type:not(:last-of-type) + label {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .tab:not(:first-of-type):not(:last-of-type) + label {
+    border-radius: 0;
+  }
+  .tab:last-of-type:not(:first-of-type) + label {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .tab:checked + label {
+    background-color: #1b7ce2;
+    box-shadow: 0 -1px 0 #1b7ce2 inset;
+    color:white;
+    cursor: default;
+    font-weight: bold;
+    font-size: 16px;
+  }
+  .tab:checked + label:hover {
+    box-shadow: 0 -1px 0 #fff inset;
+    background-color: #fff;
+    color:black;
+  }
+  .tab + label {
+    box-shadow: 0 -1px 0 #eee inset;
+    border-radius: 6px 6px 0 0;
+    cursor: pointer;
+    display: block;
+    text-decoration: none;
+    color: #333;
+    flex-grow: 3;
+    text-align: center;
+    background-color: #f2f2f2;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    text-align: center;
+    transition: 0.3s background-color ease, 0.3s box-shadow ease;
+    height: 50px;
+    box-sizing: border-box;
+    padding: 15px;
+  }
+  .tab + label:hover {
+    background-color: #fff;
+    box-shadow: 0 1px 0 #fff inset;
+  }
+  .tab__content {
+    padding: 10px 25px;
+    background-color: transparent;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+    opacity: 0;
+    left: 0;
+    -webkit-transform: translateY(-3px);
+            transform: translateY(-3px);
+    border-radius: 6px;
+  }
+  
+  /* raitng */
+  .rating-content{
+      font-size: 15px;
+  }
+  .rating{
+    background-color: #f7f7f7;
+    padding-right: 15px;
+    padding-left: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 5px;
+  }
+  .text-area{
+      font-size: 13px;
+      width:100%;
+      border-color: #dcdbd9;
+  }
+  .write-review{
+         margin-top: 10px;
+    padding: 0px;
+  }
+  .header-color{
+    color: #7d7878;
+    font-size: 16px;
+  }
+  .recommend-row{
+    padding: 5px;
+    margin-top: 10px;
+  }
+  .red:checked + label:before {
+    top: -4px;
+    left: -3px;
+    width: 12px;
+    height: 22px;
+    border-top: 2px solid transparent;
+    border-left: 2px solid transparent;
+    border-right: 2px solid red; /* You need to change the colour here */
+    border-bottom: 2px solid red; /* And here */
+    -webkit-transform: rotate(40deg);
+    -moz-transform: rotate(40deg);
+    -ms-transform: rotate(40deg);
+    -o-transform: rotate(40deg);
+    transform: rotate(40deg);
+    -webkit-backface-visibility: hidden;
+    -webkit-transform-origin: 100% 100%;
+    -moz-transform-origin: 100% 100%;
+    -ms-transform-origin: 100% 100%;
+    -o-transform-origin: 100% 100%;
+    transform-origin: 100% 100%; }
+
+    
+    /* checkbox */
+    input[type="radio"] {
+      display: none;
+    }
+    
+    input[type="radio"] + label {
+      
+      font-size: 14px;
+    }
+    
+    input[type="radio"] + label span {
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+      margin: -1px 4px 0 0;
+      vertical-align: middle;
+      cursor: pointer;
+      -moz-border-radius: 30%;
+      border-radius: 30%;
+    }
+    
+    input[type="radio"] + label span {
+      background-color: white;
+      border: 1px solid black;
+    }
+    
+    input[type="radio"]:checked + label span {
+      background-color: blue;
+      border: 1px solid blue;
+    }
+    
+    input[type="radio"] + label span,
+    input[type="radio"]:checked + label span {
+      -webkit-transition: background-color 0.4s linear;
+      -o-transition: background-color 0.4s linear;
+      -moz-transition: background-color 0.4s linear;
+      transition: background-color 0.4s linear;
+    }
+    input[type="radio"].green:checked + label span{
+      background-color:#16c316;
+      border:1px solid #16c316;
+ }
+ 
+ input[type="radio"].red:checked + label span{
+      background-color:red;
+      border:1px solid red;
+ } 
+ .green{
+   color: greens;
+ }
+ .red{
+   color:#e01010;;
+ }
+ .selection{
+  padding-top: 5px;
+ }
+.user-img{
+ 
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+ .btn-submit{
+  font-size: 14px;
+  width: auto;
+ }
+ .review-submit{
+  float: right;
+  /* vertical-align: -webkit-baseline-middle; */
+  margin-top: 60px;
+ }
+  
+ .reviews{
+   background-color: white;
+   margin-bottom: 10px;
+ }
+ .noReviews{
+  text-align: center;
+  padding: 10px;
+  font-size: 16px;
+ }
+ .review-header{
+   padding-top: 10px;
+ }
+ .btn-align{
+   text-align: right;
+ }
+ .dropdown-align{
+  color: black;
+  text-align: center;
+  font-size: 14px;
+ }
+ .review-text{
+   padding: 0px;
+   font-size: 13px;
+ }
+ .user-details{
+   font-size:13px;
+ }
+ .rec-true{
+   font-size: 13px;
+   color: green;
+ }
+ .rec-false{
+   font-size: 13px;
+   color:#e01010;;
+ }
+.check-res{
+  font-size: 17px;
+  padding: 2px;
+}
+.rec-result{
+  padding: 5px;
+}
+
+.rating_default  { 
+    border: none;
+    float:right;
+    margin-right: 10px;
+  }
+  
+  
+  .rating_default  > input { display: none; } 
+  .rating_default  > label:before { 
+    margin: 4px;
+    font-size: 16px;
+    font-family: FontAwesome;
+    display: inline-block;
+    content: "\f005";
+  }
+  
+  .rating_default  > .half:before { 
+    content: "\f089";
+    position: absolute;
+  }
+  
+  .rating_default  > label { 
+    color: #ddd; 
+   float: right; 
+  }
+  
+  /***** CSS Magic to Highlight Stars on Hover *****/
+  
+  .rating_default  > input:checked ~ label, /* show gold star when clicked */
+  .rating_default :not(:checked) > label:hover, /* hover current star */
+  .rating_default :not(:checked) > label:hover ~ label { color: #FACF2F;;  } /* hover previous stars in list */
+  
+  .rating_number{
+    font-size: 15px;
+    font-weight: bold;
+    color: green;
+    line-height: 2.5
+  }
+
+  .load-align{
+    text-align: center;
+    padding: 15px;
+  }
+  .load-button{
+    width: auto;
+  }
+  .btn-load{
+    width: auto;
+  }
+  .fa-spin{
+    color: #febd69;
+    font-size: 25px;
+  }
+  .remaining-content span {
+    display:none;
+}
+.profile-img{
+  text-align: center;
+}
+.profile-details{
+  padding:0px;
+}
+.review-edit{
+  margin-top: 15px;
+}
+.btn-primary{
+  width: auto;
+}
+.fa-col{
+  margin-top: 10px;
+}
+.edit-icon{
+  margin-right: 15px;
+  vertical-align: middle;
+}
+
+.rating { 
+  border: none;
+  float: left;
+  width: 159px !important;
+}
+
+
+.rating > input { display: none; } 
+.rating > label:before { 
+  margin: 5px;
+  font-size: 17px;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+
+.rating > .half:before { 
+  content: "\f089";
+  position: absolute;
+}
+
+.rating > label { 
+  color: #ddd; 
+ float: right; 
+ cursor: pointer;
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.rating > input:checked ~ label, /* show gold star when clicked */
+.rating:not(:checked) > label:hover, /* hover current star */
+.rating:not(:checked) > label:hover ~ label { color: green;  } /* hover previous stars in list */
+
+.rating > input:checked + label:hover, /* hover current star when changing rating */
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating > input:checked ~ label:hover ~ label { color: #7fbb40;  } 
+
+/* Pricing */
+.pricing, .pricing_default { 
+  border: none;
+  float: left;
+}
+
+.pricing > .half:before, .pricing_default > .half:before { 
+  content: "\f089";
+  position: absolute;
+}
+.pricing > input, .pricing_default > input { display: none; } 
+.pricing > label:before, .pricing_default > label:before { 
+  margin: 5px;
+  font-size: 17px;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+
+.pricing > .half:before, .pricing_default > .half:before { 
+  content: "";
+  position: absolute;
+}
+
+.pricing > label, .pricing_default > label { 
+  color: #ddd; 
+ float: right; 
+ cursor: pointer;
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.pricing > input:checked ~ label, /* show gold star when clicked */
+.pricing:not(:checked) > label:hover, /* hover current star */
+.pricing:not(:checked) > label:hover ~ label { color: #FFC107;  } /* hover previous stars in list */
+
+.pricing > input:checked + label:hover, /* hover current star when changing rating */
+.pricing > input:checked ~ label:hover,
+.pricing > label:hover ~ input:checked ~ label, /* lighten current selection */
+.pricing > input:checked ~ label:hover ~ label,
+
+.pricing_default > input:checked ~ label, /* show gold star when clicked */
+.pricing_default:not(:checked) > label:hover, /* hover current star */
+.pricing_default:not(:checked) > label:hover ~ label { color: #FFC107;  } /* hover previous stars in list */
+
+.pricing_default > input:checked + label:hover, /* hover current star when changing rating */
+.pricing_default > input:checked ~ label:hover,
+.pricing_default > label:hover ~ input:checked ~ label, /* lighten current selection */
+.pricing_default > input:checked ~ label:hover ~ label{ color: #ffc10769;  } 
+
+.pricing, .pricing_default {
+  width: 159px !important;
+  background-color: #f7f7f7;
+  padding-right: 15px;
+  padding-left: 15px;
+  padding-top: 5px;
+  
+  border-radius: 5px;
+}
+
+/* speed */
+.speed { 
+border: none;
+float: left;
+}
+
+
+.speed > input { display: none; } 
+.speed > label:before { 
+margin: 5px;
+font-size: 17px;
+font-family: FontAwesome;
+display: inline-block;
+content: "\f005";
+}
+
+.speed > .half:before { 
+content: "";
+position: absolute;
+}
+
+.speed > label { 
+color: #ddd; 
+float: right; 
+cursor: pointer;
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.speed > input:checked ~ label, /* show gold star when clicked */
+.speed:not(:checked) > label:hover, /* hover current star */
+.speed:not(:checked) > label:hover ~ label { color: #1313b5  } /* hover previous stars in list */
+
+.speed > input:checked + label:hover, /* hover current star when changing rating */
+.speed > input:checked ~ label:hover,
+.speed > label:hover ~ input:checked ~ label, /* lighten current selection */
+.speed > input:checked ~ label:hover ~ label { color: #1313b57a;  } 
+
+.speed {
+background-color: #f7f7f7;
+padding-right: 10px;
+padding-left: 15px;
+padding-top: 5px;
+padding-bottom: 5px;
+border-radius: 5px;
+}
+
+/* tooltip */
+.tooltip {
+  position: inherit;
+  display: inline-block;
+  opacity: 1;/* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #333333;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  font-weight: bold;
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+.btn-question{
+  font-size: 13px;
+  height: 25px;
+}
+
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+.review_price{
+  background-color: white;
+  padding-right: 30px;
+  padding-left: 0px;
+  padding-top: 0px;
+  width: 165px !important
+}
+.review_quality{
+  background-color: #ffffff;
+  padding-right: 33px;
+  padding-left: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  border-radius: 5px;
+  width: 165px;
+}
+.review_speed{
+  background-color: #ffffff;
+  padding-right: 20px;
+  padding-left: 4px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 5px;
+  width: 159px;
+}
+.certificate{
+  color: #03c102;
+}
+.usd{
+  color: orange;
+}
+.tachometer{
+  color: rgb(19, 19, 181); 
+}
+.fa-certificate, .fa-usd, .fa-tachometer{
+  font-size: 18px;
+  padding: 5px;
+ 
+}
+.rating-content{
+  font-size:14px;
+  font-weight: bold;
+}
+.selection-radio{
+  display: initial;
+}
+.question-submit{
+  width: auto;
+  float: right;
+}
+.btn-side{
+  padding: 25px;
+}
+.spin-refresh{
+  text-align: center;
+  padding: 10px;
+}
+.alert{
+  padding: 10px;
+}
+.replybox{
+  margin: 0 0 0 auto;
+}
+.review-reply{
+  font-size: 13px;
+}
+hr{
+  margin:5px;
+}
+.review_modal_bottom{
+  margin-bottom: 10px;
+}
+.star-label{
+  font-size: 13px;
+}
+.dropdown-toggle{
+  background-color: white !important;
+  color: black !important;
+}
+.dropdown-menu {
+  min-width: 10rem !important;
+  margin-left: -32px;
+}
+.edit_row_align{
+  text-align: right;
+left: 0 !important;
+    
+}
+.edit_row_alig{
+  text-align: right;
+left: 0 !important;
+  
+}

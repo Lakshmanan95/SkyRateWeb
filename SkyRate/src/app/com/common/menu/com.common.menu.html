@@ -1,0 +1,34 @@
+<nav class="navbar navbar-expand-lg navbar-light ">
+  <div class="navbar-brand"> <a class="logo" href="#login">AviationRating 
+    <img src="assets/img/plane.png" class="logo-img" /></a></div>
+   
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  <div class="col-md-5"></div>
+  <div class="col-md-4"></div>
+    <div class="collapse navbar-collapse col-md-3" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li style="cursor:pointer"><a class="nav-link" data-placement="bottom" data-toggle="popover" (click)="toggle()"  data-container="body" type="text" data-html="true"  id="login">
+          <font class="sign-in">Sign in <span style="color:orange;font-size: 15px;">or</span> Join</font></a></li>
+        <div id="popover-content" class="hide" style="display:none">
+          <form class="" role="form">
+            <div class="form-group">
+              <button type="submit" (click)="closeToggle()" class="btn btn-primary btn-signIn">Sign In</button> <br>                                
+            </div>
+            <div class="signup">
+              <span>Need an account? <a>Sign up</a></span> 
+            </div>
+          </form>
+        </div>
+       
+      </ul>
+      
+    </div>
+  </nav>
+  <div class="container">
+   
+    <ul class="list-unstyled">
+     
+    </ul>
+  </div>

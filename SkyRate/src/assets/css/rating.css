@@ -1,0 +1,250 @@
+fieldset, label { margin: 0; padding: 0; }
+
+
+/****** Style Star Rating Widget *****/
+
+.rating { 
+    border: none;
+    float: left;
+    
+  }
+  
+  
+  .rating > input { display: none; } 
+  .rating > label:before { 
+    margin: 5px;
+    font-size: 17px;
+    font-family: FontAwesome;
+    display: inline-block;
+    content: "\f005";
+  }
+  
+  .rating > .half:before { 
+    content: "\f089";
+    position: absolute;
+  }
+  
+  .rating > label { 
+    color: #ddd; 
+   float: right; 
+   /* cursor: pointer; */
+  }
+  
+  /***** CSS Magic to Highlight Stars on Hover *****/
+  
+  .rating > input:checked ~ label, /* show gold star when clicked */
+  .rating:not(:checked) > label:hover, /* hover current star */
+  .rating:not(:checked) > label:hover ~ label { color: green;  } /* hover previous stars in list */
+  
+  .rating > input:checked + label:hover, /* hover current star when changing rating */
+  .rating > input:checked ~ label:hover,
+  .rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+  .rating > input:checked ~ label:hover ~ label { color: #7fbb40;  } 
+
+  /* Pricing */
+  .pricing, .pricing_default { 
+    border: none;
+    float: left;
+  }
+  
+  
+  .pricing > input, .pricing_default > input { display: none; } 
+  .pricing > label:before, .pricing_default > label:before { 
+    margin: 5px;
+    font-size: 17px;
+    font-family: FontAwesome;
+    display: inline-block;
+    content: "\f005";
+  }
+  
+  .pricing > .half:before, .pricing_default > .half:before { 
+    content: "\f089";
+    position: absolute;
+  }
+  
+  .pricing > label, .pricing_default > label { 
+    color: #ddd; 
+   float: right; 
+   cursor: pointer;
+  }
+  
+  /***** CSS Magic to Highlight Stars on Hover *****/
+  
+  .pricing > input:checked ~ label, /* show gold star when clicked */
+  .pricing:not(:checked) > label:hover, /* hover current star */
+  .pricing:not(:checked) > label:hover ~ label { color: #D9B310;  } /* hover previous stars in list */
+  
+  .pricing > input:checked + label:hover, /* hover current star when changing rating */
+  .pricing > input:checked ~ label:hover,
+  .pricing > label:hover ~ input:checked ~ label, /* lighten current selection */
+  .pricing > input:checked ~ label:hover ~ label,
+  
+  .pricing_default > input:checked ~ label, /* show gold star when clicked */
+  .pricing_default:not(:checked) > label:hover, /* hover current star */
+  .pricing_default:not(:checked) > label:hover ~ label { color: #D9B310;  } /* hover previous stars in list */
+  
+  .pricing_default > input:checked + label:hover, /* hover current star when changing rating */
+  .pricing_default > input:checked ~ label:hover,
+  .pricing_default > label:hover ~ input:checked ~ label, /* lighten current selection */
+  .pricing_default > input:checked ~ label:hover ~ label{ color: #ffc10769;  } 
+
+  .pricing, .pricing_default {
+    width: 155px !important;
+    background-color: #f7f7f7;
+    padding-right: 15px;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 5px;
+}
+
+/* speed */
+.speed { 
+  border: none;
+  float: left;
+}
+
+
+.speed > input { display: none; } 
+.speed > label:before { 
+  margin: 5px;
+  font-size: 17px;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+
+.speed > .half:before { 
+  content: "\f089";
+  position: absolute;
+}
+
+.speed > label { 
+  color: #ddd; 
+ float: right; 
+ cursor: pointer;
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.speed > input:checked ~ label, /* show gold star when clicked */
+.speed:not(:checked) > label:hover, /* hover current star */
+.speed:not(:checked) > label:hover ~ label { color: #D9B310  } /* hover previous stars in list */
+
+.speed > input:checked + label:hover, /* hover current star when changing rating */
+.speed > input:checked ~ label:hover,
+.speed > label:hover ~ input:checked ~ label, /* lighten current selection */
+.speed > input:checked ~ label:hover ~ label { color: #D9B310;  } 
+
+.speed {
+  background-color: #f7f7f7;
+  padding-right: 15px;
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 5px;
+  width: 155px !important;
+}
+/* quality f0a3 */
+.quality { 
+  border: none;
+  float: left;
+}
+
+
+.quality > input { display: none; } 
+.quality > label:before { 
+  margin: 5px;
+  font-size: 17px;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+
+.quality > .half:before { 
+  content: "\f089";
+  position: absolute;
+}
+
+.quality > label { 
+  color: #ddd; 
+ float: right; 
+ cursor: pointer;
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.quality > input:checked ~ label, /* show gold star when clicked */
+.quality:not(:checked) > label:hover, /* hover current star */
+.quality:not(:checked) > label:hover ~ label { color: #D9B310  } /* hover previous stars in list */
+
+.quality > input:checked + label:hover, /* hover current star when changing rating */
+.quality > input:checked ~ label:hover,
+.quality > label:hover ~ input:checked ~ label, /* lighten current selection */
+.quality > input:checked ~ label:hover ~ label { color: #D9B310;  } 
+
+.quality {
+  background-color: #f7f7f7;
+  padding-right: 15px;
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 5px;
+  width: 155px !important;
+}
+
+
+  /* Read Less */
+  
+.wrap {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 1.4;
+    padding: 4rem;
+  }
+  .wrap > * {
+    display: block;
+    margin: 0 auto;
+    max-width: 33.333%;
+  }
+  
+  .read-more {
+    position: relative;
+    color: #34495e;
+    text-decoration: none;
+    cursor: text;
+  }
+  .read-more .trigger {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    cursor: pointer;
+    color: #2980b9;
+    font-weight: bold;
+  }
+  .read-more .content {
+    position: relative;
+    overflow: hidden;
+    max-height: 89.6px;
+    transition: max-height 500ms ease;
+  }
+  .read-more .content::before {
+    content: '';
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, white 50%, white 100%);
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 44.8px;
+    transition: opactiy 500ms ease, visibility 500ms ease;
+  }
+  .read-more.expanded .content {
+    max-height: 600px;
+  }
+  .read-more.expanded .content::before,
+  .read-more.expanded .trigger {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  

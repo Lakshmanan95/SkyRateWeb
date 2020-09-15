@@ -1,0 +1,174 @@
+<div id="contact">
+    <div class="col-md-12">
+        <div class="contact-container">
+            <!-- <div *ngIf="isContact"><div class="row col-md-12" >
+
+                <div class="contact-info col-md-12">
+                    <div class="row col-md-12">
+                        <h5 class="contact-header">Information</h5>
+                    </div>
+                    <div class="row col-md-12">
+                        <div class="row col-md-12 frequent">
+                            <b>Frequently asked Phone Numbers:</b>
+                        </div>
+                        <div class="contact-details">
+                            <div *ngFor="let x of contacts;">
+                                <span>{{x.nameOfService}} : {{x.phoneNumber}}</span>
+                            </div>
+                            
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+<hr></div> -->
+<script>
+$("#phoneNumber").on("keypress", function(e) {
+    if (e.which === 32 && !this.value.length)
+        e.preventDefault();
+});
+</script>
+            <div class="row col-md-12">
+                    <div class="contact-form col-md-12">
+                            <h5 class="contact-header">{{nameOfHeader}}</h5><alert></alert>
+                            <div class="contactform-container ">
+                                <div class="row">
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-8">
+                                            <form #f="ngForm" [formGroup]="contactForm"  method="post" action="#">
+                                                    
+                                            <div class="row form-row">
+                                                    <div class="col-md-3">
+                                                        <label class="label">From:<span class="redStar">*</span></label>
+                                                    </div>
+                                                    <div class="col-md-9">
+                                                            <input  type="text" class="form-control"  tabindex="1" name="email"
+                                                            pattern="^[a-z0-9._-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                                                            [(ngModel)]="user.email" formControlName="_email" id="email"/>
+                                                            <div *ngIf="contactForm.controls._email.touched && contactForm.controls._email.errors">
+                                                                    <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="contactForm.controls._email.errors.pattern"> Please enter the valid Email Address for eg. raj@yahoo.com</div>
+                                                                <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="contactForm.controls._email.errors.required"> Please enter the email </div>
+                                                            </div>
+                                                    </div>
+                                                    
+                                            </div>
+                                            <div class="row form-row">
+                                                    <div class="col-md-3">
+                                                        <label class="label">Name: <span class="redStar">*</span></label>
+                                                    </div>
+                                                    <div class="col-md-9">
+                                                            <input  type="text" class="form-control"  tabindex="2" name="userName"
+                                                            [(ngModel)]="userName" formControlName="_userName" id="userName" maxlength="45"/>
+                                                            <div *ngIf="contactForm.controls._userName.touched && contactForm.controls._userName.errors">
+                                                                <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="contactForm.controls._userName.errors.required"> Please enter the Name </div>
+                                                            </div>
+                                                    </div>
+                                                    
+                                            </div>
+                                            <div class="row form-row">
+                                                    <div class="col-md-3">
+                                                        <label class="label">Phone Number:</label>
+                                                    </div>
+                                                    <div class="col-md-9">
+                                                        
+                                                            <input  type="text" class="form-control"  tabindex="3" name="phoneNumber" placeholder="123 456 7890" pattern="^[^\s]+(\s+[^\s]+)*$"
+                                                            (keypress)="keyPress($event)" maxlength="15" minlength="10" [(ngModel)]="user.phoneNumber"  formControlName="_phoneNumber" id="phoneNumber"/>
+                                                     
+                                                    </div>
+                                                    
+                                            </div>
+                                            <div class="row form-row">
+                                                    <div class="col-md-3">
+                                                        <label class="label">Subject:<span class="redStar">*</span></label>
+                                                    </div>
+                                                    <div *ngIf="isContact" class="col-md-9">
+                                                            <!--  -->
+                                                            <select  autofocus="autofocus" class="form-control" name="statusId"  id="subject"
+                                                            formControlName="_subject" [(ngModel)]="subjectId" >
+                                                            <option *ngFor="let x of subjectList" [value]="x.id" [selected]="subjectId == x.id">{{x.subject}}</option>
+                                                            </select>
+                                                            <div *ngIf="contactForm.controls._subject.touched && contactForm.controls._subject.errors">
+                                                                    <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="contactForm.controls._subject.errors.required"> Please enter the Subject </div>
+                                                                </div>
+                                                    </div>
+                                                    <div *ngIf="!isContact" class="col-md-9">
+                                                        <select  autofocus="autofocus" class="form-control" name="statusId"  id="subject"
+                                                            formControlName="_subject" [(ngModel)]="subjectId" >
+                                                            <option *ngFor="let x of subjectList" [value]="x.id" [selected]="subjectId == x.id">{{x.subject}}</option>
+                                                            </select>
+                                                        <div *ngIf="contactForm.controls._subject.touched && contactForm.controls._subject.errors">
+                                                            <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="contactForm.controls._subject.errors.required"> Please enter the Subject </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                            </div>
+                                            <div class="row form-row">
+                                                    <div class="col-md-3">
+                                                        <label class="label">Message:<span class="redStar">*</span></label>
+                                                            
+                                                    </div>
+                                                    <div class="col-md-9">
+                                                            <textarea  autofocus="autofocus" type="text" class="form-control"  tabindex="5" name="_message" rows="7"
+                                                             [(ngModel)]="message" formControlName="_message" id="message"></textarea>
+                                                            <div *ngIf="contactForm.controls._message.touched && contactForm.controls._message.errors">
+                                                                    <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="contactForm.controls._message.errors.required"> Please enter the Message </div>
+                                                                </div>
+                                                    </div>
+                                                    
+                                            </div>
+                                            <div class="row form-button" >
+                                                    <div class="col-md-12" >
+                                                            <button *ngIf="!isSpin" type="submit" [disabled]="!f.valid" (click)="onSubmit()"class="btn btn-primary">Submit</button>
+                                                            <span *ngIf="isSpin"><i class="fa fa-spinner fa-spin" style="font-size:28px;"></i></span>
+                                                   </div>
+                                                  
+                                            </div>
+                                            </form>
+                                    </div>
+                                    <div class="col-md-1"></div>
+                                </div>
+                            </div>
+                            
+                        </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="contactSuccess"  data-backdrop="static" data-keyboard="false" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+                <h4 class="modal-title text-center" >Thank you for contacting us - we'll get back to you soon!</h4>
+                <!-- <a href="#" data-dismiss="modal"  class="close close-modal" aria-hidden="true">×</a> -->
+        </div>
+        <div class="modal-body" style="text-align:center;">
+           <button class="btn btn-primary" (click)="emailSuccess()">Ok</button>
+        </div>
+        
+      </div>
+      
+    </div>
+  </div>
+  <div class="modal fade" id="feedbackSuccess"  data-backdrop="static" data-keyboard="false" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+                <!--h5 style="text-align: justify;font-size: 15px;    padding-top: 10px;">We truly care about your user experience and need your help to improve this site.  Please provide us through the feed tab with 
+                    any errors you may notice with the site and any recommendations, suggestions or improvement for the site.  Without your feedback we will be unable to make this site perform better for you.</h5-->
+                <h5 style="text-align: justify;font-size: 15px;    padding-top: 10px;">Thank you for your feedback, our team will review the information provided and will improvements, should they have any further questions they will contact you.</h5>
+                
+                    <!-- <a href="#" data-dismiss="modal"  class="close close-modal" aria-hidden="true">×</a> -->
+        </div>
+        <div class="modal-body" style="text-align:center;padding-top: 8px;">
+           <button class="btn btn-primary" (click)="feedbackSuccess()">Ok</button>
+        </div>
+        
+      </div>
+      
+    </div>
+  </div>

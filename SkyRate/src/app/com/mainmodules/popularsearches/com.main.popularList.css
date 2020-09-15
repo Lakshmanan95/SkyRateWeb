@@ -1,0 +1,101 @@
+.container{    
+    padding-left:0px; padding-right:0px;font-family: 'Muli', sans-serif;
+}
+.search-box{
+    margin-top: 150px;
+}
+
+
+.list-img{
+    width:100px;
+}
+.search-list-row{
+    padding-left: 50px;
+  
+    padding-bottom: 20px
+}
+.list-row{
+    background-color: white;
+    padding: 25px;
+    margin-bottom: 15px;
+}
+.business-name{
+    font-size: 17px;
+    color: black;
+}
+.business-content{
+    font-size: 13px;
+    color: #716b6b;
+}
+.search-header{
+    text-align: center;
+}
+.search-title{
+    font-size: 42px;
+    font-weight:bold;
+    color:white;
+    
+}
+.search-list{
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Pagination */
+.pagination-center{
+    text-align: center;
+}
+.pagination-arrow{
+    font-size: 20px;
+    color:orange;
+    cursor: pointer;
+}
+.count{
+    font-size: 14px;
+}
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+  .pagination-input{
+    width:50px;
+    display: inline-block;
+}
+.header-list{
+    font-family: 'Impact';
+    padding: 7px;
+    padding-left: 15px;
+}
+.header-content{
+    font-size: 24px;
+    
+}
+.rating{
+    width: auto !important;
+}
+.favorite{
+    float:right;
+}
+.compare-btn{
+    width: auto;
+    font-size: 15px;
+}
+.favorite-content{
+    font-family: 'Impact';
+    font-size: 24px;
+}
+.favorite-container {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+.check{
+    float: right;
+}
+.list-details{
+    padding-top: 13px;
+}

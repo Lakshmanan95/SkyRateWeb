@@ -1,0 +1,106 @@
+                    <div class="panel panel-default ">
+                        <div class="panel-heading">
+                           {{addressHeader}}
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div *ngIf="address.id!=null"  class="control-group col-md-9 col-xs-12">
+                                        <div class="well well-sm">
+                                                <input type="checkbox" checked value="address" /> {{address.street}}, {{address.city}}
+                                                {{address.state}} {{address.zipcode}} 
+                                            </div>
+                                    </div>
+                                    <div class="control-group col-md-2 col-xs-12">
+                                            <div><a #addAddressButton href="#demo" class="" data-toggle="collapse">
+                                                    <button class="btn btn-primary edit-btn">EDIT</button>
+                                                    <!-- <i  class="fa fa-pencil-square-o fa-2x" style="line-height:2;"aria-hidden="true"></i> -->
+                                            </a></div>
+                                    </div>
+                                        <!-- <div *ngIf="address.id!=null" class="well well-sm">
+                                                <input type="checkbox" checked value="address" /> {{address.street}}, {{address.city}}
+                                                {{address.state}} {{address.zipcode}} 
+                                            </div> -->
+                        </div>
+                        <div class="alert alert-danger" *ngIf="address.id==null">
+                                <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Please provide profile address
+                            </div>
+                            <!-- <div>
+                                <a #addAddressButton href="#demo" class="btn btn-info" data-toggle="collapse">Add/Edit Address</a>
+                            </div> -->
+                            <div> &nbsp;</div>
+                            <div id="demo" class="collapse  ">
+
+                                <div class="panel panel-default ">
+
+                                    <div class="panel-body">
+                                        <div class="control-group col-md-4 col-xs-12">
+                                            <label for="name" class="control-label">Name:</label>
+                                            <div class="controls">
+                                                <!-- <input name="name"/> -->
+                                                <input name="name" [(ngModel)]="address.name" placeholder="" type="text" value="" id="name" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="control-group col-md-4 col-xs-12">
+                                            <label for="street" class="control-label">Street:</label>
+                                            <div class="controls">
+                                                <input name="street" [(ngModel)]="address.street" placeholder="" type="text" value="" id="street" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="control-group col-md-4 col-xs-12">
+                                            <label for="street2" class="control-label">Street2:</label>
+                                            <div class="controls">
+                                                <input name="street2" [(ngModel)]="address.street2" placeholder="" type="text" value="" id="street2"
+                                                    class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="control-group col-md-4 col-xs-12">
+                                            <label for="state" class="control-label">State:</label>
+                                            <div class="controls">
+                                               
+                                                <select placeholder=".col-xs-2" class="form-control" [(ngModel)]="address.state" (change)="getCities(0,$event.target.value)" >
+                                                    <option *ngFor="let x of states" [value]="x.state" [selected]="address.state == x.state">{{x.state}}</option>
+                                                </select>    
+
+
+                                            </div>
+                                        </div>
+                                        <div class="control-group col-md-4 col-xs-12">
+                                            <label for="city" class="control-label">City:</label>
+                                            <div class="controls">
+                                                    <select placeholder=".col-xs-2" class="form-control" [(ngModel)]="address.city"  >
+                                                    <option *ngFor="let x of cities" [value]="x.city" [selected]="address.city == x.city">{{x.city}}</option>
+                                                </select>    
+                                            </div>
+                                        </div>
+                                        <!-- <div class="control-group col-md-4 col-xs-12">
+                                            <label for="locality" class="control-label">Locality:</label>
+                                            <div class="controls">
+                                                <input name="locality" [(ngModel)]="address.locality" placeholder="" type="text" value="" id="locality" class="form-control">
+                                            </div>
+                                        </div> -->
+                                        <div class="control-group col-md-4 col-xs-12">
+                                            <label for="zipcode" class="control-label">Zipcode:</label>
+                                            <div class="controls">
+                                                <input name="zipcode" [(ngModel)]="address.zipcode" placeholder="" type="text" value="" id="zipcode" 
+                                                class="form-control" OnlyNumber="true">
+                                            </div>
+                                        </div>
+                                        <!--div class="control-group col-md-4 col-xs-12">
+                                            <label for="country" class="control-label">Country:</label>
+                                            <div class="controls">
+                                                <input name="country" [(ngModel)]="address.country" placeholder="USA" type="text" value="" id="country" class="form-control">
+                                            </div>
+                                        </div-->
+                                        <div class="control-group col-md-4 col-xs-12 pull-right">
+                                            <label for="country" class="control-label">&nbsp;</label>
+                                            <div class="controls"> <button type="button" (click)="addNewAddress()" class="btn btn-large btn-primary">Save Address</button></div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                       
+                    </div>

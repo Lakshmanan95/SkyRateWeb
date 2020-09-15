@@ -1,0 +1,32 @@
+.container{
+    margin-top: 50px;
+    margin-bottom: 40px;
+}
+.adbanner{
+    width: 100%;
+    height: 175px;
+    cursor: pointer;
+}
+.ad-banner{
+    height: 190px;
+}
+.ad-content{
+    margin-top: 100px;
+    color: white;
+}
+.ad-default{
+    margin-left: 15px;
+    margin-top: 15px;
+    text-align: -webkit-center;
+}
+.default-img{
+    margin-top: 10px;
+}
+.imge{
+    cursor: pointer;
+}
+.intro{
+    color: white;
+    text-align: justify;
+    font-size: 14px;
+}

@@ -1,0 +1,148 @@
+import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
+import  {FormControl, Validators,FormGroup,FormBuilder}  from '@angular/forms'; 
+import {HashLocationStrategy, Location, LocationStrategy} from '@angular/common';
+import {Injector} from '@angular/core';
+import {ElementRef,ViewChild} from '@angular/core' /*Import View Child*/
+//----
+import {User} from '../model/com.usermgmt.user.model'
+import {UserExt} from '../model/com.usermgmt.user.model'
+import {ChangePasswordRequest} from '../model/com.usermgmt.user.model'
+import {UsernameValidators} from '../signup/validators/com.usermgmt.username.validator'
+import {UniqueUsernameValidators} from '../signup/validators/com.usermgmt.uniqueuser.validator'
+import {SessionDataService} from '../../common/service/com.common.sessiondata'
+import { UserMgmtService } from '../service/com.service.usermgmt'
+import {Address} from '../../common/model/com.common.model.address';
+import {BaseComponent} from '../../common/basic/com.common.basic.basecomponent';
+import {UserProfileService} from '../../usermgmt/service/com.service.userprofile';
+import {AlertService} from '../../common/service/alert/com.common.service.alertservice'
+
+@Component({
+  moduleId: module.id,
+  selector: 'profile',
+  templateUrl: 'com.usermgmt.userprofile.html',
+  providers: [SessionDataService,UserMgmtService,Location, {provide: LocationStrategy, useClass: HashLocationStrategy}],
+})
+export class UserProfile extends BaseComponent{
+   user = new User();
+   userExt = new UserExt();
+
+   changePasswordRequest = new ChangePasswordRequest();
+   isFormValid :boolean= true;
+   formValidationErrorMsg :string = "";
+location: Location;
+  profileForm : FormGroup;
+changePasswordForm : FormGroup;
+address : Address;
+@ViewChild('addAddressButton') demo:ElementRef;
+ constructor(private _router: Router,
+            injector:Injector,
+            private _userProfileService: UserProfileService,
+    private _userMgmtService: UserMgmtService,
+    private fb: FormBuilder){
+      super(injector); 
+        this.loadUserProfile();
+        if(!this.address){
+          //alert(this.shippingAddress)
+          this.address = new Address();
+        }
+
+
+      this.profileForm = this.fb.group({ 
+        _firstName: ['',Validators.required],
+        _lastName: ['',Validators.required],
+         _email: ['',Validators.required],
+          _phoneNumber: ['',Validators.required],
+          _doctorName :[],
+          _doctorPhone :[]
+      });
+
+      this.changePasswordForm = this.fb.group({ 
+        _oldPassword: ['',Validators.required],
+        _password: ['', Validators.compose([
+                              Validators.required,
+                              Validators.minLength(3)])],
+        _confirmPassword: ['',Validators.required]
+      });
+
+ }
+ loadUserProfile(){
+   this.user = this._userProfileService.getUserProfile();
+   this.userExt = this.user['userExt'];
+   this.address = this._userProfileService.getUserProfileValue('address');
+   if(!this.address){
+     AlertService.getInstance().publishMessage('warning','User profile address required!');
+   }
+
+ }
+  saveProfile() {
+
+    this.userExt.userId = this.user.id;
+    var request ={
+      user: this.user,
+      userExt: this.userExt
+    }
+
+    this._userMgmtService.updateUserProfile(request).then(res => this.cb_updateUserProfile(res));
+  }
+  cb_updateUserProfile(res){
+    if(res.isSuccess){
+      this._userProfileService.setUserProfileValue("firstName", this.user.firstName);
+      this._userProfileService.setUserProfileValue("lastName", this.user.lastName);
+      this._userProfileService.setUserProfileValue("email", this.user.email);
+      this._userProfileService.setUserProfileValue("phoneNumber", this.user.phoneNumber);
+      this._userProfileService.setUserProfileValue("userExt", this.userExt);
+      AlertService.getInstance().publishMessage('success','User profile updated successfully');
+      alert('User profile updated successfully');
+      this.showDashboard();
+    }else{
+      AlertService.getInstance().publishMessage('danger','User profile not updated!');
+    }
+  }
+  changePassword(){
+    //alert(JSON.stringify(this.changePasswordForm));
+  //  alert(JSON.stringify(this.changePasswordRequest))
+    this.changePasswordRequest.userId = this._userProfileService.getUserId();
+
+    this._userMgmtService.changePassword(this.changePasswordRequest).then(res => this.cb_changePassword(res));
+  }
+  cb_changePassword(res){
+      if(res.isSuccess){
+        AlertService.getInstance().publishMessage('success','Password changed successfully');
+        alert('Password changed successfully');
+        this.showDashboard();
+      }else{
+        AlertService.getInstance().publishMessage('danger','Error in password change..'+ res.userErrorMsg );
+      }
+    //alert(JSON.stringify(res));
+  }
+
+  addNewAddress(){
+  //  alert(this.shippingAddress);
+    this.address.addressType = 1;
+    this.address.userId=this._userProfileService.getUserId();
+    this._loggingService.logDebug(this.getName(), JSON.stringify(this.address));
+    this._userMgmtService.addNewAddress(this.address).then(res => this.cb_addNewAddress(res));
+  }  
+  cb_addNewAddress(res){
+    if(res.isSuccess){
+    this.address.id = res.id;
+   // this.profileAddress = this.shippingAddress;_userProfileService
+     this._userProfileService.setUserProfileValue('address',this.address);
+     AlertService.getInstance().publishMessage('success','Address updated!:'+ this.address.street+"..");
+   //  alert(this.demo);
+     this.demo.nativeElement.click();
+      alert('Address changed successfully');
+     this.showDashboard();
+     //$('.collapse').collapse()
+    }
+  }
+  showDashboard(){
+    this._router.navigate(['dashboard']);
+  }
+
+ }
+
+  
+

@@ -1,0 +1,113 @@
+<div>
+     <!-- <div class="col-md-12 home-header">
+       <div class="row ">
+          <div class="col-md-3"><logo></logo></div>
+          <div class="col-md-5"><search></search></div>
+          <div class="col-md-4"><side-menu></side-menu></div>
+       </div>
+       <div class="row">
+          <secondary-menu style="width:100%;"></secondary-menu>
+        </div>
+     </div> -->
+     <div class="col-md-12 home-header">
+       <div class="row">
+         <div class="col-md-3"><logo></logo></div>   
+          <div class="col-md-9">
+            <div class="row">
+              <div class="col-md-6" style="padding-inline-start: 0px;"><search></search></div>
+            
+              <div class="col-md-6"><side-menu></side-menu></div>
+            </div>
+        <div class="row">
+          <secondary-menu style="width:100%;"></secondary-menu>
+        </div>
+      
+     </div>
+   </div>
+  </div>
+      
+     <div class="col-md-12" style="min-height:500px;">
+      <div class="row" style="    background-color: #0B3C5D;">
+          
+        <div class="col-md-9 review-column">
+            <router-outlet></router-outlet>
+        </div>
+        <div class="col-md-3">
+          <right-side></right-side>
+        </div>
+      </div>
+    </div> 
+      <footer></footer>
+        </div>
+        <div class="modal fade" id="successModal"  data-backdrop="static" data-keyboard="false" role="dialog">
+          <div class="modal-dialog">
+          
+            <div class="modal-content">
+              <div class="modal-header">
+                  <h4 class="modal-title text-center" >Success..</h4>
+              
+                      <a href="#" data-dismiss="modal"  class="close close-modal" aria-hidden="true">×</a>
+              
+              </div>
+              <div class="modal-body">
+                 <span>Email has been sent successfully..</span>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="modal fade" id="exceedModal"   role="dialog">
+          <div class="modal-dialog">
+          
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                  <h4 class="modal-title text-center" >Oops!</h4>
+              
+                      <a href="#" data-dismiss="modal"  class="close close-modal" aria-hidden="true">×</a>
+              
+              </div>
+              <div class="modal-body">
+                 <span>You've already left feedback for this business.</span>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        <div class="modal fade" id="compareModal"   role="dialog">
+          <div class="modal-dialog">
+          
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                  <h4 class="modal-title text-center" >Alert!</h4>
+              
+                      <a href="#" data-dismiss="modal"  class="close close-modal" aria-hidden="true">×</a>
+              
+              </div>
+              <div class="modal-body">
+                 <span>Maximum comparison allowed is 4 services.</span>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        <div class="modal fade" id="claimApproved"   role="dialog">
+            <div class="modal-dialog">
+            
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title text-center" >Processing..</h4>
+<!--                 
+                        <a href="#" data-dismiss="modal"  class="close close-modal" aria-hidden="true">×</a>
+                 -->
+                </div>
+                <div class="modal-body">
+                   <span>Your request will be approved shortly..</span>
+                </div>
+              </div>
+              
+            </div>
+          </div>

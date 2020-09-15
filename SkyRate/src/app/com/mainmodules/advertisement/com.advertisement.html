@@ -1,0 +1,63 @@
+
+<div class="ad-container col-md-12">
+    <div class="ad-source">
+        <div *ngIf="overallAd; else specialAd" class="row">
+                <div *ngIf="adAvailable" class=" advertisement" >
+                  
+                            <div class="ad-banner">
+                                    <!-- <div style="width: 300px; height: 245px">
+                                            <carousel [sources]="imageSources" [config]="config"></carousel>
+                                          </div> -->
+                                        <div class="slider">
+                                                <div *ngFor="let x of adDetails" id="list-img" (click)="moveToWebsite(x.businessId,x.businessName,x.website)" >
+                                                
+                                                <img src="{{x.adUrl}}" class="trending-ad" width="100%" height="300px" />
+                                        </div>
+                                        <div class="ad-default">
+                                                       <img src="assets/img/ad-default.png" width="50%" height="50%" />
+                                                </div>
+                                        </div>
+                                        <!-- <div class="ad-margin">
+                                                        <span class="ad-content">Advertisement</span>
+                                                </div> -->
+                                        
+
+                                    <!-- <div id="myCarousel1" class="carousel slide" data-ride="carousel">
+                                            
+                                             <div class="carousel-inner">
+                                                   
+                                                    <div *ngFor="let ad of adDetails; let i = index;"  class=" ad-column " >
+                                                        <div class="carousel-item"  id="i" [ngClass]="getClass(i)" (click)="moveToWebsite(ad.businessId,ad.businessName,ad.website)">
+                                                            <img src="{{ad.adUrl}}" alt="Los Angeles" class="adbanner">
+                                                        </div>
+                                                    </div>
+                                                    <div class="multiad-margin">
+                                                    <span class="ad-content">Advertisement</span>
+                                                    </div>
+                                             </div>
+                                            
+                                    </div> -->
+                            </div>
+
+
+
+
+                            <!-- <div>
+                                    <div class="ad" (click)="moveToWebsite(ad.businessId,ad.businessName,ad.website)">
+                                            <img src={{ad.adUrl}} style="" class="ad-image-size" alt="img"/>
+                            </div>
+                        </div> -->
+                
+        </div>
+        </div>   
+        <ng-template #specialAd>
+                <div *ngIf="business.adImageUrl != null" class="ad row" (click)="moveToWebsite(business.id,business.name,business.adImageWebsite)">
+                        <img src={{business.adImageUrl}} style="width:100%;" height="250px;" alt="img"/>
+                        <div class="ad-margin">
+                                <span class="ad-content">Advertisement</span>
+                        </div>
+                        
+            </div>
+            </ng-template>     
+    </div>
+</div>

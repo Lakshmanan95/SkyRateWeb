@@ -1,0 +1,8 @@
+DELETE FROM `skyrate`.`business_category_mapping` WHERE `ID`='23';
+DELETE FROM `skyrate`.`business_category_mapping` WHERE `ID`='24';
+DELETE FROM `skyrate`.`business_category_mapping` WHERE `ID`='25';
+
+DELETE FROM `skyrate`.`business_category_mapping` WHERE `ID`='56';
+DELETE FROM `skyrate`.`business_category_mapping` WHERE `ID`='168';
+DELETE FROM `skyrate`.`business_category_mapping` WHERE `ID`='172';
+DELETE FROM `skyrate`.`business_category_mapping` WHERE `ID`='196';

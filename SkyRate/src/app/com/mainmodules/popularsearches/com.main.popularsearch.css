@@ -1,0 +1,46 @@
+.anton-font{
+    font-family: 'Anton', sans-serif;
+}
+.popular-searches{
+    text-align: center;
+    margin-top: 20px;
+}
+.img-content{
+    margin-bottom: 20px;
+    margin-top: 20px;
+  
+}
+.img-search{
+    margin-bottom: 20px;
+    margin-top: 20px;
+    width: 230px;
+    height:150px;
+    border-radius: 8%;
+}
+.img-col{
+    margin:15px;
+}
+.click{
+    cursor: pointer;
+}
+.image-content{
+    font-family: 'Montserrat', sans-serif;
+}
+
+.content{
+    font-size: 16px;
+    color: white;
+}
+.fav-img{
+    width: 165px;
+    margin: 12px;
+}
+.headline{
+    font-size: 14px;
+    color: white;
+    font-family:'Montserrat', sans-serif;
+}
+.anton-font{
+    margin-bottom: 0px;
+    color: white;
+}

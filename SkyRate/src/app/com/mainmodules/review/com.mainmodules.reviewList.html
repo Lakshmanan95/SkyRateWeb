@@ -1,0 +1,486 @@
+<div class="row">
+        
+        <div class="col-md-12">
+            
+            <div class="reviews">
+            <div class="review-header row col-md-12">
+                <div class="col-md-6 col-sm-6 col-xs-6">
+                    <span class="header-color"><b>Reviews</b></span>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6 btn-align">
+                     <div class="dropdown ">
+                             <button class="btn btn-default btn-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                <b>Sort by</b><span class="caret"></span>
+                             
+                             </button>
+                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li><a (click)="pageOrderSelection('Newest first')"><div class="dropdown-align">Newest First</div></a></li>
+                                <li  role="separator" class="divider"><div class="dropdown-divider"></div></li>
+                               <li ><a (click)="pageOrderSelection('Oldest first')"><div class="dropdown-align">Oldest First</div></a></li>
+                               <li role="separator" class="divider"><div class="dropdown-divider"></div></li>
+                               <li><a (click)="pageOrderSelection('Rating Low to High')"><div  class="dropdown-align">Rating Low to High</div></a></li>
+                               <li role="separator" class="divider"><div class="dropdown-divider"></div></li>
+                               <li ><a  (click)="pageOrderSelection('Rating High to Low')"><div  class="dropdown-align">Rating High to Low</div></a></li>
+                             </ul>
+                           </div>    
+                </div>
+            </div>
+            <div><hr></div>
+            <div class="review-list"></div>
+                <div *ngIf="reviewList?.length != 0; else noReviews" class="review-container">
+                    <div *ngFor="let x of reviewList; let i = index">
+                           
+                            <div  *ngIf="userId == x.userId" class="col-md-12 edit-del">
+                                    <div class="col-md-2 pull-right edit_row">
+                                            <div class="fa-col">
+                                                    <span class="edit-icon"><i  (click)="commentData(x.id,x.review)" data-toggle="modal"   data-target="#comment"  class="fa fa-pencil-square-o" aria-hidden="true"></i></span>
+                                                    <span><i   (click)="deleteReview(x.id)" data-toggle="modal"   data-target="#delete"  class="fa fa-trash" aria-hidden="true"></i></span>
+                                            </div>
+                                    </div>
+                                </div>
+                    <div class="row col-md-12">
+                        <div class="col-md-4">
+                                <div class="row">
+                                        <div class="col-md-5 profile-img cursor-pointer" (click)="moveToUserReport(x.userId,x.firstName)">
+                                            <div *ngIf="x.profileImageUrl" >
+                                              <img src="{{x.profileImageUrl}}" class="user-img" />
+                                            </div>
+                                            <div *ngIf="!x.profileImageUrl" >
+                                              <img src="assets/img/boy.png" class="user-img" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-7 profile-details">
+                                            <span class="user-details cursor-pointer" (click)="moveToUserReport(x.userId,x.firstName)" ><b style="color:blue;">{{x.firstName}} {{x.lastName}}</b></span><br>
+                                            <span class="user-details">{{x.businessName}}</span><br>
+                                            <span class="user-details">{{x.lastModifiedDate | date: 'MM/dd/yyyy'}}</span>
+                                            <button *ngIf="userId != x.userId && userId != 0" class="btn btn-primary btn-question"   (click)="storeId(x.id,x.userId)"  >Ask a Question</button>
+                                        </div>
+                                    </div>
+                        </div>
+                        <div class="col-md-2">
+                                <div class="row">
+                                        <!-- <div class="rating_field col-md-11">
+                                                <fieldset class="quality default review_quality" style="float:left;">
+                                                        <input type="radio" id="fivedefault" name="rating_default" value="5.0" [(ngModel)]="x.ratingId"  [disabled]="true" /><label class = "full" for="five" [ngStyle]="{'color':x.ratingId >= 5 ? 'green' : '#cecaca' }"  title="Awesome - 5 stars"></label>
+                                                       
+                                                        <input type="radio" id="fourdefault" name="rating_default" value="4.0" [(ngModel)]="x.ratingId"  [disabled]="true" /><label class = "full" for="four" [ngStyle]="{'color':x.ratingId >= 4 ? 'green' : '#cecaca' }" title="Pretty good - 4 stars"></label>
+                                                         <input type="radio" id="threedefault" name="rating_default" value="3.0" [(ngModel)]="x.ratingId"  [disabled]="true" /><label class = "full" for="three" [ngStyle]="{'color':x.ratingId >= 3 ? 'green' : '#cecaca' }"  title="Meh - 3 stars"></label>
+                                                        <input type="radio" id="twodefault" name="rating_default" value="2.0" [(ngModel)]="x.ratingId" [disabled]="true" /><label class = "full" for="two"  [ngStyle]="{'color':x.ratingId >= 2 ? 'green' : '#cecaca' }" title="Kinda bad - 2 stars"></label>
+                                                       <input type="radio" id="onedefault" name="rating_default" value="1.0" [(ngModel)]="x.ratingId" [disabled]="true" /><label class = "full" for="one" [ngStyle]="{'color':x.ratingId >= 1 ? 'green' : '#cecaca' }"  title="Sucks big time - 1 star"></label>
+                                                    </fieldset>
+                                                    <fieldset class="pricing_default review_price">
+                                                            <input type="radio" id="defaultstar5" name="_rating" value="5" [disabled]="true"/><label class = "full tooltip" for="defaultstar5" [ngStyle]="{'color':x.pricing > 4.5 ? '#FFC107' : '#cecaca' }"><div class="tooltiptext">Highly Expensive</div></label>
+                                                            <input type="radio" id="defaultstar4" name="_rating" value="4" [disabled]="true"/><label class = "full tooltip" for="defaultstar4" [ngStyle]="{'color':x.pricing > 3.5 ? '#FFC107' : '#cecaca' }"><div class="tooltiptext">Expensive</div></label>
+                                                            <input type="radio" id="defaultstar3" name="_rating" value="3" [disabled]="true"/><label class = "full tooltip" for="defaultstar3" [ngStyle]="{'color':x.pricing > 2.5 ? '#FFC107' : '#cecaca' }"><div class="tooltiptext">Reasonable</div></label>
+                                                            <input type="radio" id="defaultstar2" name="_rating" value="2" [disabled]="true" /><label class = "full tooltip" for="defaultstar2" [ngStyle]="{'color':x.pricing > 1.5 ? '#FFC107' : '#cecaca' }"><div class="tooltiptext">OK</div></label>
+                                                            <input type="radio" id="defaultstar1" name="_rating" value="1" [disabled]="true"/><label class = "full tooltip" for="defaultstar1" [ngStyle]="{'color':x.pricing > 0.5 ? '#FFC107' : '#cecaca' }"><div class="tooltiptext">Cheaper</div></label>
+                                                    </fieldset>
+                                                    <fieldset class="speed review_speed">
+                                                                <input type="radio" id="speeddefault5" name="_speedrating" value="5"  [disabled]="true" /><label class = "full tooltip" for="speeddefault5" [ngStyle]="{'color':x.deliverySpeed > 4.5 ? '#1313b5' : '#cecaca' }"><div class="tooltiptext">Super Fast</div></label>
+                                                                <input type="radio" id="speeddefault4" name="_speedrating" value="4"  [disabled]="true"/><label class = "full tooltip" for="speeddefault4" [ngStyle]="{'color':x.deliverySpeed > 3.5 ? '#1313b5' : '#cecaca' }"><div class="tooltiptext">Fast</div></label>
+                                                                <input type="radio" id="speeddefault3" name="_speedrating" value="3"  [disabled]="true"/><label class = "full tooltip" for="speeddefault3" [ngStyle]="{'color':x.deliverySpeed > 2.5 ? '#1313b5' : '#cecaca' }"><div class="tooltiptext">Reasonable</div></label>
+                                                                <input type="radio" id="speeddefault2" name="_speedrating" value="2"  [disabled]="true"/><label class = "full tooltip" for="speeddefault2" [ngStyle]="{'color':x.deliverySpeed > 1.5 ? '#1313b5' : '#cecaca' }"><div class="tooltiptext">Ok</div></label>
+                                                                <input type="radio" id="speeddefault1" name="_speedrating" value="1"  [disabled]="true"/><label class = "full tooltip" for="speeddefault1" [ngStyle]="{'color':x.deliverySpeed > 0.5 ? '#1313b5' : '#cecaca' }"><div class="tooltiptext">Slow</div></label>
+                                                    </fieldset>
+                                                   
+                                          </div> -->
+                                          <div class="col-md-12">
+                                              <div class="row">
+                                                  <div class="col-md-4"> <span class="star-label">Quality </span></div>
+                                                  <div class="col-md-7"> <span class="rating-content">- {{x.ratingId}}/5 </span></div>
+                                              </div>
+                                              <div class="row">
+                                                    <div class="col-md-4"> <span class="star-label">Pricing </span></div>
+                                                    <div class="col-md-7"> <span class="rating-content">- {{x.pricing}}/5 </span></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4"> <span class="star-label">Time </span></div>
+                                                    <div class="col-md-7"> <span class="rating-content">- {{x.deliverySpeed}}/5 </span></div>
+                                                </div>
+                                            
+                                             <!-- <span class="star-label">Pricing </span>  <span><i class="fa fa-star usd" aria-hidden="true"></i></span><span class="rating-content">- {{x.pricing}}/5</span><br> 
+                                             <span class="star-label">Time </span> <span><i class="fa fa-star tachometer" aria-hidden="true"></i></span><span class="rating-content">- {{x.deliverySpeed}}/5 </span> <br> -->
+                                              <span *ngIf="x.recommended == true" class="check-circle "><i class="fa fa-thumbs-up fa-2x "></i><b class="rec-true"></b></span>
+                                              <span *ngIf="x.recommended == false" class="times-circle "><i class="fa fa-thumbs-down fa-2x "></i><b class="rec-false"></b></span>    
+
+                                          </div>
+                                          <!-- <div class="col-md-1">
+                                              <div class="rating-value">
+                                                  <span class="rating_number" >{{x.ratingId}}/5</span>
+                                              </div>
+                                          </div> -->
+                                        </div>
+                                        <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="rec-result">
+                                                        <!-- <span *ngIf="x.recommended == true" class="check-circle "><i class="fa fa-thumbs-up check-res"></i><b class="rec-true">Yes Absolutely</b></span>
+                                                        <span *ngIf="x.recommended == false" class="times-circle "><i class="fa fa-thumbs-down check-res"></i><b class="rec-false">Maybe Not</b></span>     -->
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                        </div>
+                        <div class="col-md-6">
+                                <span class="review-text">{{x.review}}</span><br>
+                               
+                                
+                        </div>
+                        
+                    </div>
+                    <div *ngIf="x.reply != null" class="row reply-row">
+                        <div class="col-md-6 replybox">
+                               <div class="col-md-8"><div *ngIf=" roleId < 3" class="pull-right edit_row edit_row_align">
+                                        <div class="fa-cal">
+                                                <span class="edit-icon"><i  (click)="businessreply(x.replyId,x.reply)" data-toggle="modal"  data-target="#businessReplyModal"   class="fa fa-pencil-square-o" aria-hidden="true"></i></span>
+                                                <span><i   (click)="deleteBusinessReply(x.replyId)" data-toggle="modal"   data-target="#deleteReply"  class="fa fa-trash" aria-hidden="true"></i></span>
+                                        </div>
+                                </div></div>
+                                <div class="col-md-6">
+                                <div *ngIf="userId == business.userId" class="pull-right edit_row edit_row_alig">
+                                    <div class="fa-cal">
+                                            <span class="edit-icon"><i  (click)="businessreply(x.replyId,x.reply)" data-toggle="modal"  data-target="#businessReplyModal"   class="fa fa-pencil-square-o" aria-hidden="true"></i></span>
+                                            <span><i   (click)="deleteBusinessReply(x.replyId)" data-toggle="modal"   data-target="#deleteReply"  class="fa fa-trash" aria-hidden="true"></i></span>
+                                    </div>
+                            </div></div> 
+                            <div class="reply-header">
+                                <span><b>Reply By <span *ngIf="business.userId != userId  ; else owner">Business Owner</span> :</b></span>
+                                <ng-template #owner>Myself</ng-template>
+                            </div>
+                        
+                    
+                            <div>
+                                    <span class="review-reply">{{x.reply}}</span>
+                            </div>
+                                
+                        </div>
+                
+              </div>  
+                        <div *ngIf=" userId !=0 && business.userId == userId && userId != x.userId && x.reply == null || roleId < 3 && x.reply == null" class="row">
+                <div class="col-md-12 edit-del">
+                    <div class="col-md-2 pull-right edit_row">
+                            <div class="fa-col">
+                                <button class="btn btn-primary btn-question" (click)="reply(x.id, x.review)">Reply</button>
+                            </div>
+                    </div>
+                </div>
+                </div>
+
+
+                    <div class="modal fade" id="comment" role="dialog">
+                            <div class="modal-dialog edit-dialog">
+                            
+                              <!-- Modal content-->
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title text-center">Edit Your Comment</h4>
+                                  
+                                        <a href="#" data-dismiss="modal"  class="close close-modal" aria-hidden="true">×</a>
+                                
+                                </div>
+                                <div class="modal-body">
+                                        <div class="col-md-12">
+                                                
+                                                <form #f1="ngForm" [formGroup]="ratingForm"  method="post" action="#">
+                                                <div class="row  rating-stars">
+                                                    <div class="col-md-4">
+                                                        <div><span class="rating-content">Quality</span></div>
+                                                      <fieldset class="quality">
+                                                              <input type="radio" id="edit5" name="_rating" value="5" [(ngModel)]="review.ratingId" formControlName="_rating"/><label class = "full tooltip" for="edit5" [ngStyle]="{'color':review.ratingId > 4.5 ? '#D9B310' : '#cecaca' }" > <div class="tooltiptext">Excellent</div></label>
+                                                              <!-- <input type="radio" id="edit4.5" name="_rating" value="4.5" [(ngModel)]="review.ratingId" formControlName="_rating" /><label class="half tooltip" for="edit4.5" [ngStyle]="{'color':review.ratingId > 4.5 ? '#03c102' : '#cecaca' }" ><div class="tooltiptext">Best</div></label> -->
+                                                              <input type="radio" id="edit4" name="_rating" value="4" [(ngModel)]="review.ratingId" formControlName="_rating"/><label class = "full tooltip" for="edit4" [ngStyle]="{'color':review.ratingId > 3.5 ? '#D9B310' : '#cecaca' }"><div class="tooltiptext">Good</div></label>
+                                                              <!-- <input type="radio" id="edit3.5" name="_rating" value="3.5" [(ngModel)]="review.ratingId" formControlName="_rating"/><label class="half tooltip" for="edit3.5" [ngStyle]="{'color':review.ratingId > 3.5 ? '#03c102' : '#cecaca' }"><div class="tooltiptext">Very Good</div></label> -->
+                                                              <input type="radio" id="edit3" name="_rating" value="3" [(ngModel)]="review.ratingId" formControlName="_rating"/><label class = "full tooltip" for="edit3"[ngStyle]="{'color':review.ratingId > 2.5 ? '#D9B310' : '#cecaca' }"><div class="tooltiptext">Average</div></label>
+                                                              <!-- <input type="radio" id="edit2.5" name="_rating" value="2.5" [(ngModel)]="review.ratingId" formControlName="_rating"/><label class="half tooltip" for="edit2.5" [ngStyle]="{'color':review.ratingId > 2.5 ? '#03c102' : '#cecaca' }"><div class="tooltiptext">Good</div></label> -->
+                                                              <input type="radio" id="edit2" name="_rating" value="2" [(ngModel)]="review.ratingId" formControlName="_rating"/><label class = "full tooltip" for="edit2" [ngStyle]="{'color':review.ratingId > 1.5 ? '#D9B310' : '#cecaca' }"><div class="tooltiptext">Fair</div></label>
+                                                              <!-- <input type="radio" id="edit1.5" name="_rating" value="1.5" [(ngModel)]="review.ratingId" formControlName="_rating"/><label class="half tooltip" for="edit1.5" [ngStyle]="{'color':review.ratingId > 1.5 ? '#03c102' : '#cecaca' }"><div class="tooltiptext">Kinda bad</div></label> -->
+                                                              <input type="radio" id="edit1" name="_rating" value="1" [(ngModel)]="review.ratingId" formControlName="_rating"/><label class = "full tooltip" for="edit1" [ngStyle]="{'color':review.ratingId > 0.5 ? '#D9B310' : '#cecaca' }"><div class="tooltiptext">Poor</div></label>
+                                                              <!-- <input type="radio" id="edit0.5" name="_rating" value="0.5" [(ngModel)]="review.ratingId" formControlName="_rating"/><label class="half tooltip" for="edit0.5" [ngStyle]="{'color':review.ratingId > 0.5 ? '#03c102' : '#cecaca' }"><div class="tooltiptext">Very Poor</div></label> -->
+                                                          </fieldset>
+                                                         
+                                                         
+                                                      </div>
+                                                      <div class="col-md-4">
+                                                        <div><span class="rating-content">Pricing</span></div>
+                                                             
+                                                              <fieldset class="pricing">
+                                                                      <input type="radio" id="editpricestar5" name="_pricerating" value="5" [(ngModel)]="review.pricing" formControlName="_pricerating"/><label class = "full tooltip" for="editpricestar5" [ngStyle]="{'color':review.pricing > 4.5 ? '#D9B310' : '#cecaca' }" ><div class="tooltiptext">Excellent</div></label>
+                                                                     
+                                                                      <input type="radio" id="editpricestar4" name="_pricerating" value="4" [(ngModel)]="review.pricing" formControlName="_pricerating"/><label class = "full tooltip" for="editpricestar4" [ngStyle]="{'color':review.pricing > 3.5 ? '#D9B310' : '#cecaca' }"><div class="tooltiptext">Good</div></label>
+                                                                      <input type="radio" id="editpricestar3" name="_pricerating" value="3" [(ngModel)]="review.pricing" formControlName="_pricerating"/><label class = "full tooltip" for="editpricestar3" [ngStyle]="{'color':review.pricing > 2.5 ? '#D9B310' : '#cecaca' }"><div class="tooltiptext">Average</div></label>
+                                                                     <input type="radio" id="editpricestar2" name="_pricerating" value="2" [(ngModel)]="review.pricing" formControlName="_pricerating"/><label class = "full tooltip" for="editpricestar2" [ngStyle]="{'color':review.pricing > 1.5 ? '#D9B310' : '#cecaca' }"><div class="tooltiptext">Fair</div></label>
+                                                                     <input type="radio" id="editpricestar1" name="_pricerating" value="1" [(ngModel)]="review.pricing" formControlName="_pricerating"/><label class = "full tooltip" for="editpricestar1" [ngStyle]="{'color':review.pricing > 0.5 ? '#D9B310' : '#cecaca' }"><div class="tooltiptext">Poor</div></label>
+                                                                    
+                                                                  </fieldset>
+                                                      </div>
+                                                      <div class="col-md-4">
+                                                        <div><span class="rating-content">Turnaround Time</span></div>
+                                                              <fieldset class="speed">
+                                                                      <input type="radio" id="editspeedstar5" name="_speedrating" value="5" [(ngModel)]="review.deliverySpeed" formControlName="_speedrating"/><label class = "full tooltip" for="editspeedstar5" [ngStyle]="{'color':review.deliverySpeed > 4.5 ? '#D9B310' : '#cecaca' }"><div class="tooltiptext">Excellent</div></label>
+                                                                      <!-- <input type="radio" id="speedstar4half" name="_speedrating" value="4.5" [(ngModel)]="review.deliverySpeed" formControlName="_speedrating" /><label class="half tooltip" for="speedstar4half" [ngStyle]="{'color':review.deliverySpeed > 4.5 ? '#1313b5' : '#cecaca' }"><div class="tooltiptext">Super Fast</div></label> -->
+                                                                      <input type="radio" id="editspeedstar4" name="_speedrating" value="4" [(ngModel)]="review.deliverySpeed" formControlName="_speedrating"/><label class = "full tooltip" for="editspeedstar4" [ngStyle]="{'color':review.deliverySpeed > 3.5 ? '#D9B310' : '#cecaca' }"><div class="tooltiptext">Good</div></label>
+                                                                      <!-- <input type="radio" id="speedstar3half" name="_speedrating" value="3.5" [(ngModel)]="review.deliverySpeed" formControlName="_speedrating"/><label class="half tooltip" for="speedstar3half" [ngStyle]="{'color':review.delverySpeed > 4.5 ? '#1313b5' : '#cecaca' }"><div class="tooltiptext">Fast</div></label> -->
+                                                                      <input type="radio" id="editspeedstar3" name="_speedrating" value="3" [(ngModel)]="review.deliverySpeed" formControlName="_speedrating"/><label class = "full tooltip" for="editspeedstar3" [ngStyle]="{'color':review.deliverySpeed > 2.5 ? '#D9B310' : '#cecaca' }"><div class="tooltiptext">Average</div></label>
+                                                                      <!-- <input type="radio" id="speedstar2half" name="_speedrating" value="2.5" [(ngModel)]="review.deliverySpeed" formControlName="_speedrating"/><label class="half tooltip" for="speedstar2half" ><div class="tooltiptext">Reasonable</div></label> -->
+                                                                      <input type="radio" id="editspeedstar2" name="_speedrating" value="2" [(ngModel)]="review.deliverySpeed" formControlName="_speedrating"/><label class = "full tooltip" for="editspeedstar2" [ngStyle]="{'color':review.deliverySpeed > 1.5 ? '#D9B310' : '#cecaca' }"><div class="tooltiptext">Fair</div></label>
+                                                                      <!-- <input type="radio" id="speedstar1half" name="_speedrating" value="1.5" [(ngModel)]="review.deliverySpeed" formControlName="_speedrating"/><label class="half tooltip" for="speedstar1half" ><div class="tooltiptext">Kinda Ok</div></label> -->
+                                                                      <input type="radio" id="editspeedstar1" name="_speedrating" value="1" [(ngModel)]="review.deliverySpeed" formControlName="_speedrating"/><label class = "full tooltip" for="editspeedstar1" [ngStyle]="{'color':review.deliverySpeed > 0.5 ? '#D9B310' : '#cecaca' }"><div class="tooltiptext">Poor</div></label>
+                                                                      <!-- <input type="radio" id="speedhalf" name="_speedrating" value="0.5" [(ngModel)]="review.deliverySpeed" formControlName="_speedrating"/><label class="half tooltip" for="speedhalf" ><div class="tooltiptext">Dead Slow</div></label> -->
+                                                                  </fieldset>
+                                                      </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="recommend-row col-md-6">
+                                                        <span><b class="header-color">Would you use this provider again?</b></span><br>
+                                                        <div class="selection">
+                                                              <div>
+                                                                    
+                                                                    
+                                                                  <input type="radio" id="selectionYes" class="green"  [value]="true"  name="_recommendations" [(ngModel)]="review.recommended" formControlName="_recommendations"/>
+                                                                  <!-- <input type="radio"  class="green" id="radio1" name="_recommendations"  [(ngModel)]="review.recommended" value="true" formControlName="_recommendations" /> -->
+                                                                  <label for="selectionYes"><span></span><font class="green"><i class="fa fa-thumbs-up fa-2x"></i></font></label>
+                                                                </div>
+                                                                
+                                                                <div>
+                                                                        <input type="radio" id="selectionNo" class="red" [value]="false"  name="_recommendations"  [(ngModel)]="review.recommended" formControlName="_recommendations"/>
+                                                                 <!-- <input type="radio" id="radio2" class="red" name="_recommendations" [(ngModel)]="review.recommended" value="false"formControlName="_recommendations"/> -->
+                                                                 <label for="selectionNo"><span></span><font  class="red"><i class="fa fa-thumbs-down fa-2x"></i></font></label>
+                                                                </div>
+                                                        </div>
+                                                    </div>
+                                                   
+                                                </div>
+                                                <div class="row write-review">
+                                                  <textarea class="text-area" maxlength="5000" [(ngModel)]="review.review" name="_reviewValue" formControlName="_reviewValue" rows=5 
+                                                  placeholder="Start writing a review now (5000 characters max)"></textarea>
+                                              </div>
+                                                 
+                                      
+                                                </form>
+                                                </div>
+                                        <div class="row  review-edit">
+                                            <div class="col-md-4">
+                                                <button class="btn btn-primary" (click)="saveReview()"  data-dismiss="modal">Save</button>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <button data-dismiss="modal" class="btn btn-primary">Cancel</button>
+                                            </div>
+                                        </div>
+                                </div>
+                              </div>
+                              
+                            </div>
+                          </div>
+                        
+                          <div class="modal fade" id="delete" role="dialog">
+                                <div class="modal-dialog">
+                                
+                                  <!-- Modal content-->
+                                  <div class="modal-content">
+                                
+                                    <div class="modal-body">
+                                            <div class="row col-md-12 write-review">
+                                                    <span>Are you sure want to delete your review?</span>
+                                            </div>
+                                            <div class="row  review-edit">
+                                                <div class="col-md-2">
+                                                    <button class="btn btn-primary" (click)="delete()"  data-dismiss="modal">Yes</button>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <button data-dismiss="modal" class="btn btn-primary">No</button>
+                                                </div>
+                                            </div>
+                                    </div>
+                                  </div>
+                                  
+                                </div>
+                              </div>
+
+                              <div class="modal fade" id="deleteReply" role="dialog">
+                                <div class="modal-dialog">
+                                
+                                  <!-- Modal content-->
+                                  <div class="modal-content">
+                                
+                                    <div class="modal-body">
+                                            <div class="row col-md-12 write-review">
+                                                    <span>Are you sure want to delete your reply?</span>
+                                            </div>
+                                            <div class="row  review-edit">
+                                                <div class="col-md-2">
+                                                    <button class="btn btn-primary" (click)="deleteReply()"  data-dismiss="modal">Yes</button>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <button data-dismiss="modal" class="btn btn-primary">No</button>
+                                                </div>
+                                            </div>
+                                    </div>
+                                  </div>
+                                  
+                                </div>
+                              </div>
+                    <!-- <div class="row">
+                         <div class="col-md-3">
+                             <div class="row">
+                                 <div class="col-md-6 profile-img">
+                                     <img src="assets/img/boy.png" class="user-img" />
+                                 </div>
+                                 <div class="col-md-6 profile-details">
+                                     <span class="user-details"><b>{{x.firstName}}</b></span><br>
+                                     <span class="user-details">{{x.lastModifiedDate}}</span>
+                                 </div>
+                             </div>
+                             <div class="row">
+                                     <div class="col-md-12">
+                                         <div class="rec-result">
+                                             <span *ngIf="x.recommended == true" class="check-circle "><i class="fa fa-thumbs-up check-res"></i><b class="rec-true">Yes Absolutely</b></span>
+                                             <span *ngIf="x.recommended == false" class="times-circle "><i class="fa fa-thumbs-down check-res"></i><b class="rec-false">Maybe Not</b></span>    
+                                             
+                                         </div>
+                                     </div>
+                                 </div>
+                         </div>
+                         <div class="col-md-8">
+                             <div class="row">
+                                 <div class="rating_field col-md-11">
+                                         <fieldset class="rating_default">
+                                                 <input type="radio" id="five" name="rating_default" value="5.0" [(ngModel)]="x.ratingId"  [disabled]="true" /><label class = "full" for="five" [ngStyle]="{'color':x.ratingId >= 5 ? 'green' : '#cecaca' }"  title="Awesome - 5 stars"></label>
+                                                 <input type="radio" id="fourhalf" name="rating_default" value="4.5" [(ngModel)]="x.ratingId" [disabled]="true"  /><label class="half" for="fourhalf" [ngStyle]="{'color':x.ratingId >= 4.5 ? 'green' : '#cecaca' }"  title="Pretty good - 4.5 stars"></label>
+                                                 <input type="radio" id="four" name="rating_default" value="4.0" [(ngModel)]="x.ratingId"  [disabled]="true" /><label class = "full" for="four" [ngStyle]="{'color':x.ratingId >= 4 ? 'green' : '#cecaca' }" title="Pretty good - 4 stars"></label>
+                                                 <input type="radio" id="threehalf" name="rating_default" value="3.5" [(ngModel)]="x.ratingId" [disabled]="true"  /><label class="half" for="threehalf" [ngStyle]="{'color':x.ratingId >= 3.5 ? 'green' : '#cecaca' }"  title="Meh - 3.5 stars"></label>
+                                                 <input type="radio" id="three" name="rating_default" value="3.0" [(ngModel)]="x.ratingId"  [disabled]="true" /><label class = "full" for="three" [ngStyle]="{'color':x.ratingId >= 3 ? 'green' : '#cecaca' }"  title="Meh - 3 stars"></label>
+                                                 <input type="radio" id="twohalf" name="rating_default" value="2.5" [(ngModel)]="x.ratingId" [disabled]="true"  /><label class="half" for="twohalf" [ngStyle]="{'color':x.ratingId >= 2.5 ? 'green' : '#cecaca' }"  title="Kinda bad - 2.5 stars"></label>
+                                                 <input type="radio" id="two" name="rating_default" value="2.0" [(ngModel)]="x.ratingId" [disabled]="true" /><label class = "full" for="two"  [ngStyle]="{'color':x.ratingId >= 2 ? 'green' : '#cecaca' }" title="Kinda bad - 2 stars"></label>
+                                                 <input type="radio" id="onehalf" name="rating_default" value="1.5" [(ngModel)]="x.ratingId" [disabled]="true" /><label class="half" for="onehalf" [ngStyle]="{'color':x.ratingId >= 1.5 ? 'green' : '#cecaca' }"  title="Meh - 1.5 stars"></label>
+                                                 <input type="radio" id="one" name="rating_default" value="1.0" [(ngModel)]="x.ratingId" [disabled]="true" /><label class = "full" for="one" [ngStyle]="{'color':x.ratingId >= 1 ? 'green' : '#cecaca' }"  title="Sucks big time - 1 star"></label>
+                                                 <input type="radio" id="half" name="rating_default" value="0.5" [(ngModel)]="x.ratingId"  [disabled]="true" /><label class="half" for="half"[ngStyle]="{'color':x.ratingId >= 0.5 ? 'green' : '#cecaca' }"  title="Sucks big time - 0.5 stars"></label>
+                                             </fieldset>
+                                            
+                                   </div>
+                                   <div class="col-md-1">
+                                       <div class="rating-value">
+                                           <span class="rating_number" >{{x.ratingId}}</span>
+                                       </div>
+                                   </div>
+                                 </div>
+                                   <div class="row">
+                                       <span class="review-text">{{x.review}}</span> -->
+                                       <!-- <div class="read-more review-text" onclick="this.classList.add('expanded')">
+                                            <div class="content">
+                                                    {{x.review}}
+                                            </div>
+                                            <span class="trigger">+ read more</span>
+                                          </div> -->
+                                   <!-- </div>
+                         </div>
+                    </div> -->
+                    <hr>
+                    </div>
+                   
+                    <div class="row">
+                        <div class="col-md-12 load-align ">
+                            
+                                <span *ngIf="isSpin"><i class="fa fa-spinner fa-spin"></i></span>
+                                <button *ngIf="isLoad"  class="btn btn-primary btn-load" type="submit" (click)="getLoadMore()">Load More</button> 
+                        
+                        </div>
+                    </div>
+                </div>
+                <ng-template #noReviews>
+                    <div class="noReviews">
+                        <span >No reviews yet</span>
+                    </div>
+                </ng-template>
+            </div>
+            </div>
+        </div>
+       
+    
+
+
+    
+    <div class="modal fade" id="businessReplyModal"  data-backdrop="static" data-keyboard="false" role="dialog">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-center" >Reply</h4>
+            
+                    <a href="#" data-dismiss="modal"  class="close close-modal" aria-hidden="true">×</a>
+            
+            </div>
+            <div class="modal-body">
+                    <div class="">
+            
+                        <div class="row col-md-12">
+                            <div class="col-md-2">
+                                <span><b>Reply:</b></span>
+                            </div>
+                            <div class="col-md-10">
+                                    <textarea type="text" rows="7" class="form-control"
+                                    [(ngModel)]="businessUserReply" name="reply" ></textarea>
+                            </div>
+                        </div>
+                        <div *ngIf="isButtonRefresh" class="col-md-12 spin-refresh"><span ><i class="fa fa-spinner fa-spin"></i></span></div>
+                        <div *ngIf="!isButtonRefresh" class="col-md-12 btn-side">
+                           
+                            <button class="btn btn-primary question-submit"  (click)="replyBusiness()">Submit</button>
+                        </div>
+                        
+                    </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+   
+
+          <div class="modal fade" id="replyModal"  data-backdrop="static" data-keyboard="false" role="dialog">
+                <div class="modal-dialog">
+                
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title text-center" >Reply</h4>
+                    
+                            <a href="#" data-dismiss="modal"  class="close close-modal" aria-hidden="true">×</a>
+                    
+                    </div>
+                    <div class="modal-body">
+                        <form #f1="ngForm" [formGroup]="emailupForm"  method="post" action="#">
+                            <div class="">
+                                    <div class="row col-md-12 review_modal_bottom">
+                                            <div class="col-md-2">
+                                                <span><b>Review: </b></span>
+                                            </div>
+                                            <div class="col-md-10">
+                                                    <span *ngIf="review.review != null; else noreply">{{review.review}}</span>
+                                                    <ng-template #noreply>No Review</ng-template>
+                                            </div>
+                                        </div>
+                                <div class="row col-md-12">
+                                    <div class="col-md-2">
+                                        <span><b>Reply:</b></span>
+                                    </div>
+                                    <div class="col-md-10">
+                                            <textarea type="text" rows="7" class="form-control"
+                                            [(ngModel)]="replyToUser" name="reply" formControlName="_reply"></textarea>
+                                    </div>
+                                </div>
+                                <div *ngIf="isButtonRefresh" class="col-md-12 spin-refresh"><span ><i class="fa fa-spinner fa-spin"></i></span></div>
+                                <div *ngIf="!isButtonRefresh" class="col-md-12 btn-side">
+                                   
+                                    <button class="btn btn-primary question-submit" [disabled]="!f1.valid" (click)="replyUser(review.id,review.businessId)">Submit</button>
+                                </div>
+                                
+                            </div>
+                        </form>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+    
+          
+
+             

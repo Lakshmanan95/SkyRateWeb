@@ -1,0 +1,72 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-1"></div>
+<div class="col-md-10 intro">
+  Aviation Rating was created to provide you with real-world vendor ratings and reviews from actual everyday aviation
+  customers, providing ratings based on their experiences with aviation vendors. The goal of this site is for it to
+  provide you with the ability to easily avoid bad vendors and find the best vendors.
+</div>
+<div class="col-md-1"></div>
+</div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+      <div *ngIf="adDetails.length>=1" class="ad-banner">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+          <div class="carousel-inner">
+            <ng-container *ngFor="let x of adDetails">
+              <div *ngIf="x.priority==1" class="carousel-item active">
+                <img src="{{x.bannerImage}}" alt="Los Angeles" width="100%" height="175px" (click)="moveToPage(x.bannerUrl)"
+                  class="imge">
+
+              </div>
+              <div *ngIf="x.priority!=1" class="carousel-item">
+
+                <img src="{{x.bannerImage}}" alt="Chicago" width="100%" height="175px" (click)="moveToPage(x.bannerUrl)">
+
+              </div>
+            </ng-container>
+          </div>
+
+          <!--div class="slider">
+                                  
+                                        <div *ngFor="let x of adDetails" id="list-img" (click)="moveToWebsite(x.businessId,x.businessName,x.website)" >
+                                          <img src="{{x.bannerImage}}" class="adbanner" (click)="moveToPage(x.bannerUrl)"  />
+                                          <BR> <span  class="ad-content">Advertisement</span>
+                                        </div>
+                                        
+                                </div-->
+          <!-- <div class="ad-default">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRB-f0ntvEpcjYIlJMG5vA0tcFeZ5c0RQMvKNysQu0QFOEuUgrG" width="50%" height="50%" />
+                                  </div>       -->
+        </div>
+        <!--div class="ad-default">
+                        <img class="default-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRB-f0ntvEpcjYIlJMG5vA0tcFeZ5c0RQMvKNysQu0QFOEuUgrG" width="50%" height="50%" />
+                      </div-->
+        <!-- <div class="carousel-inner">
+                                   <div class="carousel-item active">
+                                     <img src="assets/img/ad-banner1.jpg" alt="Los Angeles" class="adbanner">
+                                   </div>
+                            
+                                   <div class="carousel-item">
+                                     <img src="assets/img/ad-banner2.jpg" alt="Chicago" class="adbanner">
+                                   </div>
+                                 
+                                   <div class="carousel-item">
+                                     <img src="assets/img/ad-banner5.jpg" alt="New york" class="adbanner" >
+                                   </div>
+                                 </div>
+                                 
+                                
+                        </div-->
+
+
+
+      </div>
+    </div>
+    <div class="col-md-1"></div>
+
+  </div>

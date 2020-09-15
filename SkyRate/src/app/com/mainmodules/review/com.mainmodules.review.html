@@ -1,0 +1,594 @@
+<div id=review style="background-color: #D9B310;">
+  <div class="review-business" *ngIf="id">
+    <div class="row search-list-row col-md-12">
+      <!-- <div class="col-md-1"></div> -->
+      <div class="col-md-12 business_detail">
+        <div class="row">
+          <div class="col-md-6">
+          
+            <h1 class="business_type" style="color:#0B3C5D;font-size: 35px;">
+              <span *ngIf="business.businessType == 1; else parts"><b>MRO Services</b></span>
+                 
+               </h1>
+             <ng-template #parts>
+              <b>Parts Vendors</b> 
+            </ng-template>
+          </div>
+          <div class="col-md-6  text-right">
+              <div class="bookmark ">
+                  <button class="btn btn-default btn-mark" (click)="addBookmark()" type="submit"><i class="fa fa-star"
+                                                                                                    [ngStyle]="{color:isMarked == true ? '#0B3C5D':'#888585'}"
+                                                                                                    aria-hidden="true"></i>Add
+                    to compare list
+                  </button>
+                  <!-- <br><span class="fav-content">save to compare later</span> -->
+                </div>
+          </div>
+         
+        </div>
+        <hr class="header-line">
+        <div class="row col-md-12">
+          <div class="col-md-4">
+            <img src="{{business.imageUrl}}" class="business-img"/>
+          </div>
+          <div class="col-md-5" style="padding: 0 0 0 25px;">
+            <div class="row col-md-12" *ngIf="reviewList?.length != 0">
+              <fieldset class="rating rating-default">
+                <input type="radio" id="starfive" name="rating_default" value="5.0"
+                       [(ngModel)]="ratingSummary.overallRating" [disabled]="true"/><label class="full tooltip"
+                                                                                           for="starfive"
+                                                                                           [ngStyle]="{'color':ratingSummary.overallRating == 5 ? '#D9B310' : '#cecaca' }">
+                <div class="tooltiptext">Excellent</div>
+              </label>
+                <input type="radio" id="star4.5" name="rating_default" value="4.5"
+                       [(ngModel)]="ratingSummary.overallRating" [disabled]="true"/><label class="half" for="star4.5"
+                                                                                           [ngStyle]="{'color':ratingSummary.overallRating > 4 ? '#D9B310' : '#cecaca' }"></label>
+                <input type="radio" id="starfour" name="rating_default" value="4.0"
+                       [(ngModel)]="ratingSummary.overallRating" [disabled]="true"/><label class="full tooltip"
+                                                                                           for="starfour"
+                                                                                           [ngStyle]="{'color':ratingSummary.overallRating >= 4 ? '#D9B310' : '#cecaca' }">
+                <div class="tooltiptext">Good</div>
+              </label>
+                <input type="radio" id="star3.5" name="rating_default" value="3.5"
+                       [(ngModel)]="ratingSummary.overallRating" [disabled]="true"/><label class="half" for="star3.5"
+                                                                                           [ngStyle]="{'color':ratingSummary.overallRating > 3 ? '#D9B310' : '#cecaca' }"></label>
+                <input type="radio" id="starthree" name="rating_default" value="3.0"
+                       [(ngModel)]="ratingSummary.overallRating" [disabled]="true"/><label class="full tooltip"
+                                                                                           for="starthree"
+                                                                                           [ngStyle]="{'color':ratingSummary.overallRating >= 3 ? '#D9B310' : '#cecaca' }">
+                <div class="tooltiptext">Average</div>
+              </label>
+                <input type="radio" id="star2.5" name="rating_default" value="2.5"
+                       [(ngModel)]="ratingSummary.overallRating" [disabled]="true"/><label class="half" for="star2.5"
+                                                                                           [ngStyle]="{'color':ratingSummary.overallRating > 2 ? '#D9B310' : '#cecaca' }"></label>
+                <input type="radio" id="startwo" name="rating_default" value="2.0"
+                       [(ngModel)]="ratingSummary.overallRating" [disabled]="true"/><label class="full tooltip"
+                                                                                           for="startwo"
+                                                                                           [ngStyle]="{'color':ratingSummary.overallRating >= 2 ? '#D9B310' : '#cecaca' }">
+                <div class="tooltiptext">Fair</div>
+              </label>
+                <input type="radio" id="star1.5" name="rating_default" value="1.5"
+                       [(ngModel)]="ratingSummary.overallRating" [disabled]="true"/><label class="half" for="star1.5"
+                                                                                           [ngStyle]="{'color':ratingSummary.overallRating > 1 ? '#D9B310' : '#cecaca' }"></label>
+                <input type="radio" id="starone" name="rating_default" value="1.0"
+                       [(ngModel)]="ratingSummary.overallRating" [disabled]="true"/><label class="full tooltip"
+                                                                                           for="starone"
+                                                                                           [ngStyle]="{'color':ratingSummary.overallRating >= 1 ? '#D9B310' : '#cecaca' }">
+                <div class="tooltiptext">Poor</div>
+              </label>
+                <input type="radio" id="star0.5" name="rating_default" value="0.5"
+                       [(ngModel)]="ratingSummary.overallRating" [disabled]="true"/><label class="half" for="star0.5"
+                                                                                           [ngStyle]="{'color':ratingSummary.overallRating > 0 ? '#D9B310' : '#cecaca' }"></label>
+              </fieldset>
+            </div>
+            <div *ngIf="!isLoading">
+              <div *ngIf="reviewList?.length != 0" class="business-recommend">
+                <span class="check-circle"><i
+                  class="fa fa-thumbs-up fa-2x"></i><span>{{ratingSummary.isRecommend}}</span></span>
+                <span class="times-circle"><i
+                  class="fa fa-thumbs-down fa-2x"></i><span>{{ratingSummary.notRecommend}}</span></span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 text-right">
+            <div class="row">
+              <!-- <div class="col-md-12 ">
+                      <div class="rating-detail">
+                              <fieldset class="rating rating-default">
+                                      <input type="radio" id="starfive" name="rating_default" value="5.0" [(ngModel)]="ratingSummary.ratingAverage"  [disabled]="true" /><label class = "full" for="starfive" [ngStyle]="{'color':ratingSummary.ratingAverage > 4.5 ? 'green' : '#cecaca' }"  title="Awesome - 5 stars"></label>
+                                      <input type="radio" id="star4.5" name="rating_default" value="4.5" [(ngModel)]="ratingSummary.ratingAverage" [disabled]="true"  /><label class="half" for="star4.5" [ngStyle]="{'color':ratingSummary.ratingAverage > 4 ? 'green' : '#cecaca' }"  title="Pretty good - 4.5 stars"></label>
+                                      <input type="radio" id="starfour" name="rating_default" value="4.0" [(ngModel)]="ratingSummary.ratingAverage"  [disabled]="true" /><label class = "full" for="starfour" [ngStyle]="{'color':ratingSummary.ratingAverage > 3.5 ? 'green' : '#cecaca' }" title="Pretty good - 4 stars"></label>
+                                      <input type="radio" id="star3.5" name="rating_default" value="3.5" [(ngModel)]="ratingSummary.ratingAverage" [disabled]="true" /><label class="half" for="star3.5" [ngStyle]="{'color':ratingSummary.ratingAverage > 3 ? 'green' : '#cecaca' }"  title="Meh - 3.5 stars"></label>
+                                      <input type="radio" id="starthree" name="rating_default" value="3.0" [(ngModel)]="ratingSummary.ratingAverage"  [disabled]="true"  /><label class = "full" for="starthree" [ngStyle]="{'color':ratingSummary.ratingAverage > 2.5 ? 'green' : '#cecaca' }"  title="Meh - 3 stars"></label>
+                                      <input type="radio" id="star2.5" name="rating_default" value="2.5" [(ngModel)]="ratingSummary.ratingAverage" [disabled]="true"  /><label class="half" for="star2.5" [ngStyle]="{'color':ratingSummary.ratingAverage > 2 ? 'green' : '#cecaca' }"  title="Kinda bad - 2.5 stars"></label>
+                                      <input type="radio" id="startwo" name="rating_default" value="2.0" [(ngModel)]="ratingSummary.ratingAverage"  [disabled]="true" /><label class = "full" for="startwo"  [ngStyle]="{'color':ratingSummary.ratingAverage > 1.5 ? 'green' : '#cecaca' }" title="Kinda bad - 2 stars"></label>
+                                      <input type="radio" id="star1.5" name="rating_default" value="1.5" [(ngModel)]="ratingSummary.ratingAverage" [disabled]="true" /><label class="half" for="star1.5" [ngStyle]="{'color':ratingSummary.ratingAverage > 1 ? 'green' : '#cecaca' }"  title="Meh - 1.5 stars"></label>
+                                      <input type="radio" id="starone" name="rating_default" value="1.0" [(ngModel)]="ratingSummary.ratingAverage"  [disabled]="true"/><label class = "full" for="starone" [ngStyle]="{'color':ratingSummary.ratingAverage > 0.5 ? 'green' : '#cecaca' }"  title="Sucks big time - 1 star"></label>
+                                      <input type="radio" id="star0.5" name="rating_default" value="0.5" [(ngModel)]="ratingSummary.ratingAverage" [disabled]="true"/><label class="half" for="star0.5" [ngStyle]="{'color':ratingSummary.ratingAverage > 0 ? 'green' : '#cecaca' }"  title="Sucks big time - 0.5 stars"></label>
+                                  </fieldset>
+                          </div>
+              </div> -->
+              <div class="col-md-12" *ngIf="ratingSummary.overallRating">
+
+                <button type="submit" class="btn btn-succes"><b *ngIf="ratingSummary.overallRating; else zero">{{ratingSummary.overallRating
+                  | number : '1.0-1'}}</b></button>
+                <br>
+                <ng-template #zero>0</ng-template>
+              </div>
+            </div>
+            <div class="row" *ngIf="ratingSummary.ratingCount">
+              <div class="col-md-12">
+                <span class="votes">Based on {{ratingSummary.ratingCount}} <span
+                  *ngIf="ratingSummary.ratingCount == 1; else reviews"> review</span></span>
+                <ng-template #reviews>reviews</ng-template>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="row business-title">
+          <div class="col-md-4">
+            <div class="business-name">
+              <h5><b><span *ngIf="business.active == 0">{{business.name}}</span><span *ngIf="business.active == 1"
+                                                                                      style="color:red;">{{business.name}} * New</span></b>
+
+
+                <!-- <span *ngIf="userId != 0 && userId != business.userId && isPending == isClaimed && roleId > 3 "> -->
+                <span *ngIf="isApproved">
+                                        <!-- <span *ngIf="!isClaimed && !isPending && userId != 0 && userId != business.userId && businessClaim.userId == business.userId"> -->
+                                        <div class="pending-in pending-i"><i class="fa fa-lock "></i>Claimed</div>
+                                   </span>
+                                   <div *ngIf="!isApproved && isClaimed && userId != 0 && roleId > 3">
+                  <span class="pending-info"><i class="fa fa-lock"></i>Pending Claim Approval </span>
+                </div>
+              </h5>
+              <span class="business-license"><b>Certificate Number: </b> </span><span class="business-details">{{business.certificateNumber}}</span><br>
+              <span class="business-details">{{business.address}} {{business.address2}}</span><br>
+              <span class="business-details">{{business.address3}} {{business.city}}, </span>
+              <span class="business-details">{{business.state}}</span><span *ngIf="business.zip">-</span><span  class="business-details">{{business.zip}}</span><br>
+              <span class="business-details"><a href="https://{{business.website}}"
+                                                target="_blank">{{business.website}}</a></span><br>
+              <span class="business-details">{{business.phoneNumber}}</span><br>
+              <!-- <span class="votes">{{ratingSummary.reviewCount}} Reviews</span> -->
+            </div>
+            <div *ngIf="isClaimed">
+            <div class="contact-link" (click)="contact()">
+              Is this your business?
+            </div>
+          </div>
+          </div>
+          <div class="col-md-2"><span *ngIf="moreEdit || roleId < 3"> <button class="btn btn-primary btn-edit"
+                                                                              (click)="editBusiness(0)">Edit</button></span>
+            <span *ngIf="!isClaimed">
+                                            <button class="btn btn-primary btn-business" (click)="popup()">Claim Business</button>
+                                        </span></div>
+          <div class="col-md-6">
+            <div *ngIf="business.overview != null && business.overview.length > 0" class="business_overview">
+              <b>Overview:</b> {{business.overview}}
+            </div>
+
+          </div>
+          <!-- <div *ngIf="userId != 0 && userId != null" class="col-md-3">
+                  <div *ngIf="isClaimed == 0 && roleId > 2" class="col-md-12">
+                          <div class="bookmark ">
+                              <button class="btn btn-primary btn-business" (click)="claimBusiness()">Claim Business</button>
+                          </div>
+                      </div>
+          </div> -->
+
+        </div>
+        <hr>
+        <!-- <h5><b>Overall</b></h5> -->
+        <div *ngIf="reviewList?.length != 0" class="row col-md-12">
+
+          <!-- <div class="col-md-3 vl">
+              <span>Overall Rating </span>
+
+                      <fieldset class="rating rating-default">
+                              <input type="radio" id="starfive" name="rating_default" value="5.0" [(ngModel)]="ratingSummary.overallRating"  [disabled]="true" /><label class = "full tooltip" for="starfive" [ngStyle]="{'color':ratingSummary.overallRating == 5 ? 'green' : '#cecaca' }" > <div class="tooltiptext">Best</div></label>
+                              <input type="radio" id="star4.5" name="rating_default" value="4.5" [(ngModel)]="ratingSummary.overallRating" [disabled]="true"  /><label class="half" for="star4.5" [ngStyle]="{'color':ratingSummary.overallRating > 4 ? 'green' : '#cecaca' }"></label>
+                              <input type="radio" id="starfour" name="rating_default" value="4.0" [(ngModel)]="ratingSummary.overallRating"  [disabled]="true" /><label class = "full tooltip" for="starfour" [ngStyle]="{'color':ratingSummary.overallRating >= 4 ? 'green' : '#cecaca' }"><div class="tooltiptext">Very Good</div></label>
+                              <input type="radio" id="star3.5" name="rating_default" value="3.5" [(ngModel)]="ratingSummary.overallRating" [disabled]="true" /><label class="half" for="star3.5" [ngStyle]="{'color':ratingSummary.overallRating > 3 ? 'green' : '#cecaca' }" ></label>
+                              <input type="radio" id="starthree" name="rating_default" value="3.0" [(ngModel)]="ratingSummary.overallRating"  [disabled]="true"  /><label class = "full tooltip" for="starthree" [ngStyle]="{'color':ratingSummary.overallRating >= 3 ? 'green' : '#cecaca' }"><div class="tooltiptext">Good</div></label>
+                              <input type="radio" id="star2.5" name="rating_default" value="2.5" [(ngModel)]="ratingSummary.overallRating" [disabled]="true"  /><label class="half" for="star2.5" [ngStyle]="{'color':ratingSummary.overallRating > 2 ? 'green' : '#cecaca' }" ></label>
+                              <input type="radio" id="startwo" name="rating_default" value="2.0" [(ngModel)]="ratingSummary.overallRating"  [disabled]="true" /><label class = "full tooltip" for="startwo"  [ngStyle]="{'color':ratingSummary.overallRating >= 2 ? 'green' : '#cecaca' }" ><div class="tooltiptext">Ok</div></label>
+                              <input type="radio" id="star1.5" name="rating_default" value="1.5" [(ngModel)]="ratingSummary.overallRating" [disabled]="true" /><label class="half" for="star1.5" [ngStyle]="{'color':ratingSummary.overallRating > 1 ? 'green' : '#cecaca' }" ></label>
+                              <input type="radio" id="starone" name="rating_default" value="1.0" [(ngModel)]="ratingSummary.overallRating"  [disabled]="true"/><label class = "full tooltip" for="starone" [ngStyle]="{'color':ratingSummary.overallRating >= 1 ? 'green' : '#cecaca' }" ><div class="tooltiptext">Poor</div></label>
+                              <input type="radio" id="star0.5" name="rating_default" value="0.5" [(ngModel)]="ratingSummary.overallRating" [disabled]="true"/><label class="half" for="star0.5" [ngStyle]="{'color':ratingSummary.overallRating > 0 ? 'green' : '#cecaca' }" ></label>
+                          </fieldset>
+
+          </div> -->
+          <div class="col-md-3">
+            <div><span>Quality</span></div>
+
+            <fieldset class="quality">
+              <input type="radio" id="qualitystarfive" name="quality" value="5.0"
+                     [(ngModel)]="ratingSummary.ratingAverage" [disabled]="true"/><label class="full tooltip"
+                                                                                         for="qualitystarfive"
+                                                                                         [ngStyle]="{'color':ratingSummary.ratingAverage == 5 ? '#D9B310' : '#cecaca' }">
+              <div class="tooltiptext">Excellent</div>
+            </label>
+              <input type="radio" id="qualitystar4.5" name="rating_default" value="4.5"
+                     [(ngModel)]="ratingSummary.ratingAverage" [disabled]="true"/><label class="half" for="star4.5"
+                                                                                         [ngStyle]="{'color':ratingSummary.ratingAverage > 4 ? '#D9B310' : '#cecaca' }"></label>
+              <input type="radio" id="qualitystarfour" name="quality" value="4.0"
+                     [(ngModel)]="ratingSummary.ratingAverage" [disabled]="true"/><label class="full tooltip"
+                                                                                         for="qualitystarfour"
+                                                                                         [ngStyle]="{'color':ratingSummary.ratingAverage >= 4 ? '#D9B310' : '#cecaca' }">
+              <div class="tooltiptext">Good</div>
+            </label>
+              <input type="radio" id="qualitystar3.5" name="rating_default" value="3.5"
+                     [(ngModel)]="ratingSummary.ratingAverage" [disabled]="true"/><label class="half" for="star3.5"
+                                                                                         [ngStyle]="{'color':ratingSummary.ratingAverage > 3 ? '#D9B310' : '#cecaca' }"></label>
+              <input type="radio" id="qualitystarthree" name="quality" value="3.0"
+                     [(ngModel)]="ratingSummary.ratingAverage" [disabled]="true"/><label class="full tooltip"
+                                                                                         for="qualitystarthree"
+                                                                                         [ngStyle]="{'color':ratingSummary.ratingAverage >= 3 ? '#D9B310' : '#cecaca' }">
+              <div class="tooltiptext">Average</div>
+            </label>
+              <input type="radio" id="qualitystar2.5" name="rating_default" value="2.5"
+                     [(ngModel)]="ratingSummary.ratingAverage" [disabled]="true"/><label class="half" for="star2.5"
+                                                                                         [ngStyle]="{'color':ratingSummary.ratingAverage > 2 ? '#D9B310' : '#cecaca' }"></label>
+              <input type="radio" id="qualitystartwo" name="quality" value="2.0"
+                     [(ngModel)]="ratingSummary.ratingAverage" [disabled]="true"/><label class="full tooltip"
+                                                                                         for="qualitystartwo"
+                                                                                         [ngStyle]="{'color':ratingSummary.ratingAverage >= 2 ? '#D9B310' : '#cecaca' }">
+              <div class="tooltiptext">Fair</div>
+            </label>
+              <input type="radio" id="qualitystar1.5" name="rating_default" value="1.5"
+                     [(ngModel)]="ratingSummary.ratingAverage" [disabled]="true"/><label class="half" for="star1.5"
+                                                                                         [ngStyle]="{'color':ratingSummary.ratingAverage > 1 ? '#D9B310' : '#cecaca' }"></label>
+              <input type="radio" id="qualitystarone" name="quality" value="1.0"
+                     [(ngModel)]="ratingSummary.ratingAverage" [disabled]="true"/><label class="full tooltip"
+                                                                                         for="qualitystarone"
+                                                                                         [ngStyle]="{'color':ratingSummary.ratingAverage >= 1 ? '#D9B310' : '#cecaca' }">
+              <div class="tooltiptext">Poor</div>
+            </label>
+              <input type="radio" id="qualitystar0.5" name="rating_default" value="0.5"
+                     [(ngModel)]="ratingSummary.ratingAverage" [disabled]="true"/><label class="half" for="star0.5"
+                                                                                         [ngStyle]="{'color':ratingSummary.ratingAverage > 0 ? '#D9B310' : '#cecaca' }"></label>
+            </fieldset>
+
+          </div>
+          <div class="col-md-3">
+            <div><span>Pricing</span></div>
+            <fieldset class="pricing_default">
+              <input type="radio" id="star5" name="_rating" value="5" [disabled]="true"/><label class="full tooltip"
+                                                                                                for="star5"
+                                                                                                [ngStyle]="{'color':ratingSummary.pricingAverage == 5 ? '#D9B310' : '#cecaca' }">
+              <div class="tooltiptext">Excellent</div>
+            </label>
+              <input type="radio" id="star4half" name="_rating" value="4.5" [disabled]="true"/><label class="half"
+                                                                                                      for="star4half"
+                                                                                                      [ngStyle]="{'color':ratingSummary.pricingAverage > 4 ? '#D9B310' : '#cecaca' }"></label>
+              <input type="radio" id="star4" name="_rating" value="4" [disabled]="true"/><label class="full tooltip"
+                                                                                                for="star4"
+                                                                                                [ngStyle]="{'color':ratingSummary.pricingAverage >= 4 ? '#D9B310' : '#cecaca' }">
+              <div class="tooltiptext">Good</div>
+            </label>
+              <input type="radio" id="star3half" name="_rating" value="3.5" [disabled]="true"/><label class="half"
+                                                                                                      for="star3half"
+                                                                                                      [ngStyle]="{'color':ratingSummary.pricingAverage > 3 ? '#D9B310' : '#cecaca' }"></label>
+              <input type="radio" id="star3" name="_rating" value="3" [disabled]="true"/><label class="full tooltip"
+                                                                                                for="star3"
+                                                                                                [ngStyle]="{'color':ratingSummary.pricingAverage >= 3 ? '#D9B310' : '#cecaca' }">
+              <div class="tooltiptext">Average</div>
+            </label>
+              <input type="radio" id="star2half" name="_rating" value="2.5" [disabled]="true"/><label class="half"
+                                                                                                      for="star2half"
+                                                                                                      [ngStyle]="{'color':ratingSummary.pricingAverage > 2 ? '#D9B310' : '#cecaca' }"></label>
+              <input type="radio" id="star2" name="_rating" value="2" [disabled]="true"/><label class="full tooltip"
+                                                                                                for="star2"
+                                                                                                [ngStyle]="{'color':ratingSummary.pricingAverage >= 2 ? '#D9B310' : '#cecaca' }">
+              <div class="tooltiptext">Fair</div>
+            </label>
+              <input type="radio" id="star1half" name="_rating" value="1.5" [disabled]="true"/><label class="half"
+                                                                                                      for="star1half"
+                                                                                                      [ngStyle]="{'color':ratingSummary.pricingAverage > 1 ? '#D9B310' : '#cecaca' }"></label>
+              <input type="radio" id="star1" name="_rating" value="1" [disabled]="true"/><label class="full tooltip"
+                                                                                                for="star1"
+                                                                                                [ngStyle]="{'color':ratingSummary.pricingAverage >= 1 ? '#D9B310' : '#cecaca' }">
+              <div class="tooltiptext">Poor</div>
+            </label>
+              <input type="radio" id="starhalf" name="_rating" value="0.5" [disabled]="true"/><label class="half"
+                                                                                                     for="starhalf"
+                                                                                                     [ngStyle]="{'color':ratingSummary.pricingAverage > 0 ? '#D9B310' : '#cecaca' }"></label>
+            </fieldset>
+
+          </div>
+          <div class="col-md-3">
+            <div><span>Turnaround Time</span></div>
+            <fieldset class="speed">
+              <input type="radio" id="speeddefaultstar5" name="_speedrating" value="5" [disabled]="true"/><label
+              class="full tooltip" for="speeddefaultstar5"
+              [ngStyle]="{'color':ratingSummary.deliverySpeedAvg == 5 ? '#D9B310' : '#cecaca' }">
+              <div class="tooltiptext">Excellent</div>
+            </label>
+              <input type="radio" id="speeddefaultstar4half" name="_speedrating" value="4.5" [disabled]="true"/><label
+              class="half" for="speeddefaultstar4half"
+              [ngStyle]="{'color':ratingSummary.deliverySpeedAvg > 4 ? '#D9B310' : '#cecaca' }"
+              title="Pretty good - 4.5 stars"></label>
+              <input type="radio" id="speeddefaultstar4" name="_speedrating" value="4" [disabled]="true"/><label
+              class="full tooltip" for="speeddefaultstar4"
+              [ngStyle]="{'color':ratingSummary.deliverySpeedAvg >= 4 ? '#D9B310' : '#cecaca' }">
+              <div class="tooltiptext">Good</div>
+            </label>
+              <input type="radio" id="speeddefaultstar3half" name="_speedrating" value="3.5" [disabled]="true"/><label
+              class="half" for="speeddefaultstar3half"
+              [ngStyle]="{'color':ratingSummary.deliverySpeedAvg > 3 ? '#D9B310' : '#cecaca' }"
+              title="Meh - 3.5 stars"></label>
+              <input type="radio" id="speeddefaultstar3" name="_speedrating" value="3" [disabled]="true"/><label
+              class="full tooltip" for="speeddefaultstar3"
+              [ngStyle]="{'color':ratingSummary.deliverySpeedAvg >= 3 ? '#D9B310' : '#cecaca' }">
+              <div class="tooltiptext">Average</div>
+            </label>
+              <input type="radio" id="speeddefaultstar2half" name="_speedrating" value="2.5" [disabled]="true"/><label
+              class="half" for="speeddefaultstar2half"
+              [ngStyle]="{'color':ratingSummary.deliverySpeedAvg > 2 ? '#D9B310' : '#cecaca' }"
+              title="Kinda bad - 2.5 stars"></label>
+              <input type="radio" id="speeddefaultstar2" name="_speedrating" value="2" [disabled]="true"/><label
+              class="full tooltip" for="speeddefaultstar2"
+              [ngStyle]="{'color':ratingSummary.deliverySpeedAvg >= 2 ? '#D9B310' : '#cecaca' }">
+              <div class="tooltiptext">Fair</div>
+            </label>
+              <input type="radio" id="speeddefaultstar1half" name="_speedrating" value="1.5" [disabled]="true"/><label
+              class="half" for="speeddefaultstar1half"
+              [ngStyle]="{'color':ratingSummary.deliverySpeedAvg > 1 ? '#D9B310' : '#cecaca' }"
+              title="Meh - 1.5 stars"></label>
+              <input type="radio" id="speeddefaultstar1" name="_speedrating" value="1" [disabled]="true"/><label
+              class="full tooltip" for="speeddefaultstar1"
+              [ngStyle]="{'color':ratingSummary.deliverySpeedAvg >= 1 ? '#D9B310' : '#cecaca' }">
+              <div class="tooltiptext">Poor</div>
+            </label>
+              <input type="radio" id="speeddefaulthalf" name="_speedrating" value="0.5" [disabled]="true"/><label
+              class="half" for="speeddefaulthalf"
+              [ngStyle]="{'color':ratingSummary.deliverySpeedAvg > 0 ? '#D9B310' : '#cecaca' }"
+              title="Sucks big time - 0.5 stars"></label>
+            </fieldset>
+          </div>
+
+        </div>
+        <hr *ngIf="reviewList?.length != 0">
+      </div>
+    </div>
+  </div>
+
+  <div class="rating_and_review">
+    <div class="row col-md-12">
+      <div class="col-md-1"></div>
+      <div class="col-md-12 tab-col">
+
+        <div class="tab-wrap">
+
+          <!-- active tab on page load gets checked attribute -->
+          <input type="radio" id="tab1" name="tabGroup1" class="tab" checked>
+          <label for="tab1" (click)="reviewListTab(1)">Reviews <font *ngIf="ratingSummary.reviewCount > 0">({{ratingSummary.reviewCount}})</font></label>
+         
+          <ng-container *ngIf="business.businessType == 1 || roleId < 3 && business.businessType == 1" >
+          <input type="radio" id="tab2" name="tabGroup1" class="tab">
+          <label for="tab2" (click)="reviewListTab(2)">Capabilities</label>
+          </ng-container>
+
+          <ng-container *ngIf="moreEdit || roleId < 3 ">
+          <input type="radio" id="tab3" name="tabGroup1" class="tab">
+          <label for="tab3" (click)="reviewListTab(3)">Parts</label>
+        </ng-container>
+        
+          <div class="tab__content review-new">
+            <div *ngIf="!isReviewOpen" class="col-md-3 review-btn">
+
+              <button class="btn btn-primary btn-review" (click)="reviewTab()"><i class="fa fa-pencil"></i>Write a
+                Review
+              </button>
+            </div>
+            <add-review *ngIf="isReviewOpen" [businessId]="checkValue()"
+                        (refreshId)="refreshEvent($event)"></add-review>
+            <!-- <div class="col-md-12">
+                    <div *ngIf="!isReviewOpen" class="col-md-3 review-btn">
+
+                          <button class="btn btn-primary btn-review" (click)="reviewTab()">  <i class="fa fa-pencil"></i>Write a Review</button>
+                      </div>
+            </div>
+                        <div *ngIf="isReviewOpen" class="col-md-12">
+
+                          <form #f1="ngForm" [formGroup]="ratingForm"  method="post" action="#">
+                          <div class="row  rating-stars">
+                              <div class="col-md-3">
+                                    <span class="rating-content">Quality</span>
+
+                                <fieldset class="rating">
+                                        <input type="radio" id="5" name="_rating" value="5" [(ngModel)]="ratingValue" formControlName="_rating"/><label class = "full tooltip" for="5"  > <div class="tooltiptext">Best</div></label>
+                                        <input type="radio" id="4.5" name="_rating" value="4.5" [(ngModel)]="ratingValue" formControlName="_rating" /><label class="half tooltip" for="4.5"  ><div class="tooltiptext">Best</div></label>
+                                        <input type="radio" id="4" name="_rating" value="4" [(ngModel)]="ratingValue" formControlName="_rating"/><label class = "full tooltip" for="4"><div class="tooltiptext">Very Good</div></label>
+                                        <input type="radio" id="3.5" name="_rating" value="3.5" [(ngModel)]="ratingValue" formControlName="_rating"/><label class="half tooltip" for="3.5" ><div class="tooltiptext">Very Good</div></label>
+                                        <input type="radio" id="3" name="_rating" value="3" [(ngModel)]="ratingValue" formControlName="_rating"/><label class = "full tooltip" for="3"><div class="tooltiptext">Good</div></label>
+                                        <input type="radio" id="2.5" name="_rating" value="2.5" [(ngModel)]="ratingValue" formControlName="_rating"/><label class="half tooltip" for="2.5"><div class="tooltiptext">Good</div></label>
+                                        <input type="radio" id="2" name="_rating" value="2" [(ngModel)]="ratingValue" formControlName="_rating"/><label class = "full tooltip" for="2"><div class="tooltiptext">Ok</div></label>
+                                        <input type="radio" id="1.5" name="_rating" value="1.5" [(ngModel)]="ratingValue" formControlName="_rating"/><label class="half tooltip" for="1.5"><div class="tooltiptext">Kinda bad</div></label>
+                                        <input type="radio" id="1" name="_rating" value="1" [(ngModel)]="ratingValue" formControlName="_rating"/><label class = "full tooltip" for="1"><div class="tooltiptext">Poor</div></label>
+                                        <input type="radio" id="0.5" name="_rating" value="0.5" [(ngModel)]="ratingValue" formControlName="_rating"/><label class="half tooltip" for="0.5"><div class="tooltiptext">Very Poor</div></label>
+                                    </fieldset>
+
+
+                                </div>
+                                <div class="col-md-3">
+                                        <span class="rating-content">Pricing</span>
+                                        <fieldset class="pricing">
+                                                <input type="radio" id="pricestar5" name="_pricerating" value="5" [(ngModel)]="review.pricing" formControlName="_pricerating"/><label class = "full tooltip" for="pricestar5" ><div class="tooltiptext">Highly Expensive</div></label>
+
+                                                <input type="radio" id="pricestar4" name="_pricerating" value="4" [(ngModel)]="review.pricing" formControlName="_pricerating"/><label class = "full tooltip" for="pricestar4"><div class="tooltiptext">Expensive</div></label>
+                                                <input type="radio" id="pricestar3" name="_pricerating" value="3" [(ngModel)]="review.pricing" formControlName="_pricerating"/><label class = "full tooltip" for="pricestar3"><div class="tooltiptext">Resonable</div></label>
+                                               <input type="radio" id="pricestar2" name="_pricerating" value="2" [(ngModel)]="review.pricing" formControlName="_pricerating"/><label class = "full tooltip" for="pricestar2"><div class="tooltiptext">Ok</div></label>
+                                               <input type="radio" id="pricestar1" name="_pricerating" value="1" [(ngModel)]="review.pricing" formControlName="_pricerating"/><label class = "full tooltip" for="pricestar1"><div class="tooltiptext">Cheaper</div></label>
+
+                                            </fieldset>
+                                </div>
+                                <div class="col-md-3">
+                                        <span class="rating-content">Delivery Speed</span>
+                                        <fieldset class="speed">
+                                                <input type="radio" id="speedstar5" name="_speedrating" value="5" [(ngModel)]="review.deliverySpeed" formControlName="_speedrating"/><label class = "full tooltip" for="speedstar5" ><div class="tooltiptext">Super Fast</div></label>
+                                                <input type="radio" id="speedstar4half" name="_speedrating" value="4.5" [(ngModel)]="review.deliverySpeed" formControlName="_speedrating" /><label class="half tooltip" for="speedstar4half"><div class="tooltiptext">Super Fast</div></label>
+                                                <input type="radio" id="speedstar4" name="_speedrating" value="4" [(ngModel)]="review.deliverySpeed" formControlName="_speedrating"/><label class = "full tooltip" for="speedstar4" ><div class="tooltiptext">Fast</div></label>
+                                                <input type="radio" id="speedstar3half" name="_speedrating" value="3.5" [(ngModel)]="review.deliverySpeed" formControlName="_speedrating"/><label class="half tooltip" for="speedstar3half"><div class="tooltiptext">Fast</div></label>
+                                                <input type="radio" id="speedstar3" name="_speedrating" value="3" [(ngModel)]="review.deliverySpeed" formControlName="_speedrating"/><label class = "full tooltip" for="speedstar3" ><div class="tooltiptext">Reasonable</div></label>
+                                                <input type="radio" id="speedstar2half" name="_speedrating" value="2.5" [(ngModel)]="review.deliverySpeed" formControlName="_speedrating"/><label class="half tooltip" for="speedstar2half" ><div class="tooltiptext">Reasonable</div></label>
+                                                <input type="radio" id="speedstar2" name="_speedrating" value="2" [(ngModel)]="review.deliverySpeed" formControlName="_speedrating"/><label class = "full tooltip" for="speedstar2" ><div class="tooltiptext">Ok</div></label>
+                                                <input type="radio" id="speedstar1half" name="_speedrating" value="1.5" [(ngModel)]="review.deliverySpeed" formControlName="_speedrating"/><label class="half tooltip" for="speedstar1half" ><div class="tooltiptext">Kinda Ok</div></label>
+                                                <input type="radio" id="speedstar1" name="_speedrating" value="1" [(ngModel)]="review.deliverySpeed" formControlName="_speedrating"/><label class = "full tooltip" for="speedstar1" ><div class="tooltiptext">Slow</div></label>
+                                                <input type="radio" id="speedhalf" name="_speedrating" value="0.5" [(ngModel)]="review.deliverySpeed" formControlName="_speedrating"/><label class="half tooltip" for="speedhalf" ><div class="tooltiptext">Dead Slow</div></label>
+                                            </fieldset>
+                                </div>
+                          </div>
+                          <div class="row">
+                              <div class="recommend-row col-md-6">
+                                  <span><b class="header-color">Would you use this Provider Again?</b></span><br>
+                                  <div class="selection">
+                                        <div>
+                                            <input type="radio"  class="green" id="radio01" name="_recommendations"  [(ngModel)]="review.recommended" value="true" formControlName="_recommendations"/>
+                                            <label for="radio01"><span></span><font class="green">Yes Absolutely</font></label>
+                                          </div>
+
+                                          <div>
+                                           <input type="radio" id="radio02" class="red" name="_recommendations" [(ngModel)]="review.recommended" value="false"formControlName="_recommendations"/>
+                                           <label for="radio02"><span></span><font  class="red">Maybe Not</font></label>
+                                          </div>
+                                  </div>
+                              </div>
+
+                          </div>
+                          <div class="row write-review">
+                            <textarea class="text-area" [(ngModel)]="reviewValue" name="_reviewValue" formControlName="_reviewValue" rows=5 placeholder="Start writing a review now"></textarea>
+                        </div>
+                           <div class="row button-save" >
+                            <div class="col-md-6">
+                                <div class="col-md-6 review-submit"> <button class="btn btn-primary btn-submit" [disabled]="!f1.valid" (click)="addReview()" type="submit">Add your review</button></div>
+
+                            </div>
+                           </div>
+
+                          </form>
+                          </div> -->
+          </div>
+
+
+          <div class="tab__content" id="tab2Content">
+            <div *ngFor="let x of capabilityList;" class="download file">
+              <div class="row col-md-12">
+                <div class="col-md-7">
+                  <span><B>Capabilities:  </B> {{x.fileName}}</span>
+                </div>
+                <div class="col-md-5" style="text-align: right">
+                  <button class="btn btn-primary btn-edit" (click)="downloadFile(x.id)"><i class="fa fa-download"></i>
+                  </button>
+                  <span *ngIf="moreEdit || roleId < 3"> <button class="btn btn-primary btn-delete"
+                                                                (click)="deleteCapability(x.id)"><i
+                    class="fa fa-trash"></i></button></span><br>
+                </div>
+                <div class="col-md-12">
+                  <hr class="horizontal">
+                </div>
+              </div>
+            </div>
+            <div *ngIf="capabilityList?.length == 0" class="download file">
+              <span>No files</span>
+
+        </div>
+            </div>
+            <div class="tab__content" id="tab3Content">
+            <div *ngFor="let x of partsList;" class="download file">
+              <div class="row col-md-12">
+                <div class="col-md-7">
+                  <span><B>Parts: </B> {{x.fileName}}</span>
+                </div>
+                <div class="col-md-5" style="text-align: right">
+                  <button class="btn btn-primary btn-edit" (click)="downloadPartsFile(x.id)"><i class="fa fa-download"></i>
+                  </button>
+                  <span *ngIf="moreEdit || roleId < 3"> <button class="btn btn-primary btn-delete"
+                                                                (click)="deleteParts(x.id)"><i
+                    class="fa fa-trash"></i></button></span><br>
+                </div>
+
+              
+              <div class="col-md-12">
+                <hr class="horizontal">
+              </div>
+            </div>
+              </div>
+              <div *ngIf=" partsList?.length == 0" class="download file">
+                <span>No files</span>
+  
+          </div>
+        </div>
+                   
+          
+        </div>
+
+            </div>
+           
+
+    </div>
+
+    <div *ngIf="reviewListOpen" class="review-div">
+      <div class="row col-md-12">
+        <!-- <div class="col-md-1"></div> -->
+        <div class="col-md-12 tab-col">
+          <review-list [businessId]="checkValue()" (refreshId)="refreshEvent($event)"></review-list>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class="modal fade" id="loginModal" #openModal data-backdrop="static" data-keyboard="false" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title text-center" style="margin: 0 auto;">Welcome to <span class="modal-logo">AviationRating</span>
+          </h4>
+
+          <a href="#" data-dismiss="modal" class="close close-modal" aria-hidden="true">×</a>
+
+        </div>
+        <div class="modal-body">
+          <ul class="nav nav-tabs nav-header">
+            <li class="list-space"><span id="login" class="tab-header">Login</span></li>
+            <li class="list-space"><span id="signUp" class="tab-header">Sign Up</span></li>
+          </ul>
+          <div class="loginTab">
+            <login></login>
+          </div>
+          <div class="signUpTab" style="display:none;">
+            <register></register>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="claimed"  data-backdrop="static" data-keyboard="false" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+              <h5 style="text-align: justify;padding-top: 16px;font-size: 15px;" >Dear MRO provider, please upload your <b>capability listing</b> at your first opportunity.  By providing this information, it will help your repair station attract potential customers & help you come up in more search results.  With your assistance, we will be able to improve and increase the site functionality for you and your potential customers.</h5>
+              <!-- <a href="#" data-dismiss="modal"  class="close close-modal" aria-hidden="true">×</a> -->
+              <a href="#" data-dismiss="modal"  class="close close-modal" aria-hidden="true">×</a>
+      </div>
+      <div class="modal-body" style="    text-align: center;">
+        <button class="btn btn-primary" (click)="editBusiness(1)">Ok</button>
+        <!-- <button class="btn btn-primary btn-align" (click)="claimBusiness()">Yes, I'll do it later!</button> -->
+      </div>
+      
+    </div>
+    
+  </div>
+</div>
+
+
+<!--<div id="loader" *ngIf="showLoadIndicator"></div>-->

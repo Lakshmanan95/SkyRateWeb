@@ -1,0 +1,11 @@
+.mail-body{
+    border: 1px solid #e5e5e5;
+    padding: 25px;
+}
+.mail-template{
+    padding: 25px;
+    margin: 25px;
+}
+.mail-row-spacing{
+    margin-top: 15px;
+}

@@ -1,0 +1,20 @@
+.block {
+    float: left;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .block h3{
+    color:#fff;
+    position:relative;
+    z-index:1;
+  }
+  
+  .block_1 {
+    background: url(https://www.ainonline.com/sites/default/files/styles/ain30_fullwidth_large_2x/public/uploads/2013/06/571a_ogmsremodeledhangarweb.jpg?itok=7Vz8FRdW&timestamp=1336998985) no-repeat 0, 0;
+    height: 200px;
+    width: 280px;
+    position: relative;
+  }
+  

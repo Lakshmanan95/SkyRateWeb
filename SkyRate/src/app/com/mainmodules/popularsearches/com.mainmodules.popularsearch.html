@@ -1,0 +1,43 @@
+<div class="popular-searches">
+        <h4 class="anton-font">Popular Searches</h4>
+        <span class="headline">Top searches categories of AviationRating users
+            </span>
+        <div class="row image-content">
+          <div class="col-md-1"></div>
+          <div class="col-md-10">
+              <div class="row">
+                <div *ngFor="let x of category" class="col-md-4">
+                    <div class="img-col img-container" >
+                        <div class="click" (click)="moveToCategory(x.category)">
+                        <img class="img-search" src="assets/img/{{x.imageUrl}}" />
+                        <div>
+                            <h5 class="content">MRO Services-{{x.category}}</h5>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+              </div>
+          </div>
+           
+            <!-- <div class="col-md-3 img-col" >
+                <div class="click" (click)="moveToCategory('Airframe')">
+                <img class="img-search" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRy-v-frEwCanEl9l5fOFaSI67polHJhP2aJ6v_QrORlbYfBKbZ" />
+                <div>
+                        <h5  class="content">MRO Services-AirFrames</h5>
+                    </div>
+                </div>
+            </div>
+           
+            <div class="col-md-3 img-col"  >
+                <div class="click" (click)="moveToCategory('Accessory')">
+                <img class="img-search" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvNOecTB5ruds7wGA-SuGzx7G2JYHY6QdwXIl8Y5v5qs8_PkTpHg"/>
+                <div>
+                        <h5  class="content">MRO Services-Accessory</h5>
+                    </div>
+                </div>
+            </div> -->
+           
+        </div>
+
+        
+    </div>

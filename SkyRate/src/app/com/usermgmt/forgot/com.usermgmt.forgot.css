@@ -1,0 +1,78 @@
+#forgot-password{
+    margin: 100px;
+    margin-top: 70px;
+}
+.fa-spin{
+    font-size: 28px;
+
+}
+.solid{
+    border: 0px solid #e8e6e6;
+    background-color: white;
+    height: 313px;
+    padding-left: 24px;
+    padding-top: 52px;
+    margin-block-end: 74px;
+}
+.tab-header{
+    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
+}
+.list-space{
+    padding-right:30px;
+}
+.new-tab{
+    color:#D9B310;
+    border-bottom: 3px solid #D9B310;
+}
+.nav-header{
+    margin-bottom: 20px;
+}
+.modal-header{
+    border-bottom: 1px solid #fff!important;
+    font-family: Montserrat,sans-serif;
+}
+.modal-body {
+    position: relative;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1rem;
+}
+.modal-content {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: .3rem;
+    outline: 0;
+}
+.modal-dialog {
+    transform: translate(0);
+}
+
+
+.text-center {
+    text-align: center!important;
+}
+.close-modal{
+    margin-left: 0;
+}
+.modal-logo{
+    color: #0B3C5d;
+}
+.loginTab, .signUpTab{
+    font-family: Montserrat,sans-serif;
+}
+.list-space{
+    padding-right: 30px;
+}
+.tab-header{
+    font-size: 20px;
+    font-family: Montserrat,sans-serif;
+}

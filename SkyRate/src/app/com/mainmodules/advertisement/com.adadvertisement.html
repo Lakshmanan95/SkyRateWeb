@@ -1,0 +1,75 @@
+
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 business-form">
+            <div class="form-header">
+                <h5 class="header-content"><span>Advertisement Banner</span></h5>
+                {{dummyList}}
+            </div>
+            <hr>
+            <div class="business-fields">
+         
+                <div class="row row-spacing">
+                    <div class="col-md-11 ">
+                            
+                        <fieldset class="col-md-12 feildset-width ">    
+                            	
+                                <legend>Advertisement 1 </legend>
+                                <ebiz-image-uploader 
+                                [isExistingImageAvailable]="isExistingAdImageAvailable" 
+                                [imageURL]="advertisement.advertisementUrl"
+                                [uploaderURL]="AD_IMAGE_UPLOADER_URL" 
+                                [showDeleteButton]="false"
+                                (change)="adUpload($event)" >  
+                            </ebiz-image-uploader>
+                            <button *ngIf="showButton" (click)="adEditPicture()" class="btn btn-primary btn-edit pic-edit " data-toggle="collapse">{{adButton}}</button>
+                   
+                <div  class="row row-spacing">
+                    <div class="col-md-9">
+                            <label> Website :</label>  
+                            <input type="text" class="form-control" placeholder="https://AviationRating.com"  [(ngModel)]="advertisement.websiteLink" 
+                            name="_adImageWebsite"   />
+                    </div>
+                    <div class="col-md-3">
+                        <button  class="btn btn-primary btn-submit add_more" (click)="addMore()">Add More</button>
+                    </div>
+                </div>
+            </fieldset>	
+        
+        </div>
+        <!-- <div class="plus">
+            <button  class="btn btn-primary btn-submit ">+</button>
+          </div> -->
+    </div>
+   
+                <div class="row row-spacing">
+                    <div class="col-md-3">
+                        <div class="col-md-6 review-submit"> <button class="btn btn-primary btn-submit" (click)="save()"  type="submit">Save</button></div>
+                        
+                    </div>
+                    <div class="col-md-6">
+                        <div class="col-md-10 review-submit"> <button class="btn btn-primary btn-submit" (click)="cancel()" type="submit">Cancel</button></div>                               
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+    <div class="modal fade" id="successModal" #openModal data-backdrop="static" data-keyboard="false" role="dialog">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+                    <h4 class="modal-title text-center" >Processed Successfully!</h4>
+                    <a href="#" data-dismiss="modal"  class="close close-modal" aria-hidden="true">×</a>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+
+            <div class="modal-header">
+      
+    
+</div>

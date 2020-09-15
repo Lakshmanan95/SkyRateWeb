@@ -1,0 +1,49 @@
+.ad-column{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.ad{
+    cursor: pointer;
+}
+.ad-image-size{
+    width:200px; height:150px;
+}
+.adbanner{
+    width:100%;
+}
+
+.ad-margin{
+    margin: 0 0 0 auto;
+}
+.multiad-margin{
+    text-align: right;
+}
+
+.trending-ad{
+    width: 100%;
+}
+
+.slider {
+    margin: 10px 0;
+    width: 100%; /* Update to your slider width */
+    height: 250px; /* Update to your slider height */
+    position: relative;
+    overflow: hidden;
+    background-color: #fff;
+    left: 0 !important;
+  }
+  .advertisement{
+    padding-inline-end: 0px;
+    padding-inline-start: 0px;
+  }
+  .ad-default{
+    text-align: center;
+  }
+  
+  .slider li {
+    display: none;
+    position: absolute; 
+    top: 0; 
+    left: 0;
+     
+  }

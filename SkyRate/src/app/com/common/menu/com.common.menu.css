@@ -1,0 +1,52 @@
+.navbar{
+    min-height: 45px;
+}
+.navbar-inverse .navbar-nav > li > a {
+    color:  white;
+}
+.nav-link{
+    font-weight: bold;
+   
+}
+.close-popover{
+    text-align:right;
+}
+.btn-signIn{
+    width: 100%;
+    border-radius: 0px;
+    height: 35px;
+    font-family: 'Muli', sans-serif;
+    background-color: #328CC1;
+    border-color: #328CC1;
+}
+
+.popover{
+    border-radius: 10px !important;
+}
+.nav-link {
+    border-bottom: 2px solid transparent;
+    color:white;
+    font-weight: bold;
+    padding-bottom: 0.125em;
+    text-decoration: none;
+    transition: border-bottom-color 50ms linear 0s;
+    float:left;
+    margin:0 5px;
+}
+.nav-link:hover, .nav-link.active {
+    border-bottom-color: #ff9800;
+}
+.signup{
+    font-family: 'Muli', sans-serif;
+}
+.sign-in{
+    font-family: 'Anton', sans-serif;
+    color:white;
+    letter-spacing: 1.5px;
+}
+.logo{
+    background-color: orange;
+    padding: 11px;
+    text-decoration: none;
+    margin-top: -8px;
+}

@@ -1,0 +1,55 @@
+<div class="userreport col-md-12">
+    <div class="row header-list">
+        <span class="header-content">User Report</span>
+    </div>
+    <div class="user-info">
+        <div class="row">
+            <div class="col-md-6">
+                <span class="user-details"><b>First Name:</b> </span><span class="user-details">{{user.firstName}}</span>
+            </div>
+            <div class="col-md-6">
+                <span class="user-details"><b>Last Name: </b></span><span class="user-details">{{user.lastName}}</span>
+            </div>
+        </div>
+        <div class="row">
+            <div *ngIf="roleId < 3" class="col-md-6">
+                <span class="user-details"><b>Email: </b></span><span class="user-details">{{user.email}}</span>
+            </div>
+            <div class="col-md-6">
+                <span class="user-details"><b>Business Name: </b></span><span class="user-details">{{user.businessName}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="listheader-row">
+        <div class="row">
+            <div class="col-md-2">Date</div>
+            <div class="col-md-3">Business</div>
+            <div class="col-md-3">Overall Rating</div>
+            <div class="col-md-3">Comments</div>
+        </div>
+    </div>
+    <div class="list-row">
+        <div *ngFor="let x of report">
+            <div class="row">
+                <div class="col-md-2">{{x.date | date: 'MM/dd/yyyy'}}</div>
+                <div class="col-md-3">{{x.business}}</div>
+                <div class="col-md-3">
+                        <fieldset class="rating">
+                                <input type="radio" id="overallRatestar5" name="rating" value="5" [readonly]="true"/><label class = "full" for="overallRatestar5" [ngStyle]="{'color':x.overallRate >= 5 ? '#D9B310' : '#cecaca' }" title="Awesome - 5 stars"></label>
+                                <input type="radio" id="overallRatestar4half" name="rating" value="4.5"  [readonly]="true"/><label class="half" for="overallRatestar4half" [ngStyle]="{'color':x.overallRate >= 4.5 ? '#D9B310' : '#cecaca' }" title="Pretty good - 4.5 stars"></label>
+                                <input type="radio" id="overallRatestar4" name="rating" value="4" [readonly]="true"/><label class = "full" for="overallRatestar4" [ngStyle]="{'color':x.overallRate >= 4 ? '#D9B310' : '#cecaca' }"title="Pretty good - 4 stars"></label>
+                                <input type="radio" id="overallRatestar3half" name="rating" value="3.5"  [readonly]="true"/><label class="half" for="overallRatestar3half" [ngStyle]="{'color':x.overallRate >= 3.5 ? '#D9B310' : '#cecaca' }"title="Meh - 3.5 stars"></label>
+                                <input type="radio" id="overallRatestar3" name="rating" value="3" [readonly]="true"/><label class = "full" for="overallRatestar3" [ngStyle]="{'color':x.overallRate >= 3 ? '#D9B310' : '#cecaca' }"title="Meh - 3 stars"></label>
+                                <input type="radio" id="overallRatestar2half" name="rating" value="2.5"  [readonly]="true"/><label class="half" for="overallRatestar2half" [ngStyle]="{'color':x.overallRate >= 2.5 ? '#D9B310' : '#cecaca' }"title="Kinda bad - 2.5 stars"></label>
+                                <input type="radio" id="overallRatestar2" name="rating" value="2" [readonly]="true"/><label class = "full" for="overallRatestar2" [ngStyle]="{'color':x.overallRate >= 2 ? '#D9B310' : '#cecaca' }"title="Kinda bad - 2 stars"></label>
+                                <input type="radio" id="overallRatestar1half" name="rating" value="1.5"  [readonly]="true"/><label class="half" for="overallRatestar1half" [ngStyle]="{'color':x.overallRate >= 1.5 ? '#D9B310' : '#cecaca' }"title="Meh - 1.5 stars"></label>
+                                <input type="radio" id="overallRatestar1" name="rating" value="1"  [readonly]="true"/><label class = "full" for="overallRatestar1" [ngStyle]="{'color':x.overallRate >= 1 ? '#D9B310' : '#cecaca' }"title="Sucks big time - 1 star"></label>
+                                <input type="radio" id="overallRatestarhalf" name="rating" value="0.5" [readonly]="true"/><label class="half" for="overallRatestarhalf" [ngStyle]="{'color':x.overallRate >= 0.5 ? '#D9B310' : '#cecaca' }"title="Sucks big time - 0.5 stars"></label>
+                            </fieldset>
+                </div>  
+                <div class="col-md-3 text">{{x.review}}</div>
+            </div>
+            <hr>
+        </div>
+    </div>
+</div>

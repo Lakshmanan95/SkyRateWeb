@@ -1,0 +1,178 @@
+<div id="userprofile"style="background-color:#0B3C5D">
+
+    <div class="col-md-8 user-container solid">
+       
+        <ul class="nav nav-tabs nav-header">
+                <li  class="list-space"><span id="profile"  class="tab-header"(click)="openProfile()" [ngStyle]="getLogin()" >Profile</span></li>
+                <li  class="list-space"><span id="password" class="tab-header" (click)="openPassword()" [ngStyle]="getPassword()">Change Password</span></li>
+            </ul>
+            <div class="profileTab">
+              
+               <div>
+                    
+                                                    <form #f1="ngForm" [formGroup]="profileForm"  method="post" action="#">
+                                                        <!-- <div class="row">
+                                                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="userName">User Name:</label> {{user.userName}}
+                                                                </div>
+                    
+                                                            </div>
+                                                        </div> -->
+                                                         <div class="row">
+                                                               <!--div class="col-xs-2 col-sm-3 col-md-2">
+                                                                   <img class="img-responsive img-circle"  src="app/img/profile-avatar.png" > <BR>
+                                                                   <a href="" > Edit  Picture </a>
+                                                               </div-->
+                                                               <div class="col-md-12">
+                                                                    <label for="firstName">Username: {{user.userName}}</label><br/>
+                                                                </div>
+                                                               
+                                                               <ebiz-image-uploader 
+                                                                    [isExistingImageAvailable]="isExistingImageAvailable" 
+                                                                    [imageURL]="profileImage" 
+                                                                    [uploaderURL]="USER_PROFILE_UPLOADER_URL" 
+                                                                    [showDeleteButton]="false"
+                                                                    (change)="uploadComplete($event)" >  
+                                                                </ebiz-image-uploader>
+                                                               
+                                                         </div> 
+                                                             <div><BR>
+                                                                <button #EditPictureButton (click)="editPicture()" class="btn btn-primary btn-edit" data-toggle="collapse">{{EditPictureButtonLabel}}</button>
+                                                            </div>
+                    
+                                                           <div class="row">&nbsp;
+                                                           </div>
+                                                        <div class="row">
+                                                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label for="firstName">First Name</label>
+                                                                        <input type="text" name="firstName" [(ngModel)]="user.firstName" disabled formControlName="_firstName" id="firstName" class="form-control"
+                                                                            placeholder="First Name" tabindex="1" maxlength="15">
+                                                                    </div>
+                                                                   
+                                                                </div>
+                                                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                                                <div>
+                                                                    <div class="form-group">
+                                                                        <label for="lastName">Last Name</label>
+                                                                        <input type="text" name="lastName" [(ngModel)]="user.lastName"  formControlName="_lastName" id="lastName" class="form-control"
+                                                                            placeholder="Last Name" tabindex="2" maxlength="15">
+                                                                    </div>
+                    
+                    
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="email">Email Address </label>
+                                                                    <input type="email" name="email" [(ngModel)]="user.email"  formControlName="_email" id="email" class="form-control" placeholder="Email Address"
+                                                                        tabindex="4" pattern="^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$">
+                                                                </div>
+                    
+                                                                <div *ngIf="profileForm.controls._email.touched && profileForm.controls._email.errors">
+                                                                    <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="profileForm.controls._email.errors.required"> Please enter the valid emai address </div>
+                                                                    <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="profileForm.controls._email.errors.pattern"> Please enter the valid Email Address for eg. raj@yahoo.com</div>
+                                                                    <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="profileForm.controls._email.errors.emailShouldBeUnique"> Email already exists</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="phoneNumber">Phone Number </label>
+                                                                    <input  type="text" name="phoneNumber" [(ngModel)]="user.phoneNumber" formControlName="_phoneNumber" id="phoneNumber" class="form-control" pattern="^[^\s]+(\s+[^\s]+)*$"
+                                                                    (keypress)="keyPress($event)" maxlength="15"  minlength="10" minlength="10" placeholder="123 456 7890" tabindex="4">
+                                                                </div>
+                                                                <div *ngIf="profileForm.controls._phoneNumber.touched && profileForm.controls._phoneNumber.errors">
+                                                                    <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="profileForm.controls._phoneNumber.errors.required"> Please enter the valid Phone number </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label for="businessName">Primary Business</label>
+                                                                        <input type="text" name="businessName" [(ngModel)]="user.businessName"  formControlName="_businessName" id="businessName" class="form-control"
+                                                                            placeholder="BusinessName" tabindex="1" maxlength="50">
+                                                                    </div>
+                                                                   
+                                                                </div>
+                                                        </div>
+                                                         
+                                                             
+                                                       
+                    
+                                                        <hr class="colorgraph">
+                                                        <div class="row">
+                                                                <div *ngIf="spinLoader">
+                                                                        <i class="fa fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
+                                                                </div>
+                                                            <div *ngIf="!spinLoader" class="col-xs-12 col-md-4 pull-right"><input type="button" (click)="saveProfile()" [disabled]="!ValidForm()" value="Save"
+                                                                    class="btn btn-primary" tabindex="7"></div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+            </div>
+            <div class="passwordTab" style="display:none;">
+                
+
+                <div class="row col-md-12"style="display: inline-block;">
+                        
+                                     <form #f="ngForm" [formGroup]="changePasswordForm"  method="post" action="#">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group" style="display:inline-block">
+                                               <label for="oldPassword"class="lab">Old Password*</label>
+                                                <input type="password" name="oldPassword" [(ngModel)]="changePasswordRequest.oldPassword" formControlName="_oldPassword" id="oldPassword" class="form-control"
+                                                    placeholder="Old Password" tabindex="5" >
+                                            </div>
+                                            <div *ngIf="changePasswordForm.controls._oldPassword.touched && changePasswordForm.controls._oldPassword.errors">
+                                                <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="changePasswordForm.controls._oldPassword.errors.required"> Please enter the valid password </div>
+                                                <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="changePasswordForm.controls._oldPassword.errors.minlength"> Please enter min {{_oldPassword.controls._oldPassword.errors.minlength.requiredLength}}
+                                                    characters for password</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group" style="display: inline-block;">
+                                                  <label for="password"class="lab">Password*</label>
+                                                <input type="password" name="password" [(ngModel)]="changePasswordRequest.newPassword" formControlName="_password" id="password" class="form-control"
+                                                    placeholder="Password" tabindex="5" validateEqual="_confirmPassword" reverse="true">
+                                            </div>
+                                            <div *ngIf="changePasswordForm.controls._password.touched && changePasswordForm.controls._password.errors">
+                                                <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="changePasswordForm.controls._password.errors.required"> Please enter the valid password </div>
+                                                <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="changePasswordForm.controls._password.errors.minlength"> Please enter min {{changePasswordForm.controls._password.errors.minlength.requiredLength}}
+                                                    characters for password</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group" style="display: inline-block;">
+                                                <label for="confirmPassword" class="lab">Confirm Password*</label>
+                                                <input type="password" name="confirmPassword" [(ngModel)]="changePasswordRequest.confirmPassword" formControlName="_confirmPassword" id="confirmPassword"
+                                                    class="form-control" placeholder="Confirm Password" tabindex="6"  validateEqual="_password"
+                                                    reverse="false">
+                                            </div>
+                                            <div *ngIf="changePasswordForm.controls._confirmPassword.touched && changePasswordForm.controls._confirmPassword.errors">
+                                                <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="!changePasswordForm.controls._confirmPassword.errors.validateEqual">
+                                                    Confirm password not matching with password</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr class="colorgraph">
+                                    <div class="row">
+                                        <div *ngIf="spinPassLoader">
+                                                <i class="fa fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
+                                        </div>
+                                        <div *ngIf="!spinPassLoader" class="col-xs-12 col-md-4 pull-right">
+                                            <input type="button" style="width:auto;" (click)="changePassword()" [disabled]="!f.valid" value="Change Password"
+                                                class="btn btn-primary btn-block " tabindex="7"></div>
+                                    </div>
+                                     </form>
+                                
+        
+                    </div>
+            </div>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="row">
+  <!-- <div class="col-md-"></div> -->
+  <div *ngIf="userName" class="menu-buttons col-md-9 hidden-xs">
+    <div class="row">
+      <div class="col-md-5 col-sm-5"> <button *ngIf="userName && roleId<3"  (click)="customersOrders()"class="btn btn-default menu-btn">Customers Order</button></div>
+    <div class="col-md-4 col-sm-4"><button class="btn btn-default menu-btn" (click)="searchProduct()">Products</button></div>
+    <div class="col-md-3 col-sm-3"><button class="btn btn-default menu-btn" (click)="myOrders()">Orders</button></div>
+   
+    </div>
+  </div>
+   <div *ngIf="userName" class="col-md-3">  
+<div class="dropdown ">
+  <button class="btn btn-default btn-sm dropdown-toggle" style="    border: none;" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+       <font color="black;" style="font-weight: 600;
+       color: black;
+       font-size: 14px;"> <!--i class="fa fa-user-circle-o fa-2x" aria-hidden="true" ></i-->
+       <img class="img-circle" src="{{profileImageUrl}}" height="30px" weight="30px">
+     {{userName}} </font>
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    <li><a (click)="showUserProfile()">Profile Update</a></li>
+    <!-- <li role="separator" class="divider"></li> -->
+    <li><a (click)="logout()" >Logout</a></li>
+  </ul>
+</div>
+
+
+   </div>
+   <div  *ngIf="userName == ''" class="col-md-6 logout" style="line-height:3;">
+      <i class="fa fa-user-o header-icon" aria-hidden="true"></i>
+    <a href="#login">Login</a> | <a href="#signup">Sign Up</a>
+</div>
+  
+</div>

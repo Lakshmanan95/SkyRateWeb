@@ -1,0 +1,56 @@
+<div class="container">
+    
+    <div class="login-section col-md-12 col-xs-12">
+        <div class="row">
+          
+
+                    <form #f="ngForm"  [formGroup]="loginForm" method="post" action="#" >
+                            <div class="login login-container">
+                                <div class="login-content">
+                                    <div class="form-group">
+                                        <!-- <label for="userName">USER NAME</label> pattern="^[a-z0-9A-Z]+"-->
+                                        <input autocomplete="off" (focus)="inputFocus()" tabindex="-1" autofocus="autofocus" class="form-control " placeholder="Username or Email" name="username" type="text"
+                                            id="email"   [(ngModel)]="userName" formControlName="_userName"   required >
+                                       
+                                            <div *ngIf="loginForm.controls._userName.touched && loginForm.controls._userName.errors">
+                                                <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="loginForm.controls._userName.errors.required"> Please enter the valid username  </div>
+                                                <!--div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="loginForm.controls._userName.errors.pattern"> Please enter the valid UserName for eg. raj45</div-->
+                                            </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <!-- <label for="password">PASSWORD</label> -->
+                                        <input autocomplete="off" class="form-control password" 
+                                            placeholder="Password" (focus)="inputFocus()" name="password" type="password" id="password"
+                                            [(ngModel)]="password" formControlName="_password" required>
+                                       
+                                            <div *ngIf="loginForm.controls._password.touched && loginForm.controls._password.errors">
+                                                <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="loginForm.controls._password.errors.required"> Please enter the valid password </div>
+
+                                           </div>
+                                    </div>
+                                   
+                                    <div class="form-group">
+                                            <input type="checkbox" id="box-2"  [checked]="remember" (change)="remember = !remember">
+                                            <label for="box-2">Remember me</label>
+                                    </div>
+                                    <div class="form-group buttons">
+                                        
+                                        <div id="loginFailed" *ngIf="loginFailed" class="alert alert-danger"> Invalid Username or Password.</div>
+                                        <div id="loginFailed" *ngIf="emailMissing" class="alert alert-danger"> Please check your email and verify to activate.</div>
+                                       
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-6"> <button  data-redirect-url="#" data-webservice-url="#" class="btn btn-primary btn-signIn" type="submit" id="home_login_submit"
+                                            (click)="onSubmit()"    [disabled]="f.touched && !f.valid">Sign In</button></div>
+                                            <div class="col-md-6 col-sm-6">  <a class="forgot-link" target="_self" (click)="forgotPassword()" >Forgot your password?</a></div>
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+
+           
+        </div>
+    </div>
+</div>

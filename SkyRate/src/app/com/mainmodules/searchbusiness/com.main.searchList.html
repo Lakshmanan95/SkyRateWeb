@@ -1,0 +1,84 @@
+
+<div class="search-list" >
+    <div class="row col-md-12 search-list-row">
+            <div class="col-md-3 header-list">
+                    <span class="header-content">Search List</span>
+
+                </div>
+                <div class="col-md-4 header-list">
+                        <span class="header-subcontent">Category : <span *ngIf="categoryValue != null;else category" ><span *ngIf="categoryValue == 1; else partsValue">MRO Services</span></span>
+                            <ng-template #category>All Categories</ng-template>
+                            <ng-template #partsValue>Parts</ng-template>
+                        </span>
+                    </div>
+            <div class="col-md-5 header-list">
+
+                            <span class="header-subcontent">Search for : {{id}}</span>
+                        </div>
+           
+        <div class="col-md-12">
+            <div *ngFor="let x of searchList; let i = index">
+                <div *ngIf="i < 10" class="list-row">
+                    <div class="row">
+                        <div class="col-md-2" (click)="reviewBusiness(x.id,x.name)">
+                          <a *ngIf="x.imageUrl == null; else image"><img class="list-img"  src="assets/img/building.jpg" /></a>  
+                            <ng-template #image> <a><img class="list-img"  src="{{x.imageUrl}}" /></a></ng-template>
+                        </div>
+                        <div class="col-md-6 cursor-pointer" (click)="reviewBusiness(x.id,x.name)">
+                           <a  (click)="reviewBusiness(x.id,x.name)"> <h5 class="business-name"><b>{{x.name}}</b></h5></a>
+                           <h6 class="business-content">{{x.address}},<br>
+                            {{x.city}},{{x.state}}<span *ngIf="x.zip">-</span>{{x.zip}}</h6> 
+                           <fieldset class="rating">
+                                    <input type="radio" id="star5" name="rating" value="5" [(ngModel)]="x.overallRating" [readonly]="true"/><label class = "full" for="star5" [ngStyle]="{'color':x.overallRating == 5 ? '#D9B310' : '#cecaca' }" title="Awesome - 5 stars"></label>
+                                    <input type="radio" id="star4half" name="rating" value="4.5" [(ngModel)]="x.overallRating"  [readonly]="true"/><label class="half" for="star4half" [ngStyle]="{'color':x.overallRating > 4 ? '#D9B310' : '#cecaca' }" title="Pretty good - 4.5 stars"></label>
+                                    <input type="radio" id="star4" name="rating" value="4" [(ngModel)]="x.overallRating" [readonly]="true"/><label class = "full" for="star4" [ngStyle]="{'color':x.overallRating >= 4 ? '#D9B310' : '#cecaca' }"title="Pretty good - 4 stars"></label>
+                                    <input type="radio" id="star3half" name="rating" value="3.5" [(ngModel)]="x.overallRating" [readonly]="true"/><label class="half" for="star3half" [ngStyle]="{'color':x.overallRating > 3 ? '#D9B310' : '#cecaca' }"title="Meh - 3.5 stars"></label>
+                                    <input type="radio" id="star3" name="rating" value="3" [(ngModel)]="x.overallRating" [readonly]="true"/><label class = "full" for="star3" [ngStyle]="{'color':x.overallRating >= 3 ? '#D9B310' : '#cecaca' }"title="Meh - 3 stars"></label>
+                                    <input type="radio" id="star2half" name="rating" value="2.5" [(ngModel)]="x.overallRating" [readonly]="true"/><label class="half" for="star2half" [ngStyle]="{'color':x.overallRating > 2 ? '#D9B310' : '#cecaca' }"title="Kinda bad - 2.5 stars"></label>
+                                    <input type="radio" id="star2" name="rating" value="2" [(ngModel)]="x.overallRating" [readonly]="true"/><label class = "full" for="star2" [ngStyle]="{'color':x.overallRating >= 2 ? '#D9B310' : '#cecaca' }"title="Kinda bad - 2 stars"></label>
+                                    <input type="radio" id="star1half" name="rating" value="1.5" [(ngModel)]="x.overallRating" [readonly]="true"/><label class="half" for="star1half" [ngStyle]="{'color':x.overallRating > 1 ? '#D9B310' : '#cecaca' }"title="Meh - 1.5 stars"></label>
+                                    <input type="radio" id="star1" name="rating" value="1" [(ngModel)]="x.overallRating" [readonly]="true"/><label class = "full" for="star1" [ngStyle]="{'color':x.overallRating >= 1 ? '#D9B310' : '#cecaca' }"title="Sucks big time - 1 star"></label>
+                                    <input type="radio" id="starhalf" name="rating" value="0.5"[(ngModel)]="x.overallRating" [readonly]="true"/><label class="half" for="starhalf" [ngStyle]="{'color':x.overallRating > 0 ? '#D9B310' : '#cecaca' }"title="Sucks big time - 0.5 stars"></label>
+                                </fieldset>
+                        </div>
+                        <div class="col-md-4 pull-right">
+                            <span class="business-content"><b>Certificate Number :</b></span> <span class="business-content">{{x.certificateNumber}}</span><br>
+                            <span class="business-content"><b>Certificate Holding Office :</b> {{x.certificateHoldingOffice }}</span><br>
+                            <span class="business-content">
+                                <b>Designator Code :</b> {{x.designatorCode}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-4 certificate-details">
+                            
+                        </div>
+                        <div *ngIf="!x.isBookmarked" class="col-md-6" style="text-align:right;">
+                               <button class="btn btn-default" (click)="compare(x.id,i)">Compare</button>
+                        </div>
+                        <!-- <div *ngIf="x.isBookmarked" class="col-md-6" style="text-align:right;">
+                            <button class="btn btn-default" (click)="compare(x.id)">Un Compare</button>
+                     </div> -->
+                    </div>
+
+                </div>
+            </div>
+            <div *ngIf="searchList?.length == 0" style="color: white">
+                No records found.
+            </div>
+            <div  *ngIf="count != 0" class="pagination row">
+                <div class="col-md-12 col-sm-12 col-xs-12 " style="text-align: center;" >
+                      <span (click)="start()">    <i class="fa fa-backward pagination-arrow" aria-hidden="true"></i></span>
+                     <span (click)="previous()">   <i class="fa fa-caret-left pagination-arrow" aria-hidden="true"></i></span>
+                      <!-- <span class="count"> <input type="text" class="form-control"  [(ngModel)]="currentPage" (keyup.enter)=pagesearch($event.value)/> of {{lastPage}}</span> -->
+                      <span class="count"> <input type="text" class="form-control pagination-input"  [(ngModel)]="currentPage" maxlength="3" (keypress)="keyPress($event)"  (keyup.enter)=pagesearch($event.target.value)/> <span style="color:white">of {{lastPage}}</span></span>
+                      <span (click)="next()"> <i class="fa fa-caret-right pagination-arrow" aria-hidden="true"></i></span>
+                      <span (click)="end()"><i class="fa fa-forward pagination-arrow" aria-hidden="true"></i></span>
+                   </div>
+            </div>
+
+        </div>    
+        <div class="col-md-4"></div>            
+    </div>
+</div>

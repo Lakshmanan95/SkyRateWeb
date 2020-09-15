@@ -1,0 +1,86 @@
+<div class="col-md-12">
+   
+</div>
+        <div class="col-md-12">
+          
+          <form #f1="ngForm" [formGroup]="ratingForm"  method="post" action="#">
+          <div class="row  rating-stars">
+              <div class="col-md-3">
+                <div><span class="rating-content">Quality</span></div>
+                    
+                <fieldset class="quality">
+                        <input type="radio" id="5" name="_rating" value="5" [(ngModel)]="ratingValue" formControlName="_rating"/><label class = "full tooltip" for="5"  > <div class="tooltiptext">Excellent</div></label>
+                        <!-- <input type="radio" id="4.5" name="_rating" value="4.5" [(ngModel)]="ratingValue" formControlName="_rating" /><label class="half" for="4.5"  ></label> -->
+                        <input type="radio" id="4" name="_rating" value="4" [(ngModel)]="ratingValue" formControlName="_rating"/><label class = "full tooltip" for="4"><div class="tooltiptext">Good</div></label>
+                        <!-- <input type="radio" id="3.5" name="_rating" value="3.5" [(ngModel)]="ratingValue" formControlName="_rating"/><label class="half" for="3.5" ></label> -->
+                        <input type="radio" id="3" name="_rating" value="3" [(ngModel)]="ratingValue" formControlName="_rating"/><label class = "full tooltip" for="3"><div class="tooltiptext">Average</div></label>
+                        <!-- <input type="radio" id="2.5" name="_rating" value="2.5" [(ngModel)]="ratingValue" formControlName="_rating"/><label class="half" for="2.5"></label> -->
+                        <input type="radio" id="2" name="_rating" value="2" [(ngModel)]="ratingValue" formControlName="_rating"/><label class = "full tooltip" for="2"><div class="tooltiptext">Fair</div></label>
+                        <!-- <input type="radio" id="1.5" name="_rating" value="1.5" [(ngModel)]="ratingValue" formControlName="_rating"/><label class="half" for="1.5"></label> -->
+                        <input type="radio" id="1" name="_rating" value="1" [(ngModel)]="ratingValue" formControlName="_rating"/><label class = "full tooltip" for="1"><div class="tooltiptext">Poor</div></label>
+                        <!-- <input type="radio" id="0.5" name="_rating" value="0.5" [(ngModel)]="ratingValue" formControlName="_rating"/><label class="half" for="0.5"></label> -->
+                    </fieldset>
+                   
+                   
+                </div>
+                <div class="col-md-3">
+                    <div><span class="rating-content">Pricing</span></div>
+                        <fieldset class="pricing">
+                                <input type="radio" id="pricestar5" name="_pricerating" value="5" [(ngModel)]="review.pricing" formControlName="_pricerating"/><label class = "full tooltip" for="pricestar5" ><div class="tooltiptext">Excellent</div></label>
+                               
+                                <input type="radio" id="pricestar4" name="_pricerating" value="4" [(ngModel)]="review.pricing" formControlName="_pricerating"/><label class = "full tooltip" for="pricestar4"><div class="tooltiptext">Good</div></label>
+                                <input type="radio" id="pricestar3" name="_pricerating" value="3" [(ngModel)]="review.pricing" formControlName="_pricerating"/><label class = "full tooltip" for="pricestar3"><div class="tooltiptext">Average</div></label>
+                               <input type="radio" id="pricestar2" name="_pricerating" value="2" [(ngModel)]="review.pricing" formControlName="_pricerating"/><label class = "full tooltip" for="pricestar2"><div class="tooltiptext">Fair</div></label>
+                               <input type="radio" id="pricestar1" name="_pricerating" value="1" [(ngModel)]="review.pricing" formControlName="_pricerating"/><label class = "full tooltip" for="pricestar1"><div class="tooltiptext">Poor</div></label>
+                              
+                            </fieldset>
+                </div>
+                <div class="col-md-3">
+                    <div><span class="rating-content">Turnaround Time</span></div>
+                        <fieldset class="speed">
+                                <input type="radio" id="speedstar5" name="_speedrating" value="5" [(ngModel)]="review.deliverySpeed" formControlName="_speedrating"/><label class = "full tooltip" for="speedstar5" ><div class="tooltiptext">Excellent</div></label>
+                                <!-- <input type="radio" id="speedstar4half" name="_speedrating" value="4.5" [(ngModel)]="review.deliverySpeed" formControlName="_speedrating" /><label class="half tooltip" for="speedstar4half"><div class="tooltiptext">Super Fast</div></label> -->
+                                <input type="radio" id="speedstar4" name="_speedrating" value="4" [(ngModel)]="review.deliverySpeed" formControlName="_speedrating"/><label class = "full tooltip" for="speedstar4" ><div class="tooltiptext">Good</div></label>
+                                <!-- <input type="radio" id="speedstar3half" name="_speedrating" value="3.5" [(ngModel)]="review.deliverySpeed" formControlName="_speedrating"/><label class="half tooltip" for="speedstar3half"><div class="tooltiptext">Fast</div></label> -->
+                                <input type="radio" id="speedstar3" name="_speedrating" value="3" [(ngModel)]="review.deliverySpeed" formControlName="_speedrating"/><label class = "full tooltip" for="speedstar3" ><div class="tooltiptext">Average</div></label>
+                                <!-- <input type="radio" id="speedstar2half" name="_speedrating" value="2.5" [(ngModel)]="review.deliverySpeed" formControlName="_speedrating"/><label class="half tooltip" for="speedstar2half" ><div class="tooltiptext">Reasonable</div></label> -->
+                                <input type="radio" id="speedstar2" name="_speedrating" value="2" [(ngModel)]="review.deliverySpeed" formControlName="_speedrating"/><label class = "full tooltip" for="speedstar2" ><div class="tooltiptext">Fair</div></label>
+                                <!-- <input type="radio" id="speedstar1half" name="_speedrating" value="1.5" [(ngModel)]="review.deliverySpeed" formControlName="_speedrating"/><label class="half tooltip" for="speedstar1half" ><div class="tooltiptext">Kinda Ok</div></label> -->
+                                <input type="radio" id="speedstar1" name="_speedrating" value="1" [(ngModel)]="review.deliverySpeed" formControlName="_speedrating"/><label class = "full tooltip" for="speedstar1" ><div class="tooltiptext">Poor</div></label>
+                                <!-- <input type="radio" id="speedhalf" name="_speedrating" value="0.5" [(ngModel)]="review.deliverySpeed" formControlName="_speedrating"/><label class="half tooltip" for="speedhalf" ><div class="tooltiptext">Dead Slow</div></label> -->
+                            </fieldset>
+                </div>
+          </div>
+          <div class="row">
+              <div class="recommend-row col-md-6">
+                  <span><b class="header-color">Would you use this provider again?</b></span><br>
+                  <div class="selection">
+                        <div>
+                            <input type="radio"  class="green" id="radio01" name="_recommendations"  [(ngModel)]="review.recommended" value="true" formControlName="_recommendations"/>
+                            <label for="radio01"><span></span><font class="green"> <i class="fa fa-thumbs-up fa-2x"></i></font></label>
+                          </div>
+                          
+                          <div>
+                           <input type="radio" id="radio02" class="red" name="_recommendations" [(ngModel)]="review.recommended" value="false"formControlName="_recommendations"/>
+                           <label for="radio02"><span></span><font  class="red"><i class="fa fa-thumbs-down fa-2x"></i></font></label>
+                          </div>
+                  </div>
+              </div>
+             
+          </div>
+          <div class="row write-review col-md-12"style="padding: 0px;">
+            <textarea class="text-area" maxlength="5000"  [(ngModel)]="reviewValue"
+             name="_reviewValue" formControlName="_reviewValue" rows=5 placeholder="Start writing a review now (5000 characters max)"></textarea>
+        </div>
+           <div class="row  col-md-12"style="padding: 0px;display:inline-block;" >
+            <div >
+                <div class=" review-submit"> <button class="btn btn-primary btn-submit" [disabled]="!f1.valid" (click)="addReview()" type="submit">Add your review</button></div>
+               
+            </div>
+           </div>
+
+          </form>
+         
+          </div>
+
+         

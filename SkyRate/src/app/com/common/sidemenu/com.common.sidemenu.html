@@ -1,0 +1,177 @@
+<div class="row col-md-12">
+    <popover-content #myPopover placement="auto" [animation]="true" [closeOnClickOutside]="true" >
+      <div class="pop-content">
+        <div class="form-group">
+
+            <button type="submit"   data-toggle="modal"   data-target="#loginModal"  (click)="myPopover.hide()" (click)="openLogin()"  class="btn btn-primary btn-signIn">Log In</button> <br>
+          </div>
+          <div class="signup">
+            <span>Need an account? <a  data-toggle="modal" data-target="#loginModal"    (click)="myPopover.hide()" (click)="openSignUp()">Sign up</a></span>
+          </div>
+        </div>
+
+      </popover-content>
+      <popover-content #myPopoverLogOut placement="auto" [animation]="true" [closeOnClickOutside]="true" >
+          <div class="pop-content pop-content-flex">
+            <div class="form-group" style="margin-bottom:0rem">
+                <div class="signup profile-log" (click)="profileUpdate()">
+                    <span class="profile-li" ><img src="{{profileImg}}" class="profile-img" /> Profile Update</span>
+                  </div>
+                  <hr class="ruler">
+                  <div *ngIf="roleId == 2 || roleId == 1" class="signup profile-log" (click)="myPopoverLogOut.hide()" (click)="admin()"><span    class="profile-li"><i class="fa fa-cog facolor" aria-hidden="true"></i> Admin</span></div>
+                  <hr *ngIf="roleId == 2 || roleId == 1"  class="ruler">
+                  <div  class="signup profile-log" (click)="myPopoverLogOut.hide()"(click)="inbox()"><span    class="profile-li"><i class="fa fa-commenting facolor" aria-hidden="true"></i> Inbox</span></div>
+                  <hr  class="ruler">
+                  <div class="signup profile-log" (click)="myPopoverLogOut.hide()" (click)="logOut()"><span    class="profile-li"><i class="fa fa-sign-out facolor" aria-hidden="true"></i> Log Out</span></div>
+
+              </div>
+            </div>
+
+          </popover-content>
+
+
+          <div  *ngIf="user==null"class="col-md-12 align-menu"style="    margin-left: 35px;">
+    <!-- <div class="col-md-12">
+      <div class="user-name">
+        <a style="cursor:pointer"   data-toggle="modal"   data-target="#loginModal"> <font class="sign-in">Sign in</font></a>
+        | <a  data-toggle="modal" data-target="#loginModal" (click)="openSignUp()"><font class="sign-in">Sign up</font></a>
+      </div>
+    </div> -->
+        <ul class="side-menu">
+          <li style="cursor:pointer" id="login1"><a class="nav-link"[popover]="myPopover" >
+            <font class="sign-in">Log In <span style="color:#afaaa6;font-size: 15px;">or</span> Sign up  </font></a></li>
+        </ul>
+  </div>
+  <div *ngIf="user!=null" class="row col-md-12 user-name"style="margin-left: 22px;">
+    <div class="row col-md-12">
+      <div class="col-md-12" style="display: -webkit-inline-box;margin-left: 21px; padding-top: 6px; ">
+          <span class="home" (click)="home()"><i class="fa fa-home" aria-hidden="true"></i></span>
+          <img (click)="inbox()" class="default-img fa fa-envelope" style="height:47px" src="assets/img/chat-inbox.png">
+           <span *ngIf="count && count > 0" class="badge">{{count}}</span>
+
+           <div class="dropdown user-dropdown" style="padding-inline-start: 16px;">
+
+
+              <a   class="dropdown-toggle user_name-toggle" data-toggle="dropdown">
+                  <font class="sign-in"> <img  class="img-circle" src="{{user.profileImageUrl}}" >
+                    {{user.firstName}} {{user.lastName}} </font>
+              </a>
+
+              <div class="dropdown-menu menu-arrow "style="    margin:0px;">
+                  <div class="form-group" style="margin-bottom:0rem">
+                      <div class="signup profile-log" (click)="profileUpdate()">
+                          <span class="profile-li" > Profile Update</span>
+                        </div>
+                        <hr class="ruler">
+                        <!-- <div *ngIf="roleId == 2 || roleId == 1" class="signup profile-log" (click)="myPopoverLogOut.hide()" (click)="admin()"><span    class="profile-li"><i class="fa fa-cog facolor" aria-hidden="true"></i> Admin</span></div>
+                        <hr *ngIf="roleId == 2 || roleId == 1"  class="ruler"> -->
+                        <!-- <div  class="signup profile-log" (click)="myPopoverLogOut.hide()"(click)="inbox()"><span    class="profile-li"><i class="fa fa-commenting facolor" aria-hidden="true"></i> Inbox</span></div>
+                        <hr  class="ruler"> -->
+                        <div class="signup profile-log"  (click)="logOut()"><span    class="profile-li">Log Out</span></div>
+
+                    </div>
+              </div>
+            </div>
+
+      </div>
+      <!-- <div class="col-md-2">
+        <span class="home" (click)="home()"><i class="fa fa-home" aria-hidden="true"></i></span>
+      </div>
+      <div class="col-md-2">
+          <span (click)="inbox()"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+        </div>
+        <div class="col-md-1">
+          <span><i class="fa fa-cog facolor" aria-hidden="true"></i></span>
+        </div> -->
+      <!-- <div class="col-md-7">
+
+                  <div class="dropdown">
+                      <a  class="dropdown-toggle" data-toggle="dropdown">
+                          <font class="sign-in"> <img class="img-circle" src="{{user.profileImageUrl}}" >
+                            {{user.firstName}} {{user.lastName}} </font>
+                      </a>
+                      <div class="dropdown-menu">
+                          <div class="form-group" style="margin-bottom:0rem">
+                              <div class="signup profile-log" (click)="profileUpdate()">
+                                  <span class="profile-li" ><img src="{{user.profileImageUrl}}" class="profile-img" /> Profile Update</span>
+                                </div>
+                                <hr class="ruler">
+                                <div *ngIf="roleId == 2 || roleId == 1" class="signup profile-log" (click)="myPopoverLogOut.hide()" (click)="admin()"><span    class="profile-li"><i class="fa fa-cog facolor" aria-hidden="true"></i> Admin</span></div>
+                                <hr *ngIf="roleId == 2 || roleId == 1"  class="ruler">
+
+                                <div class="signup profile-log" (click)="myPopoverLogOut.hide()" (click)="logOut()"><span    class="profile-li"><i class="fa fa-sign-out facolor" aria-hidden="true"></i> Log Out</span></div>
+
+                            </div>
+                      </div>
+                    </div>
+      </div> -->
+
+    </div>
+    <!-- <div class="row">
+        <div class="col-md-3">
+          <span>Add Business</span>
+        </div>
+        <div class="col-md-3">
+            <span>Contact us</span>
+          </div>
+      </div> -->
+
+      <!-- <div class="col-md-7"><a class="nav-link" [popover]="myPopoverLogOut" id="login">
+          <font class="sign-in">{{user.firstName}} {{user.lastName}} </font></a></div>
+    <div class="col-md-5"><a *ngIf="roleId  == 2 || roleId == 1" class="nav-link" (click)="claimBusiness()">
+        <font class="sign-in"> Approvals </font></a></div> -->
+
+      <!-- <ul class="side-menu">
+          <li  *ngIf="roleId  <= 2" style="cursor:pointer" (click)="claimBusiness()"><a class="nav-link">
+            <font class="sign-in"> Approvals </font></a></li>
+            <li  style="cursor:pointer"><a class="nav-link" [popover]="myPopoverLogOut" id="login">
+                <font class="sign-in">{{userName}} </font></a></li>
+        </ul> -->
+  </div>
+
+        <div class="modal fade" id="loginModal" #openModal data-backdrop="static" data-keyboard="false" role="dialog">
+            <div class="modal-dialog">
+
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title text-center" style="margin: 0 auto;">Welcome to <span class="modal-logo">AviationRating</span></h4>
+
+                        <a href="#" data-dismiss="modal"  class="close close-modal" aria-hidden="true">×</a>
+
+                </div>
+                <div class="modal-body">
+                    <ul class="nav nav-tabs nav-header">
+                        <li  class="list-space"><span id="login"  class="tab-header"(click)="openLogin()" [ngStyle]="getLogin()" >Log In</span></li>
+                        <li  class="list-space"><span id="signUp" class="tab-header" (click)="openSignUp()">Sign Up</span></li>
+                    </ul>
+                    <div class="loginTab">
+                        <login (loginSuccess)="loginResult($event)"></login>
+                    </div>
+                    <div class="signUpTab" style="display:none;">
+                    <register (registerSuccess)="registerResult($event)"></register>
+                    </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="modal fade" id="loginResultModal" data-backdrop="static" data-keyboard="false" role="dialog">
+              <div class="modal-dialog">
+
+                <div class="modal-content">
+              <div class="modal-header">
+                  <h4 class="modal-title text-center" style="margin: 0 auto;">Login Failed ! </h4>
+
+                      <a href="#" data-dismiss="modal"  class="close close-modal" aria-hidden="true">×</a>
+
+              </div>
+              <div class="modal-body">
+
+              </div>
+                </div>
+
+              </div>
+            </div>
+      </div>

@@ -1,0 +1,63 @@
+<div class="col-md-12">
+        <div   class="myfavorites" style="margin-top:50px;">
+                <h5 class="favorite-header" (click)="moveToFavorite()"><b>Compare Vendors <hr class="hr-align"></b></h5>
+              <div class="fav-list">
+                <div *ngIf="favoriteList?.length != 0" class="col-md-12">
+                    <div *ngFor="let x of favoriteList" class="row bottom-border">
+                        <div class="col-md-10 bottom-border1">
+                            <div class="fav-name" (click)="reviewBusiness(x.businessId,x.name)"><span><i class="fa fa-star"></i>{{x.name}}</span></div>
+                        </div>
+                        <div class="col-md-1">
+                            <i class="fa fa-close" (click)="deleteBookmark(x.businessId,0)"></i>
+                        </div>
+                        <div class="col-md-12">
+                            <hr class="compare-horizontal">
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="userId==0 || favoriteList?.length == 0" class="col-md-12 fav-li">No business added to compare yet, please click compare button to compare the vendors</div>
+            </div>
+                <div class="row">
+                <div *ngIf="userId!=0 && favoriteList?.length != 0" class="col-md-5">
+                       
+                        <button class="btn btn-primary btn-compare-business" type="submit" (click)="addBookmark(0,1)">Clear All</button>
+
+                </div>
+                <div class="col-md-5">
+
+                        <button class="btn btn-primary btn-compare-business" type="submit" (click)="moveToFavorite()">Compare</button>
+                </div>
+                </div>
+           
+
+
+        </div>
+
+            <div class="ad">
+                    <ad></ad>
+                </div>
+    <!-- <div class="contact-us" [ngStyle]="getStyles()">
+       
+        <div class="row">
+            <div class="col-md-12">
+                <span class="content-contact">Need help or have a question?</span><br>
+                <button class="btn btn-primary btn-contact"(click)="contact()">Contact us</button> 
+            </div>
+        </div>
+    </div>
+    <div class="add-business">
+        <div class="row">
+                <div class="col-md-12">
+                    <span class="rightside-content">Cannot find a business? </span>
+                </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <button class="btn btn-primary btn-add-business" type="submit" (click)="addBusiness()">Add Business</button>
+            </div>
+        </div>
+    </div>
+     -->
+    
+        
+</div>

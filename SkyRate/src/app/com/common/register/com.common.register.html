@@ -1,0 +1,1195 @@
+<div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 ">
+                <form #f="ngForm" [formGroup]="signupForm" method="post" action="#">
+                        <div class="row form-row">
+                                <div class="col-md-12">
+                                        <input type="text" autofocus="autofocus" class="form-control" placeholder="UserName"
+                                                tabindex="-1" name="userName" maxlength="15" [(ngModel)]="user.userName"
+                                                formControlName="_userName" id="userName" pattern="[a-zA-Z0-9]+" />
+                                        <div *ngIf="signupForm.controls._userName.touched && signupForm.controls._userName.errors">
+                                                <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="signupForm.controls._userName.errors.required">
+                                                        Please enter the valid Username with maximum of 15 characters
+                                                </div>
+                                                <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="signupForm.controls._userName.errors.pattern">
+                                                        Please enter the valid Username for eg. raj45</div>
+                                                <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="signupForm.controls._userName.errors.shouldBeUnique">
+                                                        UserName already taken</div>
+                                        </div>
+                                </div>
+                        </div>
+                        <div class="row form-row">
+                                <div class="col-md-6">
+                                        <input pattern="^[a-zA-Z]*$" type="text" class="form-control" placeholder="First Name"
+                                                name="firstName" [(ngModel)]="user.firstName" formControlName="_firstName"
+                                                id="firstName" />
+                                        <div *ngIf="signupForm.controls._firstName.touched && signupForm.controls._firstName.errors">
+                                                <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="signupForm.controls._firstName.errors.required">
+                                                        Please enter the valid First Name </div>
+                                                <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="signupForm.controls._firstName.errors.pattern">
+                                                        Use only alphabets</div>
+                                        </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                        <input pattern="^[a-zA-Z]*$" type="text" class="form-control" placeholder="Last Name"
+                                                name="lastName" [(ngModel)]="user.lastName" formControlName="_lastName"
+                                                id="lastName" />
+                                        <div *ngIf="signupForm.controls._lastName.touched && signupForm.controls._lastName.errors">
+                                                <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="signupForm.controls._lastName.errors.required">
+                                                        Please enter the valid Last Name </div>
+                                                <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="signupForm.controls._lastName.errors.pattern">
+                                                        Use only alphabets </div>
+                                        </div>
+                                </div>
+                        </div>
+                        <div class="row form-row">
+                                <div class="col-md-12">
+                                        <input type="email" class="form-control" placeholder="Email" name="email"
+                                                [(ngModel)]="user.email" formControlName="_email" id="emailId" pattern="^[a-z0-9._-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
+                                        <div *ngIf="signupForm.controls._email.touched && signupForm.controls._email.errors">
+                                                <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="signupForm.controls._email.errors.required">
+                                                        Please enter the valid email address </div>
+                                                <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="signupForm.controls._email.errors.pattern">
+                                                        Please enter the valid Email Address for eg. raj@yahoo.com</div>
+                                                <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="signupForm.controls._email.errors.emailShouldBeUnique">
+                                                        Email already taken</div>
+                                        </div>
+                                </div>
+                        </div>
+
+                        <div class="row form-row">
+                                <div class="col-md-12">
+                                        <input type="password" name="password" [(ngModel)]="user.password"
+                                                formControlName="_password" id="password" class="form-control"
+                                                placeholder="Password" validateEqual="_confirmPassword" reverse="true">
+                                        <div *ngIf="signupForm.controls._password.touched && signupForm.controls._password.errors">
+                                                <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="signupForm.controls._password.errors.required">
+                                                        Please enter the valid password </div>
+                                                <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="signupForm.controls._password.errors.minlength">
+                                                        Please enter min
+                                                        {{signupForm.controls._password.errors.minlength.requiredLength}}
+                                                        characters
+                                                        for password</div>
+                                        </div>
+                                </div>
+                        </div>
+
+                        <div class="row form-row">
+                                <div class="col-md-12">
+                                        <input type="password" name="confirmPassword" [(ngModel)]="user.confirmPassword"
+                                                formControlName="_confirmPassword" id="confirmPassword" class="form-control"
+                                                placeholder="Confirm Password" validateEqual="_password" reverse="false">
+                                        <div *ngIf="signupForm.controls._confirmPassword.touched && signupForm.controls._confirmPassword.errors">
+                                                <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="!signupForm.controls._confirmPassword.errors.validateEqual">
+                                                        Confirm password not matching with password</div>
+                                        </div>
+                                </div>
+                        </div>
+
+                        <div class="row form-row">
+                                <div class="col-md-12">
+                                        <input type="text" class="form-control" placeholder="Business Name" [(ngModel)]="user.businessName"
+                                                formControlName="_businessName" id="businessName" />
+                                        <div *ngIf="signupForm.controls._businessName.touched && signupForm.controls._businessName.errors">
+                                                <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="!signupForm.controls._businessName.errors.validateEqual">
+                                                        Please enter the Business Name</div>
+                                        </div>
+                                </div>
+                        </div>
+
+                        <div class="row form-row">
+                                <div class="col-md-12">
+                                        <input type="text" name="phoneNumber" [(ngModel)]="user.phoneNumber"
+                                                formControlName="_phoneNumber" id="phoneNumber" class="form-control"
+                                                pattern="^[^\s]+(\s+[^\s]+)*$" placeholder="123 456 7890" (keypress)="keyPress($event)"
+                                                maxlength="15" minlength="10" />
+                                        <div *ngIf="signupForm.controls._phoneNumber.touched && signupForm.controls._phoneNumber.errors">
+                                                <div class="alert alert-danger fa fa-exclamation-triangle" *ngIf="!signupForm.controls._phoneNumber.errors.validateEqual">
+                                                        Please enter the Phone Number</div>
+                                        </div>
+                                </div>
+                        </div>
+                        <div *ngIf="isPolicyOpen" class="row form-row">
+                                <div class="col-md-12">
+                                        <div class="form-control over-flow" rows="5" readonly>
+                                                
+
+                                                <h6><b style="font-size: 13px;">Last Modified December 1, 2018</b></h6>
+
+                                                <div style="text-align: justify; font-size: 11px;">AviationRating is committed to
+                                                        protecting the privacy of our users. This privacy policy
+                                                        explains when and how personal information is collected, used,
+                                                        disclosed and protected with respect to our web site located at
+                                                        <a href="https://www.aviationrating.com">https://aviationrating.com</a>
+                                                        (the "Site") or mobile application(s). By
+                                                        using the Site and services, you consent to the privacy terms
+                                                        described in this Policy, as modified from time to time by us.
+                                                        Please carefully review this policy so you understand
+                                                        our data privacy practices. If you do not agree to the terms
+                                                        and conditions of this Privacy Policy, including having your
+                                                        personally identifiable information used in any of the ways
+                                                        described in this Privacy Policy, you may not be able to use
+                                                        certain parts or features of our Site and Services, and in some
+                                                        instances, this may necessitate the revocation of your
+                                                        membership. </div> <br />
+
+
+                                                <h6><b style="font-size: 13px;"> Information Collected</b></h6>
+
+                                                <div style="text-align: justify; font-size: 11px;"> AviationRating collects information
+                                                        on our users in various ways, such as, by your voluntary
+                                                        submissions, participation in services provided via the Site
+                                                        and Services,
+                                                        from third parties with your consent, and through cookie and
+                                                        other tracking technology. AviationRating collects the
+                                                        following information:</div><br />
+                                                <h6><b style="font-size: 13px;"> Personal Information</b></h6>
+
+                                                <div style="text-align: justify; font-size: 11px;"> Personal information is information
+                                                        that specifically identifies an individual such as a name,
+                                                        address, telephone number, e-mail address, or other account
+                                                        number,
+                                                        and information about that individual's activities when
+                                                        directly linked to that person such as information about his or
+                                                        her use of the Site. Personal information might also includes
+                                                        demographic information such as
+                                                        date of birth, gender, geographic area and preferences when
+                                                        such information is linked to other personal information that
+                                                        identifies you. </div><br />
+                                                <h6><b style="font-size: 13px;"> Reviews, Ratings, and Comments</b></h6>
+                                                <div style="text-align: justify; font-size: 11px;">Please note that your reviews and
+                                                        comments are displayed publicly. Your member name is
+                                                        automatically displayed with reviews and comments you publish.
+                                                        If other members choose to, they
+                                                        can receive email notifications of your publications or publish
+                                                        their own comments to your reviews. We collect information that
+                                                        you voluntarily provide as part of our Site and Services,
+                                                        including messages, posts, comments,
+                                                        responses, reviews, and ratings you submit through the Site and
+                                                        Services, ("User Content"). AviationRating may in our sole
+                                                        discretion share your User Content with others such as your
+                                                        business reviews. If you do not want certain
+                                                        information shared with others, you should not submit User
+                                                        Content, or should not submit User Content that contains
+                                                        information or Personal Information you do not want shared<br />
+
+                                                        You may not harvest personal data (including email addresses)
+                                                        from the site, and specifically you may not use email addresses
+                                                        displayed on the site to ask users to join or contribute to
+                                                        your services. </div><br />
+
+                                                <h6><b style="font-size: 13px;"> Cookies </b></h6>
+
+                                                <div style="text-align: justify; font-size: 11px;"> AviationRating may automatically
+                                                        collect non-personally identifiable information and data
+                                                        through the use of cookies. Cookies are small text files a
+                                                        website uses to recognize repeat users,
+                                                        facilitate the user's ongoing access to the website and
+                                                        facilitate the use of the website. Cookies also allow a website
+                                                        to track usage behavior and compile site usage information that
+                                                        will allow for the improvement of
+                                                        content and target advertising. Most browsers allow you to
+                                                        control cookies, including whether or not to accept them and
+                                                        how to remove them. You may set your browsers to notify you if
+                                                        you receive a cookie, or you may choose to block cookies with
+                                                        your browser.
+                                                        However, please be aware that some features of our Site and
+                                                        Services may not function or may be slower if you refuse
+                                                        cookies. You may also get cookies from our advertisers or other
+                                                        third parties with links on the Site. We do not directly
+                                                        control these cookies.
+                                                        The use of advertising cookies sent by third party ad servers
+                                                        is standard in the Internet industry.
+                                                        We may use the services of third parties to collect and use
+                                                        anonymous information about your visits to and interactions
+                                                        with our website through the use of technologies such as
+                                                        cookies to personalize advertisements for goods and services.
+                                                </div><br />
+
+                                                <h6><b style="font-size: 13px;"> Email Tools </b></h6>
+
+                                                <div style="text-align: justify; font-size: 11px;"> If you send emails through our site,
+                                                        your email will include your email address and any personal
+                                                        message you include. However, these emails aren't private
+                                                        communications. We do not retain, in any easily-retrievable
+                                                        way,
+                                                        the addresses you are emailing. You may not use these tools to
+                                                        send spam or content that violates our agreement. </div><br />
+
+                                                <h6><b style="font-size: 13px;"> Aggregate Information </b></h6>
+
+                                                <div style="text-align: justify; font-size: 11px;"> We may collect general, non-personal,
+                                                        statistical information about the use of the Site and Services,
+                                                        such as how many visitors visit a specific page on the Site,
+                                                        how long they stay on that page, and which hyperlinks, if any,
+                                                        they click on. This information represents a generic overview
+                                                        of our users, including their collective viewing habits, and
+                                                        allows us and other third parties to modify information,
+                                                        promotions, offers and/or discounts on products and services
+                                                        based on user
+                                                        traffic and behavior. We collect this information through the
+                                                        use of technologies such as 'cookies' and web beacons, which
+                                                        are discussed in greater detail below. We collect this
+                                                        information in order to help enhance the Site and Services to
+                                                        make for a better visitor experience.</div><br />
+
+
+                                                <h6><b style="font-size: 13px;">Use of Information</b></h6>
+
+                                                <div style="text-align: justify; font-size: 11px;">The information AviationRating
+                                                        collects is used in a variety of ways, including</div><br />
+                                                <ul style="text-align: justify; font-size: 11px;">
+                                                        <li>to optimize third-party offers of products and/or services;</li>
+                                                        <li>for our marketing purposes and the marketing of discounts
+                                                                offered through our Site and Services by service
+                                                                contractors;</li>
+                                                        <li>to verify the legitimacy of reviews and ratings;</li>
+                                                        <li>to get reviews and ratings;</li>
+                                                        <li>for internal review;</li>
+                                                        <li>to improve the Site and Services;</li>
+                                                        <li>to notify you about updates to the Site and Services;</li>
+                                                        <li>to let you know about services that you may be interested
+                                                                in;</li>
+                                                        <li>internal business analysis or other business purposes
+                                                                consistent with our mission; and to carry out other
+                                                                purposes that are disclosed to you and to which you
+                                                                consent.</li>
+                                                        <li> to fulfill and provide products and services, including
+                                                                personalized or enhanced services, requested by you;
+                                                                and</li>
+                                                </ul>
+                                                <h6><b style="font-size: 13px;">Sharing of Information and Disclosures </b></h6>
+
+                                                <div style="text-align: justify; font-size: 11px;"> We do not sell, rent or share
+                                                        personal information with third parties without your prior
+                                                        consent except in the limited circumstances described in this
+                                                        Policy. We may share personal information with third-party
+                                                        vendors who assist us in performing functions necessary to
+                                                        operate our business. These functions may include, without
+                                                        limitation, Website hosting, credit card transaction processing
+                                                        and data entry. We limit the information shared with our
+                                                        third-party vendors to that which we believe is necessary to
+                                                        carry out those functions. Moreover, we require them to comply
+                                                        with our privacy practices, and not to use the information for
+                                                        other purposes except as required by law. We are not
+                                                        responsible for any failure on their part to comply with our
+                                                        privacy practices, nor are we responsible for any additional
+                                                        information you provide directly to these parties, and we
+                                                        encourage you to become familiar with their practices before
+                                                        disclosing information directly to them. </div><br />
+
+                                                <div style="text-align: justify; font-size: 11px;">We do not disclose Personal
+                                                        Information to third parties, except but not limited to when
+                                                        one or more of the following conditions is true:</div><br />
+                                                <ul style="text-align: justify; font-size: 11px;">
+                                                        <li> The disclosure is necessary for the purpose for which the
+                                                                personal information was obtained;</li>
+                                                        <li>The disclosure is permitted by relevant law;</li>
+                                                        <li>The disclosure is to financial service providers in order
+                                                                to fulfill and carry out the purchase and provision of
+                                                                services requested by you;</li>
+                                                        <li>We have your permission to make the disclosure;</li>
+                                                        <li>The disclosure is to the service provider from whom you
+                                                                purchased services through AviationRating’s platform;</li>
+                                                        <li>The disclosure is in our sole discretion necessary for the
+                                                                establishment or maintenance of legal claims or legal
+                                                                compliance, to satisfy any law, regulation, subpoena or
+                                                                government request, or in connection with litigation;</li>
+                                                        <li>The Personal Information to be disclosed is otherwise
+                                                                publicly available in accordance with the applicable
+                                                                law;</li>
+                                                        <li>The disclosure is for our own marketing purposes
+                                                                (including, without limitation, for AviationRating to
+                                                                market services to you on third-party social media
+                                                                platforms, or, with your authorization, for the
+                                                                marketing purposes of third parties;</li>
+                                                        <li>The party to whom the disclosure is made controls, is
+                                                                controlled by, or is under common control with
+                                                                AviationRating;</li>
+                                                        <li>The disclosure is combined with information collected from
+                                                                other companies and used to improve and personalize
+                                                                services, content, and advertising from us or third
+                                                                parties;</li>
+                                                        <li>The disclosure is in our sole discretion about users who we
+                                                                believe are engaged in illegal activities or are
+                                                                otherwise in violation of our AviationRating Membership
+                                                                Agreement, even without a subpoena, warrant or court
+                                                                order; or</li>
+                                                        <li>The disclosure is to outside businesses to perform certain
+                                                                services for us, such as maintaining our Site and
+                                                                Services, mailing lists, processing orders and
+                                                                delivering products and services, sending postal mail,
+                                                                processing, providing marketing assistance, confirming
+                                                                your identity for review integrity, and data analysis
+                                                                ("Administrative Service Providers"), including
+                                                                Administrative Service Providers outside the country or
+                                                                jurisdiction in which you reside.</li>
+                                                </ul><br />
+                                                <div style="text-align: justify; font-size: 11px;">We may disclose personal information
+                                                        in the good faith belief that we are lawfully authorized to do
+                                                        so, or that doing so is reasonably necessary to comply with
+                                                        legal process or authorities, respond to any claims, or to
+                                                        protect the rights, property or personal safety of
+                                                        AviationRating, our users, our employees or the public.
+                                                        Information about our users, including personal information,
+                                                        may be disclosed or transferred as part of, or during
+                                                        negotiations of, any merger, sale of company assets or
+                                                        acquisition. Please note that if you directly disclose personal
+                                                        information when posting reviews or other content to the Site,
+                                                        this information may be collected and used by others. You agree
+                                                        that AviationRating bears no responsibility for any such
+                                                        disclosures. We recommend you be cautious in giving out
+                                                        personal information to others in public online forums</div><br />
+
+                                                <div style="text-align: justify; font-size: 11px;">We may provide certain Personal
+                                                        Information as a service to others for their marketing
+                                                        purposes. We may also disclose your name and address to Service
+                                                        Providers when you submit User Content relating to those
+                                                        Service Providers. If you properly notify us that you no longer
+                                                        want us to share your Personal Information, we will cease
+                                                        sharing your Personal Information. However, except as otherwise
+                                                        stated in this Privacy Policy, we do not directly control the
+                                                        third parties to which we share such Personal Information and
+                                                        you will need to further notify such third parties directly if
+                                                        you would like them to cease use of your Personal Information.</div><br>
+
+                                                <div style="text-align: justify; font-size: 11px;">We may also disclose aggregate visitor
+                                                        data in order to describe the use of the Site and Services to
+                                                        our existing or potential business partners or other third
+                                                        parties, or in response to a government request. We may also
+                                                        share aggregated demographic and preference data with third
+                                                        parties to enable the provision of targeted information,
+                                                        promotions, offers and/or discounts on products and services.</div><br />
+
+                                                <h6><b style="font-size: 13px;">Protection Of Our Rights</b></h6>
+                                                <div style="text-align: justify; font-size: 11px;">We may use your Data to protect the
+                                                        rights, property or safety of AviationRating, the Consumer
+                                                        Services, our users and employees, or any third party. For
+                                                        example, we may use your Data if we need to enforce or apply
+                                                        our Terms of Service or Policies.</div><br />
+                                                <h6><b style="font-size: 13px;">Security</b></h6>
+
+                                                <div style="text-align: justify; font-size: 11px;">The Personal Information you provide
+                                                        and we collect is stored within databases that we control
+                                                        directly or through our Administrative Service Providers. As we
+                                                        deem appropriate and as required by the applicable law, we use
+                                                        security measures appropriate for the sensitivity of the
+                                                        Personal Information and consistent with industry standards,
+                                                        including physical, organizational and technological
+                                                        protections, such as firewalls, to protect your Personal
+                                                        Information. However, since no security system is impenetrable,
+                                                        we cannot guarantee the security of our databases, nor can we
+                                                        guarantee that information you supply will not be intercepted
+                                                        while being transmitted to us over the Internet. Should any
+                                                        breach occur AviationRating will not be responsible for any
+                                                        data lost or stolen.</div><br />
+
+                                                <div style="text-align: justify; font-size: 11px;">We have put into place reasonable
+                                                        security measures in an effort to protect personal information
+                                                        while it is under our control. Your account information is
+                                                        accessible online only through the use of a password. To
+                                                        protect the confidentiality of personal information, you must
+                                                        keep your password confidential and not disclose it to any
+                                                        other person. You are responsible for all uses of our web site
+                                                        by any person using your password. Please advise us immediately
+                                                        if you believe your password has been misused.</div><br />
+
+                                                <div style="text-align: justify; font-size: 11px;">We retain Personal Information that we
+                                                        collect only as long as reasonably necessary to fulfill the
+                                                        purposes for which it was collected or to otherwise meet any
+                                                        legal requirements.</div><br />
+
+
+                                                <h6><b style="font-size: 13px;">Third Party Websites and Links</b></h6>
+
+                                                <div style="text-align: justify; font-size: 11px;">Please note that you may have cookies
+                                                        placed on your computer by third party websites that refer you
+                                                        to the Site. In addition, AviationRating would like to inform
+                                                        you that anytime you click on links (including advertising
+                                                        banners), which take you to third party websites, you will be
+                                                        subject to the third parties' privacy policies. While we
+                                                        support the protection of our customer's privacy on the
+                                                        Internet, AviationRating expressly disclaims any and all
+                                                        liability for the actions of third parties, including but
+                                                        without limitation to actions relating to the use and/or
+                                                        disclosure of Personal Information by third parties.</div><br />
+
+                                                <div style="text-align: justify; font-size: 11px;">Our Site and Services may contain
+                                                        links to other sites operated by third parties. AviationRating
+                                                        does not control such other sites and is not responsible for
+                                                        their content, their privacy policies, or their use of Personal
+                                                        Information. AviationRating's inclusion of such links does not,
+                                                        by itself, imply any endorsement of the content on such sites
+                                                        or of their owners or operators except as disclosed on the Site
+                                                        and Services. Any information submitted by you directly to
+                                                        these third parties is subject to that third party's privacy
+                                                        policy.</div><br />
+
+                                                <h6><b style="font-size: 13px;"> Children's Privacy</b></h6>
+
+                                                <div style="text-align: justify; font-size: 11px;">AviationRating does not intend the
+                                                        Site and Services to be used by individuals under the age of
+                                                        majority within the jurisdiction within which they reside
+                                                        without the supervision of a parent or guardian of majority
+                                                        age. AviationRating relies upon such parents or guardians to
+                                                        determine if the Site and Services is appropriate for the
+                                                        viewing, access, or participation by such individuals under the
+                                                        age of majority. If an individual under the age of majority
+                                                        uses the Site and Services, such individual may only use the
+                                                        Site and Services under the supervision of a parent or guardian
+                                                        of majority age.<br /><br />
+
+                                                        We do not seek or knowingly collect any Personal Information
+                                                        about children under 13 years of age. If we become aware that
+                                                        we have unknowingly collected Personal Information from a child
+                                                        under the age of 13, we will make commercially reasonable
+                                                        efforts to delete such information from our database.<br /><br />
+
+                                                        If you are the parent or guardian of a minor child who has
+                                                        provided us with Personal Information, you may contact us via
+                                                        our contact us page to request it be deleted.</div><br />
+
+
+                                                <h6><b style="font-size: 13px;">How To Contact us</b></h6>
+                                                <div style="text-align: justify; font-size: 11px;">For all requests, questions, concerns,
+                                                        or complaints about your Personal Information or this Privacy
+                                                        Policy, please contact us by email at
+                                                        privacy@aviationrating.com</div>
+                                        </div>
+
+                                </div>
+                        </div>
+                        <div *ngIf="isTermsOpen" class="row form-row">
+                                <div class="col-md-12">
+                                        <div style="text-align:justify" class="form-control over-flow" rows="5"
+                                                readonly>
+                                                
+
+                                                <h6><b style="font-size: 13px;"> Last Updated December 1, 2018</b></h6>
+                                                <div style="font-size: 11px;"> Please read these terms of use carefully before using the
+                                                        services offered by AviationRating.com (AviationRating). These
+                                                        terms of use set forth the legally binding terms and conditions
+                                                        for your use of the website at a <a href="https://www.aviationrating.com">https://aviationrating.com</a>
+                                                        (The Site) and the services, features, content or applications
+                                                        offer by aviationrating.com (collectively with the site, the
+                                                        “Service”).</div><br />
+                                                <h6><b style="font-size: 13px;"> Your Acceptance the aforementioned Terms</b></h6>
+                                                <div style="font-size: 11px;"> By registering for and/or using the Service in any manner,
+                                                        including but not limited to visiting or browsing the Site, you
+                                                        agree to all of the terms and conditions contained herein
+                                                        ("Terms of Use"), which also incorporate AviationRating.com’s,
+                                                        Privacy Policy, and all other operating rules, policies and
+                                                        procedures that may be published from time to time on the Site
+                                                        by AviationRating, without notice to you in accordance with the
+                                                        terms set out under the "Modification of Terms of Use" section
+                                                        below. In addition, some services offered through
+                                                        AviationRating may be subject to additional terms and
+                                                        conditions as specified by AviationRating from time to time;
+                                                        your use of such services are subject to those additional terms
+                                                        and conditions. These Terms of Use apply to all users of the
+                                                        Service, including, without limitation, users who are
+                                                        contributors of content, information, and other materials or
+                                                        services on the Site, individual users of the Service, venues
+                                                        that access the Service, and users that have a page on the
+                                                        Service.</div><br />
+                                                <h6><b style="font-size: 13px;"> Content</b></h6>
+                                                <div style="font-size: 11px;">All Content, whether publicly posted or privately transmitted, is
+                                                        the sole responsibility of the person who originated such
+                                                        Content. You alone are responsible for Your Content. You assume
+                                                        all risks associated with Your Content, including anyone's
+                                                        reliance on its quality, accuracy, or reliability, or any
+                                                        disclosure by you of information in Your Content that makes you
+                                                        personally identifiable. You represent that you own, or have
+                                                        the necessary permissions to use and authorize the use of Your
+                                                        Content as described herein. You may not imply that Your
+                                                        Content is in any way sponsored or endorsed by AviationRating
+                                                        and once published, it cannot always be withdrawn.
+                                                        AviationRating cannot guarantee the authenticity of any Content
+                                                        or data which users may provide about themselves or others. You
+                                                        acknowledge that all Content accessed by you using the Service
+                                                        is at your own risk and you will be solely responsible and
+                                                        liable for any damage or loss to you or any other party
+                                                        resulting therefrom. For purposes of these Terms of Use, the
+                                                        term "Content" includes, without limitation, any location
+                                                        information, video, audio, comments, information, data, text,
+                                                        photographs, software, scripts, graphics, and interactive
+                                                        features generated, provided, or otherwise made accessible by
+                                                        AviationRating on or through the Service. Content added,
+                                                        created, uploaded, submitted, distributed, posted or otherwise
+                                                        obtained through the Service by users, is collectively referred
+                                                        to as, "User Reviews”.</div> <br />
+                                                <h6><b style="font-size: 13px;">Our Right to Use Your Content</b></h6>
+                                                <div style="font-size: 11px;">AviationRating may use Your Content in a number of different ways,
+                                                        including publicly displaying it, reformatting it,
+                                                        incorporating it into advertisements and other works, creating
+                                                        derivative works from it, promoting it, distributing it, and
+                                                        allowing others to do the same in connection with their own
+                                                        websites and media platforms. You hereby irrevocably grant us
+                                                        world-wide, perpetual, non-exclusive, royalty-free, assignable,
+                                                        sub licensable, transferable rights to use Your Content for any
+                                                        purpose. Please note that you also irrevocably grant the users
+                                                        of the Site and any Other Media the right to access Your
+                                                        Content in connection with their use of the Site and any Other
+                                                        Media. Lastly you irrevocably waive, and cause to be waived,
+                                                        against AviationRating and its users any claims and assertions
+                                                        of moral rights or attribution with respect to Your Content. By
+                                                        "use" we mean use, copy, publicly perform and display,
+                                                        reproduce, distribute, modify, translate, remove, analyze,
+                                                        commercialize, and prepare derivative works of Your Content.</div><br />
+                                                <h6><b style="font-size: 13px;">AviationRating Content</b></h6>
+                                                <div style="font-size: 11px;">The Service contains Content specifically provided by
+                                                        AviationRating or its partners and such Content is protected by
+                                                        copyrights, trademarks, service marks, patents, trade secrets
+                                                        or other proprietary rights and laws, as applicable. You shall
+                                                        abide by and maintain all copyright notices, information, and
+                                                        restrictions contained in any Content accessed through the
+                                                        Service. None of the content on AviationRating.com’s website
+                                                        maybe reproduced, distributed, used in database/spreadsheet,
+                                                        stored in a retrieval system or transmitted via any other means
+                                                        whether that be mechanically, electronically or by recording or
+                                                        photocopying or otherwise or altered in away without the
+                                                        express written consent of AviationRating. </div><br />
+                                                <div style="font-size: 11px;"> As between you and AviationRating, you own your content and we
+                                                        own the AviationRating Content, including but not limited to
+                                                        visual interfaces, interactive features, graphics, design,
+                                                        compilation, including, but not limited to, our compilation of
+                                                        User Content and other Site Content, computer code, products,
+                                                        software, aggregate user review ratings, and all other elements
+                                                        and components of the Site excluding Your Content, User Content
+                                                        and Third Party Content. We also own the copyrights,
+                                                        trademarks, service marks, trade names, and other intellectual
+                                                        and proprietary rights throughout the world (IP Rights)
+                                                        associated with the AviationRating Content and the Site, which
+                                                        are protected by copyright, trade dress, patent, trademark laws
+                                                        and all other applicable intellectual and proprietary rights
+                                                        and laws. As such, you may not modify, reproduce, distribute,
+                                                        create derivative works or adaptations of, publicly display or
+                                                        in any way exploit any of the AviationRating Content in whole
+                                                        or in part except as expressly authorized by us in writing.
+                                                        Except as expressly and unambiguously provided herein, we do
+                                                        not grant you any express or implied rights, and all rights in
+                                                        and to the Site and the AviationRating Content are retained by
+                                                        us.</div><br />
+                                                <h6><b style="font-size: 13px;">Rules and Conduct</b></h6>
+                                                <div style="font-size: 11px;">As a condition of use, you promise not to use the Service for any
+                                                        purpose that is prohibited by these Terms of Use. You are
+                                                        responsible for all of your activity in connection with the
+                                                        Service. Additionally, you shall abide by all applicable local,
+                                                        state, national and international laws and regulations and, if
+                                                        you represent a business, any advertising, marketing, privacy,
+                                                        or other self-regulatory code(s) applicable to your industry.</div><br />
+                                                <div style="font-size: 11px;">By way of example, and not as a limitation, you shall not (and
+                                                        shall not permit any third party to) either (a)take any action
+                                                        or (b)upload, download, post, submit or otherwise distribute or
+                                                        facilitate distribution of any Content on or through the
+                                                        Service, including without limitation any User Review, that:</div><br />
+                                                <ul>
+                                                        <li style="font-size: 11px;">infringes any patent, trademark, trade secret, copyright,
+                                                                right of publicity or other right of any other person
+                                                                or entity or violates any law or contractual duty;</li>
+                                                        <li style="font-size: 11px;">you know is false, misleading, untruthful or inaccurate;</li>
+                                                        <li style="font-size: 11px;">is unlawful, threatening, abusive, harassing, defamatory,
+                                                                libelous, deceptive, fraudulent, invasive of another's
+                                                                privacy, tortious, obscene, vulgar, pornographic,
+                                                                offensive, profane, contains or depicts nudity,
+                                                                contains or depicts sexual activity, promotes bigotry,
+                                                                discrimination or violence, or is otherwise
+                                                                inappropriate as determined by AviationRating in its
+                                                                sole discretion; </li>
+                                                        <li style="font-size: 11px;">constitutes unauthorized or unsolicited advertising, junk
+                                                                or bulk e-mail ("spamming");</li>
+                                                        <li style="font-size: 11px;">other than appropriate use of an Add-to Link, involves
+                                                                commercial activities (whether or not for profit)
+                                                                and/or sales without AviationRating's prior written
+                                                                consent such as contests, sweepstakes, barter,
+                                                                advertising, or pyramid schemes;</li>
+                                                        <li style="font-size: 11px;">contains software viruses or any other computer codes,
+                                                                files, worms, logic bombs or programs that are designed
+                                                                or intended to disrupt, disable, damage, limit or
+                                                                interfere with the proper function of any software,
+                                                                hardware, or telecommunications equipment or to damage
+                                                                or obtain unauthorized access to any system, data,
+                                                                password or other information of AviationRating or any
+                                                                third party;</li>
+                                                        <li style="font-size: 11px;">impersonates any person or entity, including any employee
+                                                                or representative of AviationRating;</li>
+                                                        <li style="font-size: 11px;">includes anyone's identification documents or sensitive
+                                                                financial information; or</li>
+                                                        <li style="font-size: 11px;">breaches the Privacy Policy and/or any of the other
+                                                                policies and rules incorporated herein.</li>
+                                                </ul><br />
+                                                <div style="font-size: 11px;">You shall not (directly or indirectly):</div><br />
+                                                <ul>
+                                                        <li style="font-size: 11px;">take any action that imposes or may impose (as determined
+                                                                by AviationRating in its sole discretion) an
+                                                                unreasonable or disproportionately large load on
+                                                                AviationRating's (or its third party providers')
+                                                                infrastructure;</li>
+                                                        <li style="font-size: 11px;">interfere or attempt to interfere with the proper working
+                                                                of the Service or any activities conducted on the
+                                                                Service;</li>
+                                                        <li style="font-size: 11px;">bypass any measures AviationRating may use to prevent or
+                                                                restrict access to the Service (or other accounts,
+                                                                computer systems or networks connected to the Service);</li>
+                                                        <li style="font-size: 11px;">run any form of auto-responder or "spam" on the Service;</li>
+                                                        <li style="font-size: 11px;">use manual or automated software, devices, or other
+                                                                processes to "crawl" or "spider" any page of the Site;</li>
+                                                        <li style="font-size: 11px;">harvest or scrape any Content from the Service;</li>
+                                                        <li style="font-size: 11px;">modify, adapt, appropriate, reproduce, distribute,
+                                                                translate, create derivative works or adaptations of,
+                                                                publicly display, republish, repurpose, sell, trade, or
+                                                                in any way exploit the Service or Site Content (other
+                                                                than your User Reviews), except as expressly authorized
+                                                                by AviationRating;</li>
+                                                        <li style="font-size: 11px;">decipher, decompile, disassemble, reverse engineer or
+                                                                otherwise attempt to derive any source code or
+                                                                underlying ideas or algorithms of any part of the
+                                                                Service (including without limitation any application
+                                                                or widget), except to the limited extent applicable
+                                                                laws specifically prohibit such restriction;</li>
+                                                        <li style="font-size: 11px;">copy, rent, lease, distribute, or otherwise transfer any of
+                                                                the rights that you receive hereunder;</li>
+                                                        <li style="font-size: 11px;">otherwise take any action in violation of AviationRating's
+                                                                guidelines and policies.</li>
+                                                </ul><br />
+                                                <div style="font-size: 11px;">AviationRating does not guarantee that any Content or User Reviews
+                                                        (as defined above) will be made available on the Site or
+                                                        through the Service. AviationRating has no obligation to
+                                                        monitor the Site, Service, Content, or User Reviews. However,
+                                                        AviationRating reserves the right to (i) remove, suspend, edit
+                                                        or modify any Content in its sole discretion, including without
+                                                        limitation any User Reviews at any time, without notice to you
+                                                        and for any reason (including, but not limited to, upon receipt
+                                                        of claims or allegations from third parties, persons or
+                                                        authorities relating to such Content or if AviationRating is
+                                                        concerned that you may have violated these Terms of Use), or
+                                                        for no reason at all and (ii) to remove, suspend or block any
+                                                        User Reviews from the Service. AviationRating also reserves the
+                                                        right to access, read, preserve, and disclose any information
+                                                        as AviationRating reasonably believes is necessary to (i)
+                                                        satisfy any applicable law, regulation, legal process or
+                                                        governmental request, (ii) enforce these Terms of Use,
+                                                        including investigation of potential violations hereof, (iii)
+                                                        detect, prevent, or otherwise address fraud, security or
+                                                        technical issues, (iv) respond to user support requests, or (v)
+                                                        protect the rights, property or safety of AviationRating, its
+                                                        users and the public.</div><br />
+                                                <h6><b style="font-size: 13px;">Using the Site</b></h6>
+                                                <div style="font-size: 11px;">You may browse the Site and view Content without registering, but
+                                                        as a condition to using certain aspects of the Service, you are
+                                                        required to register with AviationRating and represent, warrant
+                                                        and covenant that you provide AviationRating with accurate and
+                                                        complete registration information (including, but not limited
+                                                        to a user name ("User Name"), e-mail address and/or mobile
+                                                        telephone number and a password you will use to access the
+                                                        Service) and to keep your registration information accurate and
+                                                        up-to-date. Failure to do so shall constitute a breach of these
+                                                        Terms of Use, which may result in immediate termination of your
+                                                        AviationRating account. To access or use the Site, you must be
+                                                        18 years or older and have the requisite power and authority to
+                                                        enter into these Terms. You may not access or use the Site if
+                                                        you are a competitor of ours or if we have previously banned
+                                                        you from the Site or closed your account.</div><br />
+                                                <h6><div style="font-size: 11px;">You shall not:</div></h6>
+                                                <ul>
+                                                        <li style="font-size: 11px;">create any account for anyone other than yourself without
+                                                                such person's permission;</li>
+                                                        <li style="font-size: 11px;">use a User Name that is the name of another person with the
+                                                                intent to impersonate that person;</li>
+                                                        <li style="font-size: 11px;">use a User Name that is a name that is otherwise offensive,
+                                                                vulgar or obscene or otherwise unlawful.</li>
+                                                        <li style="font-size: 11px;">use a User Name or AviationRating account that is subject
+                                                                to any rights of a person other than you without
+                                                                appropriate authorization; or</li>
+                                                </ul><br />
+                                                <div style="font-size: 11px;">AviationRating reserves the right to refuse registration of, or
+                                                        cancel a User Name in its sole discretion. You are solely
+                                                        responsible and liable for activity that occurs on your account
+                                                        and shall be responsible for maintaining the confidentiality of
+                                                        your AviationRating password. You shall never use another
+                                                        user's account without such other user's prior express
+                                                        permission. You will immediately notify AviationRating in
+                                                        writing of any unauthorized use of your account, or other
+                                                        account related security breach of which you are aware.</div><br />
+                                                <div style="font-size: 11px;">You represent and warrant that if you are an individual, you are
+                                                        of legal age to form a binding contract, or that if you are
+                                                        registering on behalf of an entity, that you are authorized to
+                                                        enter into, and bind the entity to, these Terms of Use and
+                                                        register for the Service. The Service is not available to
+                                                        individuals who are younger than 16 years old. AviationRating
+                                                        may, in its sole discretion, refuse to offer the Service to any
+                                                        person or entity and change its eligibility criteria at any
+                                                        time. You are solely responsible for ensuring that these Terms
+                                                        of Use are in compliance with all laws, rules and regulations
+                                                        applicable to you and the right to access the Service is
+                                                        revoked where these Terms of Use or use of the Service is
+                                                        prohibited and, in such circumstances, you agree not to use or
+                                                        access the Site or Services in any way.</div><br />
+                                                <div style="font-size: 11px;">If you use a mobile device, please be aware that your carrier's
+                                                        normal rates and fees, such as text messaging and data charges,
+                                                        will still apply. In the event you change or deactivate your
+                                                        mobile telephone number, you agree that you will update your
+                                                        account information on the Services within 72 hours to ensure
+                                                        that your messages are not sent to the person who acquires your
+                                                        old number.</div><br />
+                                                <h6><b style="font-size: 13px;">Communications from AviationRating and other Users</b></h6>
+                                                <div style="font-size: 11px;">By creating an account, you agree to receive certain
+                                                        communications in connection with the Site. For example, you
+                                                        might receive questions or requests from other Users. </div><br />
+                                                <h6><b style="font-size: 13px;">Site Availability</b></h6>
+                                                <div style="font-size: 11px;">The Site may be modified, updated, interrupted, suspended or
+                                                        discontinued at any time without notice or liability.</div><br />
+                                                <h6><b style="font-size: 13px;">Advertising</b></h6>
+                                                <div style="font-size: 11px;">AviationRating and its licensees may publicly display
+                                                        advertisements and other information adjacent to or included
+                                                        with your content. You are not entitled to any compensation for
+                                                        such advertisements. The manner, mode and extent of such
+                                                        advertising are subject to change without specific notice to
+                                                        you. if you create a business owner's account on the Site or
+                                                        purchase advertising from AviationRating, the AviationRating
+                                                        Advertising Agreement will apply. In the event of any conflict
+                                                        between the AviationRating Advertising Agreement and these
+                                                        Terms, the AviationRating Advertising Agreement will prevail.</div><br />
+                                                <h6><b style="font-size: 13px;">Access</b></h6>
+                                                <div style="font-size: 11px;">Subject to these Terms of Use, AviationRating may offer to provide
+                                                        the Services, as described more fully on the Site, and which
+                                                        are selected by you, solely for your own use, and not for the
+                                                        use or benefit of any third party. Services shall include, but
+                                                        not be limited to, any services AviationRating performs for you
+                                                        and are subject to the terms set out under the "Third party
+                                                        Sites and Services" section below, from third party application
+                                                        stores (e.g., iTunes® store, Blackberry App World™, or Google
+                                                        Apps Marketplace….etc) authorized by AviationRating, as well as
+                                                        the offering of any materials displayed or performed on or
+                                                        through the Services (including Content (as defined below)).</div><br />
+                                                <h6><b style="font-size: 13px;">User Reviews</b></h6>
+                                                <div style="font-size: 11px;">We may use your User Reviews in a number of different ways in
+                                                        connection with the Site, Service and AviationRating’s business
+                                                        as AviationRating may determine in its sole discretion,
+                                                        including but not limited to, publicly displaying it,
+                                                        reformatting it, incorporating it into marketing materials,
+                                                        advertisements and other works, creating derivative works from
+                                                        it, promoting it, distributing it, and allowing other users to
+                                                        do the same in connection with their own websites, media
+                                                        platforms, and applications (“Third Party Media”). By
+                                                        submitting User Reviews on the Site or otherwise through the
+                                                        Service, you hereby do and shall grant AviationRating a
+                                                        worldwide, non-exclusive, royalty-free, fully paid,
+                                                        sublicensable and transferable license to use, copy, edit,
+                                                        modify, reproduce, distribute, prepare derivative works of,
+                                                        display, perform, and otherwise fully exploit the User Reviews
+                                                        in connection with the Site, the Service and AviationRating's
+                                                        (and its successors and assigns') business, including without
+                                                        limitation for promoting and redistributing part or all of the
+                                                        Site (and derivative works thereof) or the Service in any media
+                                                        formats and through any media channels (including, without
+                                                        limitation, third party websites and feeds). You also hereby do
+                                                        and shall grant each user of the Site and/or the Service,
+                                                        including Third Party Media, a non-exclusive license to access
+                                                        your User Reviews through the Site and the Service, and to use,
+                                                        edit, modify, reproduce, distribute, prepare derivative works
+                                                        of, display and perform such User Reviews in connection with
+                                                        their use of the Site, Service and Third Party Media. </div><br />
+                                                <div style="font-size: 11px;">You represent and warrant that you have all rights to grant such
+                                                        license to us without infringement or violation of any third
+                                                        party rights, including without limitation, any privacy rights,
+                                                        publicity rights, copyrights, contract rights, or any other
+                                                        intellectual property or proprietary rights.</div><br />
+                                                <div style="font-size: 11px;">You understand that all information publicly posted or privately
+                                                        transmitted through the Site is the sole responsibility of the
+                                                        person from which such Content originated; that AviationRating
+                                                        will not be liable for any errors or omissions in any Content;
+                                                        and that AviationRating cannot guarantee the identity of any
+                                                        other users with whom you may interact in the course of using
+                                                        the Service.</div><br />
+                                                <div style="font-size: 11px;">When you delete your User Reviews, they will be removed from the
+                                                        Service. However, you understand that any removed User Reviews
+                                                        may persist in backup copies for a reasonable period of time
+                                                        (but following removal will not be shared with others) or may
+                                                        remain with users who have previously accessed or downloaded
+                                                        your User Reviews.</div><br />
+                                                <h6><b style="font-size: 13px;">Suggestions and Improvements</b></h6>
+                                                <div style="font-size: 11px;">By sending us feedbacks any ideas, suggestions, documents or
+                                                        proposals, you agree that:</div><br />
+                                                <ul>
+                                                        <li style="font-size: 11px;">your feedback does not contain the confidential or
+                                                                proprietary information of third parties</li>
+                                                        <li style="font-size: 11px;">we are under no obligation of confidentiality, express or
+                                                                implied, with respect to the feedback</li>
+                                                        <li style="font-size: 11px;">we may have something similar to the feedback already under
+                                                                consideration or in development, and</li>
+                                                        <li style="font-size: 11px;">you grant us an irrevocable, non-exclusive, royalty-free,
+                                                                perpetual, worldwide license to use, modify, prepare
+                                                                derivative works, publish, distribute and sublicense
+                                                                the Feedback, and you irrevocably waive, and cause to
+                                                                be waived, against AviationRating and its users any
+                                                                claims and assertions of any moral rights contained in
+                                                                such feedback.</li>
+                                                </ul><br />
+                                                <h6><b style="font-size: 13px;"> Card Services</b></h6>
+                                                <div style="font-size: 11px;">Certain features of the Service and/or certain services and
+                                                        products made available to you through the Service may allow
+                                                        you to purchase services or to redeem an offer or special using
+                                                        your credit card (together with “Card Services”).
+                                                        AviationRating uses a third-party payment processor (the
+                                                        “Payment Processor”) to link your credit card account to the
+                                                        Services (your “Card Account”) for use of the Card Services.
+                                                        The processing of payments or credits, as applicable, in
+                                                        connection with the Card Services will be subject to the terms,
+                                                        conditions and privacy policies of the Payment Processor and
+                                                        your credit card issuer in addition to this Agreement.
+                                                        AviationRating is not responsible for any error that occurs
+                                                        during any offer or special redemption process, including any
+                                                        error by the Payment Processor. In connection with your use of
+                                                        the Card Services, AviationRating will obtain certain
+                                                        transaction details, which AviationRating will use solely in
+                                                        accordance with our Privacy Policy. </div><br />
+                                                <h6><b style="font-size: 13px;">Third Party Sites and Services</b></h6>
+                                                <div style="font-size: 11px;">The Service may permit you to link to other websites, services or
+                                                        resources on the Internet, and other websites, services or
+                                                        resources may contain links to the Site. When you access third
+                                                        party websites, you do so at your own risk. These other
+                                                        websites are not under AviationRating's control, and you
+                                                        acknowledge that AviationRating is not responsible or liable
+                                                        for the content, functions, accuracy, legality, appropriateness
+                                                        or any other aspect of such websites or resources. The
+                                                        inclusion of any such link does not imply endorsement by
+                                                        AviationRating or any association with its operators. You
+                                                        further acknowledge and agree that AviationRating shall not be
+                                                        responsible or liable, directly or indirectly, for any damage
+                                                        or loss caused or alleged to be caused by or in connection with
+                                                        the use of or reliance on any such Content, goods or services
+                                                        available on or through any such website or resource.</div><br />
+                                                <h6><b style="font-size: 13px;">Special Terms for Add-to-AviationRating Link</b></h6>
+                                                <div style="font-size: 11px;">If you include AviationRating's 'Add-to-AviationRating' Link
+                                                        ("Add-to Link") on your website, the following additional terms
+                                                        apply to you:</div><br />
+                                                <ul>
+                                                        <li style="font-size: 11px;">Subject to your continuous compliance with these Terms of
+                                                                Use, AviationRating hereby grants you a non-exclusive,
+                                                                non-transferable, non-sublicensable, revocable license
+                                                                to use and display the Add-to Link on a website for
+                                                                which you have proper authorization ("your website") so
+                                                                that users can post links or content from your website
+                                                                on the Service. You grant us permission to use and
+                                                                allow others to use such links and content on the
+                                                                Service.</li>
+                                                        <li style="font-size: 11px;">Your license is subject to the following restrictions on
+                                                                use: (a) you may not use the Add-to Link to facilitate
+                                                                your sale of access to the Service or any information
+                                                                therein without AviationRating's prior written
+                                                                approval; (b) you may not obscure or disable any
+                                                                element of the Add-to Link; (c) your website title and
+                                                                other trademarks and logos must appear at least as
+                                                                prominent as AviationRating's trademarks and logos in
+                                                                the Add-to Link; (d) you may not display the Add-to
+                                                                Link in any manner that implies partnership with,
+                                                                affiliation with, sponsorship, or endorsement by
+                                                                AviationRating; (e) you may not display the Add-to Link
+                                                                on any site that disparages AviationRating or its
+                                                                products or services, infringes any AviationRating's
+                                                                intellectual property or other rights, or violates any
+                                                                applicable law; (f) you may not place the Add-to Link
+                                                                on sites that include content that would violate these
+                                                                Terms of Use if posted on the Service; (g) you may not
+                                                                display the Add-to Link in a manner that does not
+                                                                permit successful linking to, redirection to the
+                                                                Service; and (h) you may not insert any intermediate
+                                                                page, splash page or other content between the Add-to
+                                                                Link and the Service.</li>
+                                                </ul>
+                                                <h6><b style="font-size: 13px;">Special Terms for Profiles</b></h6>
+                                                <div  style="font-size: 11px;">If you have a Profile on the Service, you also agree to the
+                                                        following:</div>
+                                                <ul>
+                                                        <li style="font-size: 11px;">Profiles are special sections that may only be used to
+                                                                promote a business.</li>
+                                                        <li style="font-size: 11px;">You may only administer a Profile if you are an authorized
+                                                                representative.</li>
+                                                        <li style="font-size: 11px;">All Content posted on the Profiles will be made available
+                                                                to all users of the Services.</li>
+                                                        <li style="font-size: 11px;">You may not display any Content on your Profile that is an
+                                                                ad or could be construed as an ad.</li>
+                                                        <li style="font-size: 11px;">You may not establish terms beyond those set forth in these
+                                                                Terms of Use to govern the use of the Profile you
+                                                                administer.</li>
+                                                        <li style="font-size: 11px;">Your Profile may not be used to promote or advertise
+                                                                alcohol or tobacco products, firearms, or other
+                                                                products or services that are subject to additional
+                                                                control laws.</li>
+                                                        <li style="font-size: 11px;">You will not direct your Profile, or any Content on your
+                                                                Profile, to children under the age of 13. </li>
+                                                        <li style="font-size: 11px;">If you collect information about users, you will only use
+                                                                such information for your internal business purposes in
+                                                                connection with your use of the Service and in
+                                                                accordance with AviationRating's Privacy Policy.</li>
+                                                        <li style="font-size: 11px;">You will not use deceptive practices to get users to rate
+                                                                your Profile.</li>
+                                                        <li style="font-size: 11px;">You are responsible for ensuring that your Profile,
+                                                                including any Content you post on your Profile, shall
+                                                                comply with all applicable laws, rules and regulations
+                                                                and these Terms of Use, and any advertising, marketing,
+                                                                privacy, or other self-regulatory code(s) applicable to
+                                                                your industry.</li>
+                                                </ul><br />
+                                                <h6><b style="font-size: 13px;">Termination</b></h6>
+                                                <div style="font-size: 11px;">AviationRating may terminate your access to all or any part of the
+                                                        Service and/or Add-to Link at any time, with or without cause,
+                                                        with or without notice, effective immediately, which may result
+                                                        in the forfeiture and destruction of all information associated
+                                                        with your membership. You may terminate the terms at any time
+                                                        by closing your account, discontinuing your use of the Site,
+                                                        and providing AviartionRating with a notice of termination via
+                                                        our contact us page. Any fees paid hereunder are
+                                                        non-refundable. All provisions of these Terms of Use which by
+                                                        their nature should survive termination shall survive
+                                                        termination, including, without limitation, ownership
+                                                        provisions, warranty disclaimers, indemnity and limitations of
+                                                        liability.</div><br />
+                                                <h6><b style="font-size: 13px;">Indemnification</b></h6>
+                                                <div style="font-size: 11px;">You shall defend, indemnify, and hold harmless AviationRating, its
+                                                        affiliates and each of its and its affiliates' employees,
+                                                        contractors, directors, suppliers and representatives from all
+                                                        losses, costs, actions, claims, damages, expenses (including
+                                                        reasonable legal costs) or liabilities, that arise from or
+                                                        relate to your use or misuse of, or access to, the Site,
+                                                        Service, Content, Add-to Link or otherwise from your User
+                                                        Reviews, violation of these Terms of Use, or infringement by
+                                                        you, or any third party using the your account, of any
+                                                        intellectual property or other right of any person or entity
+                                                        (save to the extent that a court of competent jurisdiction
+                                                        holds that such claim arose due to an act or omission of
+                                                        AviationRating). AviationRating reserves the right to assume
+                                                        the exclusive defense and control of any matter otherwise
+                                                        subject to indemnification by you, in which event you will
+                                                        assist and cooperate with AviationRating in asserting any
+                                                        available defenses.</div><br />
+                                                <h6><b style="font-size: 13px;">Warranty Disclaimer</b></h6>
+                                                <div style="font-size: 11px;">AviationRating makes no warranties or guarantees about the content
+                                                        published on our site. This includes </div><br />
+                                                <div style="font-size: 11px;">Save to the extent required by law, AviationRating has no special
+                                                        relationship with or fiduciary duty to you. You acknowledge
+                                                        that AviationRating has no control over, and no duty to take
+                                                        any action regarding: which users gain access to the Service;
+                                                        what Content you access via the Service; what effects the
+                                                        Content may have on you; how you may interpret or use the
+                                                        Content; or what actions you may take as a result of having
+                                                        been exposed to the Content.</div><br />
+                                                <div style="font-size: 11px;">You release AviationRating from all liability for you having
+                                                        acquired or not acquired Content through the Service. </div><br />
+                                                <div style="font-size: 11px;">AviationRating makes no representations concerning any Content
+                                                        contained in or accessed through the Service, and
+                                                        AviationRating will not be responsible or liable for the
+                                                        accuracy, copyright compliance, legality, all damages including
+                                                        compensatory, direct, indirect or consequential, loss of data,
+                                                        income or profit, claims from third parties loss of or damage
+                                                        to property or decency of material contained in or accessed
+                                                        through the Service.</div><br />
+                                                <div style="font-size: 11px;">You release us from all liability relating to your connections and
+                                                        relationships with other users. You understand that we do not,
+                                                        in any way, screen users, nor do we inquire into the
+                                                        backgrounds of users or attempt to verify their backgrounds or
+                                                        statements. We make no representations or warranties as to the
+                                                        conduct of users or the veracity of any information users
+                                                        provide. In no event shall we be liable for any damages
+                                                        whatsoever, whether direct, indirect, general, special,
+                                                        compensatory, consequential, and/or incidental, arising out of
+                                                        or relating to the conduct of you or anyone else in connection
+                                                        with the Services, including, without limitation, bodily
+                                                        injury, emotional distress, and any damages resulting in any
+                                                        way from communications or meetings with users or persons you
+                                                        may otherwise meet through the Services. As such, you agree to
+                                                        take reasonable precautions and exercise the utmost personal
+                                                        care in all interactions with any individual you come into
+                                                        contact with through the Services, particularly if you decide
+                                                        to meet such individuals in person. For example, you should
+                                                        not, under any circumstances, provide your financial
+                                                        information (e.g., credit card or bank account numbers) to
+                                                        other individuals.</div><br />
+                                                <div style="font-size: 11px;">THE SITE, SERVICE, CONTENT AND ADD-TO LINK ARE PROVIDED "AS IS",
+                                                        "AS AVAILABLE" AND ARE PROVIDED WITHOUT ANY REPRESENTATIONS OR
+                                                        WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING, BUT NOT
+                                                        LIMITED TO, THE IMPLIED WARRANTIES OF TITLE, NON-INFRINGEMENT,
+                                                        MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE, AND ANY
+                                                        WARRANTIES IMPLIED BY ANY COURSE OF PERFORMANCE OR USAGE OF
+                                                        TRADE, ALL OF WHICH ARE EXPRESSLY DISCLAIMED, SAVE TO THE
+                                                        EXTENT REQUIRED BY LAW.</div><br />
+                                                <div style="font-size: 11px;">AVIATIONRATING, AND ITS DIRECTORS, EMPLOYEES, AGENTS,
+                                                        REPRESENTATIVES, SUPPLIERS, PARTNERS AND CONTENT PROVIDERS DO
+                                                        NOT WARRANT THAT: (A) THE SERVICE WILL BE SECURE OR AVAILABLE
+                                                        AT ANY PARTICULAR TIME OR LOCATION; (B) ANY DEFECTS OR ERRORS
+                                                        WILL BE CORRECTED; (C) ANY CONTENT OR SOFTWARE AVAILABLE AT OR
+                                                        THROUGH THE SERVICE IS FREE OF VIRUSES OR OTHER HARMFUL
+                                                        COMPONENTS; OR (D) THE RESULTS OF USING THE SERVICE WILL MEET
+                                                        YOUR REQUIREMENTS. YOUR USE OF THE WEBSITE, SERVICE, CONTENT
+                                                        AND ADD-TO LINK IS SOLELY AT YOUR OWN RISK. SOME STATES /
+                                                        COUNTRIES DO NOT ALLOW LIMITATIONS ON IMPLIED WARRANTIES, SO
+                                                        THE ABOVE LIMITATIONS MAY NOT APPLY TO YOU.</div><br />
+                                                <h6><b style="font-size: 13px;">Limitation of Liability</b></h6>
+                                                <div style="font-size: 11px;"> ALL LIABILITY OF AVIATIONRATING, ITS DIRECTORS, EMPLOYEES,
+                                                        AGENTS, REPRESENTATIVES, PARTNERS, SUPPLIERS OR CONTENT
+                                                        PROVIDERS HOWSOEVER ARISING FOR ANY LOSS SUFFERED AS A RESULT
+                                                        OF YOUR USE THE SITE, SERVICE, CONTENT, USER REVIEWS OR ADD-TO
+                                                        LINK IS EXPRESSLY EXCLUDED TO THE FULLEST EXTENT PERMITTED BY
+                                                        LAW, SAVE THAT, IF A COURT OF COMPETENT JURISDICTION DETERMINES
+                                                        THAT LIABILITY OF AVIATIONRATING, ITS DIRECTORS, EMPLOYEES,
+                                                        AGENTS, REPRESENTATIVES, PARTNERS, SUPPLIERS OR CONTENT
+                                                        PROVIDERS (AS APPLICABLE) HAS ARISEN, THE TOTAL OF SUCH
+                                                        LIABILITY SHALL BE LIMITED IN AGGREGATE TO ONE HUNDRED US
+                                                        DOLLARS ($100).</div><br />
+                                                <div style="font-size: 11px;">TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT
+                                                        SHALL AVIATIONRATING, NOR ITS DIRECTORS, EMPLOYEES, AGENTS,
+                                                        REPRESENTATIVES, PARTNERS, SUPPLIERS OR CONTENT PROVIDERS, BE
+                                                        LIABLE UNDER CONTRACT, TORT, STRICT LIABILITY, NEGLIGENCE OR
+                                                        ANY OTHER LEGAL OR EQUITABLE THEORY OR OTHERWISE (AND WHETHER
+                                                        OR NOT AVIATIONRATING, ITS DIRECTORS, EMPLOYEES, AGENTS,
+                                                        REPRESENTATIVES, PARTNERS, SUPPLIERS OR CONTENT PROVIDERS HAD
+                                                        PRIOR KNOWLEDGE OF THE CIRCUMSTANCES GIVING RISE TO SUCH LOSS
+                                                        OR DAMAGE) WITH RESPECT TO THE SITE, SERVICE, CONTENT, USER
+                                                        REVIEWS OR ADD-TO LINK FOR:</div><br />
+                                                <ul>
+                                                        <li style="font-size: 11px;">INDIRECT OR CONSEQUENTIAL LOSSES OR DAMAGES;</li>
+                                                        <li style="font-size: 11px;">LOSS OF ACTUAL OR ANTICIPATED PROFITS;</li>
+                                                        <li style="font-size: 11px;">LOSS OF REVENUE;</li>
+                                                        <li style="font-size: 11px;">LOSS OF GOODWILL;</li>
+                                                        <li style="font-size: 11px;">LOSS OF DATA;</li>
+                                                        <li style="font-size: 11px;">LOSS OF ANTICIPATED SAVINGS;</li>
+                                                        <li style="font-size: 11px;">WASTED EXPENDITURE; OR</li>
+                                                        <li style="font-size: 11px;">COST OF PROCUREMENT OF SUBSTITUE GOODS OR SERVICES.</li>
+                                                </ul><br />
+                                                <div style="font-size: 11px;">NOTHING IN THESE TERMS OF USE SHALL BE DEEMED TO EXCLUDE OR LIMIT
+                                                        YOUR LIABILITY IN RESPECT OF ANY INDEMNITY GIVEN BY YOU UNDER
+                                                        THESE TERMS OF USE. APPLICABLE LAW MAY NOT ALLOW THE LIMITATION
+                                                        OR EXCLUSION OF LIABILITY OR INCIDENTAL OR CONSEQUENTIAL
+                                                        DAMAGES, SO THE ABOVE LIMITATION OR EXCLUSION MAY NOT APPLY TO
+                                                        YOU. IN SUCH CASES, AVIATIONRATING’S LIABILITY WILL BE LIMITED
+                                                        TO THE FULLEST EXTENT PERMITTED BY APPLICABLE LAW.</div><br />
+                                                <h6><b style="font-size: 13px;">Government Use</b></h6>
+                                                <div style="font-size: 11px;">The use, duplication, reproduction, release, modification,
+                                                        disclosure or transfer of the software or application is
+                                                        restricted in accordance with the Federal Acquisition
+                                                        Regulations as applied to civilian agencies and the Defense
+                                                        Federal Acquisition Regulation Supplement as applied to
+                                                        military agencies. Any such software or application is a
+                                                        "commercial item," "commercial computer software" and
+                                                        "commercial computer software documentation." In accordance
+                                                        with such provisions, any use of any such software, or
+                                                        application shall be governed solely by these Terms of Use.</div>
+                                                <h6><b style="font-size: 13px;">Governing Law</b></h6>
+                                                <div style="font-size: 11px;">A printed version of these Terms of Use and of any notice given in
+                                                        electronic form shall be admissible in judicial or
+                                                        administrative proceedings based upon or relating to these
+                                                        Terms of Use to the same extent and subject to the same
+                                                        conditions as other business documents and records originally
+                                                        generated and maintained in printed form. You and
+                                                        AviationRating agree that any cause of action arising out of or
+                                                        related to the Service must commence within one (1) year after
+                                                        the cause of action arose; otherwise, such cause of action is
+                                                        permanently barred.</div><br />
+                                                <div style="font-size: 11px;">The following arbitration and governing law provisions shall
+                                                        apply:</div><br />
+                                                <ul>
+                                                        <li style="font-size: 11px;">These Terms of Use shall be governed by and construed in
+                                                                accordance with the laws of the State of California,
+                                                                excluding its conflicts of law rules, and the United
+                                                                States of America. For all purposes of these Terms of
+                                                                Use, the parties consent to exclusive jurisdiction and
+                                                                venue in the United States Federal Courts or state
+                                                                courts located in California. Use of the Service is not
+                                                                authorized in any jurisdiction that does not give
+                                                                effect to all provisions of these Terms of Use,
+                                                                including without limitation, this section. If you are
+                                                                accepting these Terms of Use on behalf of a United
+                                                                States federal government entity that is legally unable
+                                                                to accept the controlling law, jurisdiction or venue
+                                                                clauses above, then those clauses do not apply to you
+                                                                but instead these Terms and any action related thereto
+                                                                will be will be governed by the laws of the United
+                                                                States of America (without reference to conflict of
+                                                                laws) and, in the absence of federal law and to the
+                                                                extent permitted under federal law, the laws of the
+                                                                State of California (excluding choice of law).</li>
+                                                </ul><br />
+                                                <h6><b style="font-size: 13px;">Modification of Terms of Use</b></h6>
+                                                <div style="font-size: 11px;">AviationRating reserves the right, at its sole discretion, to
+                                                        modify or replace any of these Terms of Use, or change,
+                                                        suspend, or discontinue the Service (including without
+                                                        limitation, the availability of any feature, database, or
+                                                        content) at any time by posting a notice on the Site or by
+                                                        sending you notice through the Service or via email.
+                                                        AviationRating may also impose limits on certain features and
+                                                        services or restrict your access to parts or all of the Service
+                                                        without notice or liability. It is your responsibility to check
+                                                        these Terms of Use periodically for changes. Your continued use
+                                                        of the Service following the posting of any changes to these
+                                                        Terms of Use constitutes acceptance of those changes.</div><br />
+                                                <h6><b style="font-size: 13px;">Integration and Severability</b></h6>
+                                                <div style="font-size: 11px;">These Terms of Use are the entire agreement between you and
+                                                        AviationRating with respect to the Service and use of the Site,
+                                                        Service, Content, User Reviews or Add-to Link, and supersede
+                                                        all prior or contemporaneous communications and proposals
+                                                        (whether oral, written or electronic) between you and
+                                                        AviationRating with respect to the Site. If any provision of
+                                                        these Terms of Use is found to be unenforceable or invalid,
+                                                        that provision will be limited or eliminated to the minimum
+                                                        extent necessary so that these Terms of Use will otherwise
+                                                        remain in full force and effect and enforceable. The failure of
+                                                        either party to exercise in any respect any right provided for
+                                                        herein shall not be deemed a waiver of any further rights
+                                                        hereunder. Waiver of compliance in any particular instance does
+                                                        not mean that we will waive compliance in the future. In order
+                                                        for any waiver of compliance with these Terms of Use to be
+                                                        binding, AviationRating must provide you with written notice of
+                                                        such waiver through one of its authorized representatives.</div><br />
+                                                <h6><b style="font-size: 13px;">Miscellaneous</b></h6>
+                                                <div style="font-size: 11px;">AviationRating shall not be liable for any failure to perform its
+                                                        obligations hereunder where such failure results from any cause
+                                                        beyond AviationRating's reasonable control, including, without
+                                                        limitation, mechanical, electronic or communications failure or
+                                                        degradation (including "line-noise" interference). These Terms
+                                                        of Use are personal to you, and are not assignable,
+                                                        transferable or sublicensable by you except with
+                                                        AviationRating's prior written consent. AviationRating may
+                                                        assign, transfer or delegate any of its rights and obligations
+                                                        hereunder without consent. No agency, partnership, joint
+                                                        venture, or employment relationship is created as a result of
+                                                        these Terms of Use and neither party has any authority of any
+                                                        kind to bind the other in any respect. </div><br />
+                                                <h6><b style="font-size: 13px;">Language</b></h6>
+                                                <div style="font-size: 11px;">Where AviationRating has provided you with a translation of the
+                                                        English language version of these Terms of Use, then you agree
+                                                        that the translation is provided for your convenience only and
+                                                        that the English language versions of the Terms will govern
+                                                        your relationship with AviationRating.</div><br />
+                                                <div style="font-size: 11px;">If there is any contradiction between what the English language
+                                                        version of these Terms of Use says and what a translation says,
+                                                        then the English language version shall take precedence.</div><br />
+                                                <h6><b style="font-size: 13px;">Contact</b></h6>
+                                                <div style="font-size: 11px;">You may contact AviationRating at the following EMAIL:
+                                                        info@aviationrating.com</div><br />
+                                        </div>
+
+                                </div>
+                        </div>
+                        <div class="row form-row ">
+                                <div class="col-md-12 privacy-policy">
+                                        <input type="checkbox" id="box-3" [checked]="policy" name=_policy (change)="policy = !policy"
+                                                formControlName="_policy" style="font-size:14px;" required>
+                                        <label for="box-3"> </label>
+                                        I accept to <a (click)="privacyPolicy(isTermsOpen)">privacy policy</a> and <a
+                                                (click)="termsAndPolicy(isPolicyOpen)">terms of use</a>
+                                </div>
+
+                        </div>
+                        <div class="row form-button">
+                                <div class="col-md-12">
+                                        <button *ngIf="!isSpin" type="submit" [disabled]="!f.valid" (click)="onSubmit()"
+                                                class="btn btn-primary btn-signIn">Submit</button>
+                                        <span *ngIf="isSpin"><i class="fa fa-spinner fa-spin" style="font-size:28px;"></i></span>
+                                </div>
+
+                        </div>
+                        <div class="row">&nbsp;</div>
+                </form>
+        </div>
+</div>
